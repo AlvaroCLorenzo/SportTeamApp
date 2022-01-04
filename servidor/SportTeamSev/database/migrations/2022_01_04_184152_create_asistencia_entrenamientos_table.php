@@ -14,8 +14,19 @@ class CreateAsistenciaEntrenamientosTable extends Migration
     public function up()
     {
         Schema::create('asistencia_entrenamientos', function (Blueprint $table) {
+
+            $table->charset = 'utf8mb4';
+            $table->engine = 'InnoDB';
+
             $table->id();
+            $table->unsignedBigInteger('idEntrenamiento');
+            $table->unsignedBigInteger('idJugador');
+            $table->boolean('asistido')->nullable()->default(0);
+            $table->boolean('justificado')->nullable()->default(0);
             $table->timestamps();
+
+            $table->foreign('idEntrenamiento')->references('id')->on('entrenamientos');
+            $table->foreign('idJugador')->references('id')->on('jugadores');
         });
     }
 
