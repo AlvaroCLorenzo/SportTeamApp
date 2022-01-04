@@ -6,6 +6,7 @@ Clonar repositorio privado:
 git clone https://<Usuario>:<AccessToken>@github.com:</EnriqueSanVic/OcaGame.git>
 
 Actualizar posibles modificaciones de compañeros y posibles conflictos):
+
 git pull
 
 Subir repositorio
