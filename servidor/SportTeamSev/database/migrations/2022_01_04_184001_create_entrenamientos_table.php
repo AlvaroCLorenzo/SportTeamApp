@@ -19,14 +19,19 @@ class CreateEntrenamientosTable extends Migration
             $table->engine = 'InnoDB';
 
             $table->id();
-            $table->unsignedBigInteger('idClub');
+
+            $table->foreignId('club_id')
+            ->constrained('clubs')
+            ->cascadeOnUpdate();
+
             $table->timestamp('fechaHora');
             $table->float('duracion');
             $table->string('lugar');
             $table->string('observacion')->nullable();
             $table->timestamps();
 
-            $table->foreign('idClub')->references('id')->on('clubs');
+
+            
 
         });
     }

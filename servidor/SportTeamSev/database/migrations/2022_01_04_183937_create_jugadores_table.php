@@ -19,14 +19,18 @@ class CreateJugadoresTable extends Migration
             $table->engine = 'InnoDB';
 
             $table->id();
-            $table->unsignedBigInteger('idClub');
+            
+            $table->foreignId('club_id')
+            ->constrained('clubs')
+            ->cascadeOnUpdate();
+
             $table->string('nombre');
             $table->string('apellidos');
             $table->string('telefono');
             $table->timestamp('fechaNacimiento');
             $table->timestamps();
 
-            $table->foreign('idClub')->references('id')->on('clubs');
+            
         });
     }
 

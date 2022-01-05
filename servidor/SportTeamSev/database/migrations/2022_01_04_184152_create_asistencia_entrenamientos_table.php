@@ -19,14 +19,19 @@ class CreateAsistenciaEntrenamientosTable extends Migration
             $table->engine = 'InnoDB';
 
             $table->id();
-            $table->unsignedBigInteger('idEntrenamiento');
-            $table->unsignedBigInteger('idJugador');
+
+            $table->foreignId('entrenamiento_id')
+            ->constrained('entrenamientos')
+            ->cascadeOnUpdate();
+
+            $table->foreignId('jugador_id')
+            ->constrained('jugadores')
+            ->cascadeOnUpdate();
+
             $table->boolean('asistido')->nullable()->default(0);
             $table->boolean('justificado')->nullable()->default(0);
             $table->timestamps();
 
-            $table->foreign('idEntrenamiento')->references('id')->on('entrenamientos');
-            $table->foreign('idJugador')->references('id')->on('jugadores');
         });
     }
 
