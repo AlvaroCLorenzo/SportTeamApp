@@ -19,14 +19,20 @@ class CreateAsistenciaPartidosTable extends Migration
             $table->engine = 'InnoDB';
 
             $table->id();
-            $table->unsignedBigInteger('idPartido');
-            $table->unsignedBigInteger('idJugador');
+
+            $table->foreignId('partido_id')
+            ->constrained('partidos')
+            ->cascadeOnUpdate();
+
+            $table->foreignId('jugador_id')
+            ->constrained('jugadores')
+            ->cascadeOnUpdate();
+
             $table->boolean('asistido')->nullable()->default(0);
             $table->boolean('justificado')->nullable()->default(0);
             $table->timestamps();
 
-            $table->foreign('idPartido')->references('id')->on('partidos');
-            $table->foreign('idJugador')->references('id')->on('jugadores');
+
         });
     }
 

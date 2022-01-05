@@ -2,6 +2,8 @@
 
 use Illuminate\Support\Facades\Route;
 
+use App\Http\Controllers\LoginController;
+
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -19,7 +21,7 @@ Route::get('/', function () {
 });
 
 //login
-Route::get('/login');
+Route::get('/login',[LoginController::class,'prueba']);
 
 //validacion login
 Route::post('/validacion-login');

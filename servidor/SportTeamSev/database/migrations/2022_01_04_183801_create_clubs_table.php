@@ -23,10 +23,13 @@ class CreateClubsTable extends Migration
             $table->string('password')->nullable();
             $table->string('deporte');
             $table->string('temporada');
-            $table->unsignedBigInteger('idCategoria');
+
+            $table->foreignId('categoria_id')
+                ->constrained('categorias')
+                ->cascadeOnUpdate();
+
             $table->timestamps();
 
-            $table->foreign('idCategoria')->references('id')->on('categorias');  
         });
     }
 
