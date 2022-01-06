@@ -20,8 +20,18 @@ class LoginController extends Controller
 
         try{
 
-            GuardadoController::guardarEntrenamiento(3, '2022-02-06 17:00:00', 2.0, 'Santiago Bernabeu');
+            //GuardadoController::guardarCompeticion("liga");
 
+            GuardadoController::guardarPartido("real madrid", 'barsa', "liga" ,'2022-11-05 00:39:31', '2-0' ,"todo muy bien");
+
+            /*
+            GuardadoController::guardarCategoria("Primera division");
+            
+            GuardadoController::guardarClub("real madrid", "1234", "futbol", "2021","Primera division");
+
+            GuardadoController::guardarClub("barsa", "1234", "futbol", "2021","Primera division");
+
+            */
         }catch(ClaveForaneaNullaException | FormatoParametroIncorrectoException $ex){
             echo($ex->getMessage());
         }
