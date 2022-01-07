@@ -15,4 +15,8 @@ class Entrenamiento extends Model
     public function club(){
         return $this->belongsTo(Club::class);
     } 
+
+    public function asistencia_entrenamiento(){
+        return $this->hasMany(Asistencia_entrenamiento::class);
+    }
 }

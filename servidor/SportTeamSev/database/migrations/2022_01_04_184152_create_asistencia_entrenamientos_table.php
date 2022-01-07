@@ -25,6 +25,7 @@ class CreateAsistenciaEntrenamientosTable extends Migration
             ->cascadeOnUpdate();
 
             $table->foreignId('jugador_id')
+            ->nullable()
             ->constrained('jugadores')
             ->cascadeOnUpdate();
 
