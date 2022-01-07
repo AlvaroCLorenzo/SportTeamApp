@@ -16,4 +16,8 @@ class Partido extends Model
     public function competicione(){
         return $this->belongsTo(Competicione::class);
     }
+
+    public function asistencia_partido(){
+        return $this->hasMany(Asistencia_entrenamiento::class);
+    }
 }

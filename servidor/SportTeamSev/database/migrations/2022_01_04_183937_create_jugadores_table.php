@@ -28,6 +28,7 @@ class CreateJugadoresTable extends Migration
             $table->string('apellidos');
             $table->string('telefono');
             $table->timestamp('fechaNacimiento');
+            $table->string('observacion')->nullable();
             $table->timestamps();
 
             

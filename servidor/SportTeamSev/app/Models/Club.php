@@ -29,18 +29,22 @@ class Club extends Model
         return $this->hasMany(Entrenamiento::class);
     }
 
+    public function jugadores(){
+        return $this->hasMany(Jugadore::class);
+    }
+
     public function partidos(string $tipo){
 
-        echo($tipo);
-
         if(strcmp($tipo,'local') == 0){
+
             return $this->hasMany(Partido::class, 'local_id');
+
         }else if(strcmp($tipo,'visitante') == 0){
+            
             return $this->hasMany(Partido::class, 'visitante_id');
         }
         
         
-
     }
 
 

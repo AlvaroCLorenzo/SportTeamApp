@@ -3,14 +3,16 @@
 namespace App\Http\Controllers\ModelControllers;
 
 use App\Exceptions\ClaveForaneaNullaException;
-use App\Exceptions\FormatoParametroIncorrectoException;
-
+use App\Exceptions\InsercionDuplicadaException;
+use App\Models\Asistencia_entrenamiento;
+use App\Models\Asistencia_partido;
 use App\Models\Club;
 use App\Models\Categoria;
 use App\Models\Competicione;
 use App\Models\Entrenamiento;
+use App\Models\Jugadore;
 use App\Models\Partido;
-use Illuminate\Database\Eloquent\Model;
+
 
 /**
  * Clase para el guardado de registros en el modelo.
@@ -28,20 +30,35 @@ use Illuminate\Database\Eloquent\Model;
 class GuardadoController
 {
 
-    //string para identificar al campo id canonico en la base de datos
-    const ID = 'id';
+   
 
+    
+    /**
+     * Permite insertar una categoría en el modelo.
+     * 
+     * El campo nombreCategoría debe ser único en la tabla.
+     */
     public static function guardarCategoria(string $nombre){
 
+        //si ya existe una categoría con el mismo nombre salta una excepcion del tipo InsercionDuplicadaException
+        self::comprobarDuplicado(ConsultaController::buscarCategoria($nombre),'$nombre');
+        
         $categoria = new Categoria();
         $categoria->nombreCategoria = $nombre;
         $categoria->save();
 
     }
 
-    
 
+    /**
+     * Permite insertar una competición en el modelo.
+     * 
+     * El campo nombreCompeticion debe ser único en la tabla.
+     */
     public static function guardarCompeticion(string $nombre){
+
+        //si ya existe una competición con el mismo nombre salta una excepcion del tipo InsercionDuplicadaException
+        self::comprobarDuplicado(ConsultaController::buscarCompeticion($nombre),'$nombre');
 
         $competicion = new Competicione();
         $competicion->nombreCompeticion = $nombre;
@@ -50,12 +67,18 @@ class GuardadoController
     }
     
 
-
+    /**
+     * Permite insertar un club en el modelo.
+     * 
+     * El campo nombre debe ser único en la tabla.
+     */
     public static function guardarClub(string $nombre, string $password, string $deporte, string $temporada, $categoria){
 
+        //si ya existe un club con el mismo nombre salta una excepcion del tipo InsercionDuplicadaException
+        self::comprobarDuplicado(ConsultaController::buscarClub($nombre),'$nombre');
 
-        $resultado = GuardadoController::buscarIDModelo(Categoria::class, $categoria, 'nombreCategoria');
-
+        $resultado = ConsultaController::buscarCategoria($categoria);
+        
         
         //en este punto $categoria no puede ser null
 
@@ -80,20 +103,24 @@ class GuardadoController
     }
 
 
-
+    /**
+     * Permite insertar un entrenamiento en el modelo.
+     * 
+     * Está permitido el duplicado de registros.
+     * 
+     */
     public static function guardarEntrenamiento($club, string $fechaHora,  $duracion, string $lugar,string $observacion = null){
 
 
-        $resultado = GuardadoController::buscarIDModelo(Club::class, $club, 'nombre');
+        $resultado = ConsultaController::buscarClub($club);
 
-        
         //en este punto $club no puede ser null
 
         //si no se encuentra la club en la consulta que se ha realizado se lanza una excepcion
         if(count($resultado)==0){
             throw new ClaveForaneaNullaException(['$club']);
         }
-       
+        
         //cogemos el primer resultado, no debería haber más
         $clubRelacionado = $resultado[0];
 
@@ -114,20 +141,24 @@ class GuardadoController
 
     }
 
+    /**
+     * Permite insertar un partido en el modelo.
+     * 
+     * Está permitido el duplicado de registros.
+     */
+    public static function guardarPartido($clubLocal, $clubVisitante, $competicion = null, string $fechaHora, string $resultado = null ,string $observacion = null){
 
-    public static function guardarPartido($clubLocal, $clubVisitante, $idCompeticion = null, string $fechaHora, string $resultado = null ,string $observacion = null){
 
+        $resultadoClubLocal = ConsultaController::buscarClub($clubLocal);
 
-        $resultadoClubLocal = GuardadoController::buscarIDModelo(Club::class, $clubLocal, 'nombre');
-
-        $resultadoClubVisitante = GuardadoController::buscarIDModelo(Club::class, $clubVisitante, 'nombre');
+        $resultadoClubVisitante = ConsultaController::buscarClub($clubVisitante);
 
 
         $resultadoCompeticion = null;
 
-        if($idCompeticion != null){
+        if($competicion != null){
 
-            $resultadoCompeticion = GuardadoController::buscarIDModelo(Competicione::class, $idCompeticion, 'nombreCompeticion');
+            $resultadoCompeticion = ConsultaController::buscarCompeticion($competicion);
 
         }
         
@@ -154,6 +185,7 @@ class GuardadoController
             array_push($clavesForaneasFallidas,'$idCompeticion');
         }
 
+        //si alguna clave foranea no ha obtenido resultados en la consulta de su modelo se lanza la excepción
         if($hayClaveForaneaNulla){
             throw new ClaveForaneaNullaException($clavesForaneasFallidas);
         }
@@ -202,43 +234,200 @@ class GuardadoController
 
     }
 
+    /**
+     * Permite insertar un jugador en el modelo.
+     * 
+     * La combinaciónnombre de nombre y  apellidos de un jugador deben de ser únicos 
+     * para un club en la tabla.
+     * 
+     */
+    public static function guardarJugador($club, string $nombre, string $apellidos, string $telefono, string $fechaNacimiento,string $observacion = null){
 
-    
+        //en este caso hay que obtener el club relacionado antes para usarlo en la comprobación de duplicados
+        $resultadoClub = ConsultaController::buscarClub($club);
 
-    private static function buscarIDModelo($claseModelo, $idOValor, $nombreCampo){
-
-
-        
-
-        //array de resultados de la consulta
-        $resultado = null;
-
-        //si el parametro $idOValor es string se busca por el campo nombre de la tabla del modelo que indique la clase $claseModelo
-        if(is_string($idOValor)){
-
-            /*
-                Lo que hace la expresión call_user_func es llamar al metodo de la segunda posicion del array 
-                de la clase conrrespondiente con el nombre (string) del primer parametro del array , el resto 
-                de parametros del array son los parametros normales que recibiría dicho método indicado en el
-                array.
-            */
-            $resultado = call_user_func( array($claseModelo, 'where'), $nombreCampo,'=',$idOValor)->get();
-    
-        //si es un numero entero se busca por id
-        }else if(is_int($idOValor)){
-            //si el valor de busqueda es un numero entero se da por supuesto que se quiere buscar por el id
-            $resultado = call_user_func( array($claseModelo, 'where'), self::ID,'=',$idOValor)->get();
-
-        }else{
-
-            //si el id de busqueda ya sea por un campo o por el id no es ni string ni int es que tiene un tipado incorrecto en la variable
-            throw new FormatoParametroIncorrectoException([$nombreCampo]);
-
+        if(count($resultadoClub)==0){
+            throw new ClaveForaneaNullaException(['$club']);
         }
 
-        return $resultado;
+        $clubRelacionado = $resultadoClub[0];
+
+        /*
+            Para hacer la comprobación de registro duplicado debe se sacarse el club_id del $club 
+            del parametro, si este es un int no hace falta hacer nada por que ya es el id del club 
+            pero si es un string hay que buscar el id de dicho club.
+
+        */
+
+        
+        $idClub = null;
+
+        if(is_int($club)){
+            $idClub = $club;
+        }else if(is_string($club)){
+            $idClub = $clubRelacionado->id;
+        }
+
+        //se comprueba si ya exite un jugador del mismo club con el mismo nombre y apellidos
+        self::comprobarDuplicado(ConsultaController::buscarJugador(null, $idClub, $nombre, $apellidos), '$club, $nombre , $apellidos');
+
+        //se instancia jugador
+        $jugador = new Jugadore();
+
+        $jugador->nombre = $nombre;
+
+        $jugador->apellidos = $apellidos;
+
+        $jugador->telefono = $telefono;
+
+        $jugador->fechaNacimiento = $fechaNacimiento;
+
+        if($observacion != null){
+            $jugador->observacion = $observacion;
+        }
+
+        $clubRelacionado->jugadores()->save($jugador);
+
+        $jugador->save();
+    }
+
+    /**
+     * Permite insertar un registro de asistencia a un entrenamiento.
+     * 
+     * Está permitido el duplicado de registros.
+     * 
+     * En este caso no se permite buscar el entrenamiento y el jugador por el nombre de 
+     * su  campo en la base de datos, solo por id, por eso se fuerzan las keys como enteros.
+     */
+    public static function guardarAsistenciaEntrenamientos(int $idEntrenamiento,int $idJugador, bool $asistido = null, bool $justificado = null){
+
+        $resultadoEntrenamiento = ConsultaController::buscarEntrenamiento($idEntrenamiento);
+
+        $resultadoJugador = ConsultaController::buscarJugador($idJugador, null, null, null);
+
+        //comprobamos que haya un resultado para la busqueda de los objetos de las claves foraneas
+
+        $hayClaveForaneaNulla = false;
+
+        $clavesForaneasFallidas = array();
+        
+        //si no se encuentran resultados para el club local se añade es referencia a la excepcion
+        if(count($resultadoEntrenamiento)==0){
+            $hayClaveForaneaNulla = true;
+            array_push($clavesForaneasFallidas,'$idEntrenamiento');
+        }
+
+        if(count($resultadoJugador)==0){
+            $hayClaveForaneaNulla = true;
+            array_push($clavesForaneasFallidas,'$idJugador');
+        }
+
+
+        //si alguna clave foranea no ha obtenido resultados en la consulta de su modelo se lanza la excepción
+        if($hayClaveForaneaNulla){
+            throw new ClaveForaneaNullaException($clavesForaneasFallidas);
+        }
+
+        //recogemos los resultados del indice 0 de las consultas, en este punto ya nos hemos asegurado que tienen al menos 1 resultado
+
+        $entrenamientoRelacionado = $resultadoEntrenamiento[0];
+
+        $jugadorRelacionado = $resultadoJugador[0];
+
+        $asistanciaEntrenamiento = new Asistencia_entrenamiento();
+
+        if($asistido != null){
+            $asistanciaEntrenamiento->asistido = $asistido;
+        }
+
+        if($justificado != null){
+            $asistanciaEntrenamiento->justificado = $justificado;
+        }
+
+        $entrenamientoRelacionado->asistencia_entrenamiento()->save($asistanciaEntrenamiento);
+
+        $jugadorRelacionado->asistencia_entrenamiento()->save($asistanciaEntrenamiento);
+
+        $asistanciaEntrenamiento->save();
 
     }
+
+    /**
+     * Permite insertar un registro de asistencia a un partido.
+     * 
+     * Está permitido el duplicado de registros.
+     * 
+     * En este caso no se permite buscar el entrenamiento y el jugador por el nombre de un campo, solo por id, por eso se fuerzan las keys como enteros
+     */
+    public static function guardarAsistenciaPartidos(int $idPartido,int $idJugador, bool $asistido = null, bool $justificado = null){
+
+        $resultadoPartido = ConsultaController::buscarPartido($idPartido);
+
+        $resultadoJugador = ConsultaController::buscarJugador($idJugador,null,null,null);
+
+        //comprobamos que haya un resultado para la busqueda de los objetos de las claves foraneas
+
+        $hayClaveForaneaNulla = false;
+
+        $clavesForaneasFallidas = array();
+        
+        //si no se encuentran resultados para el club local se añade es referencia a la excepcion
+        if(count($resultadoPartido)==0){
+            $hayClaveForaneaNulla = true;
+            array_push($clavesForaneasFallidas,'$idPartido');
+        }
+
+        if(count($resultadoJugador)==0){
+            $hayClaveForaneaNulla = true;
+            array_push($clavesForaneasFallidas,'$idJugador');
+        }
+
+
+        //si alguna clave foranea no ha obtenido resultados en la consulta de su modelo se lanza la excepción
+        if($hayClaveForaneaNulla){
+            throw new ClaveForaneaNullaException($clavesForaneasFallidas);
+        }
+
+        //recogemos los resultados del indice 0 de las consultas, en este punto ya nos hemos asegurado que tienen al menos 1 resultado
+
+        $partidoRelacionado = $resultadoPartido[0];
+
+        $jugadorRelacionado = $resultadoJugador[0];
+
+        $asistanciaPartido = new Asistencia_partido();
+
+        if($asistido != null){
+            $asistanciaPartido->asistido = $asistido;
+        }
+
+        if($justificado != null){
+            $asistanciaPartido->justificado = $justificado;
+        }
+        
+        $partidoRelacionado->asistencia_partido()->save($asistanciaPartido);
+
+        $jugadorRelacionado->asistencia_partido()->save($asistanciaPartido);
+
+        $asistanciaPartido->save();
+
+    }
+
+
+    /**
+     * Si existe algún registro en el array de resultados salta la excepción.
+     * Es para comprobar que ho hay un registro ducplicado en el modelo según una consulta.
+     */
+
+    private static function comprobarDuplicado($resultado, string $nombreCampoDuplicado){
+
+        if(count($resultado) > 0){
+            throw new InsercionDuplicadaException($nombreCampoDuplicado);
+        }
+
+    }
+    
+
+
 
 
     
