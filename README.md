@@ -1,3 +1,2 @@
 # SportTeamApp
-An sport team app made by class mates.
-hola qe tal
+Aplicacion web  y movil para facilitar la organizacion a los entrenadores de quipos deportivos.
