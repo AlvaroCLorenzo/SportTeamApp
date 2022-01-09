@@ -9,6 +9,7 @@ use Illuminate\Http\Request;
 
 class ApiController extends Controller
 {
+    const ARGUMENTOS_INVALIDOS = 'argumentos invalidos';
     
     public function getInfoUsuario(Request $request){
 
@@ -72,6 +73,44 @@ class ApiController extends Controller
         $entrenamientos= ConsultaController::buscarJugador(null,$idClub,null,null);
 
         return $entrenamientos;
+
+    }
+
+    public function getConvocatoriaPartido(Request $request){
+
+        //se valida la petición
+        $idClub = LoginController::logearApi($request);
+
+        if($idClub == null){
+            return LoginController::RESPUESTA_ERROR_LOGIN;
+        }
+
+        if(!isset($request->idPartido)){
+            return self::ARGUMENTOS_INVALIDOS;
+        }
+
+        $registrosComvocatoriaPartido = ConsultaController::buscarAsistencia_partido(null,(int)$request->idPartido);
+
+        return $registrosComvocatoriaPartido;
+
+    }
+
+    public function getConvocatoriaEntrenamiento(Request $request){
+
+        //se valida la petición
+        $idClub = LoginController::logearApi($request);
+
+        if($idClub == null){
+            return LoginController::RESPUESTA_ERROR_LOGIN;
+        }
+
+        if(!isset($request->idEntrenamiento)){
+            return self::ARGUMENTOS_INVALIDOS;
+        }
+
+        $registrosComvocatoriaEntrenamiento = ConsultaController::buscarAsistencia_entrenamiento(null,(int)$request->idEntrenamiento);
+
+        return $registrosComvocatoriaEntrenamiento;
 
     }
 

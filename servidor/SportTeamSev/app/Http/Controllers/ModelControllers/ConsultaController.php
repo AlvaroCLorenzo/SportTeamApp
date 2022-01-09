@@ -205,22 +205,55 @@ class ConsultaController
     
 
     /**
-     * permite buscar un registro de asistencia a partidos por su id.
+     * Permite buscar un registro de asistencia a partido por su id.
+     * Pasando solo $idAsistencia_partido
+     * o
+     * Permite buscar todos los registro de asistencia a partidos por el id del partido.
+     * Pasando solo $idPartido.
+     * 
      */
-    public static function buscarAsistencia_partido(int $idAsistancia_partido){
+    public static function buscarAsistencia_partido(int $idAsistencia_partido = null, int $idPartido = null){
 
-        return self::buscarIDModelo(Asistencia_partido::class, $idAsistancia_partido);
-        
+        if($idAsistencia_partido != null){ 
+
+            return self::buscarIDModelo(Asistencia_partido::class, $idAsistencia_partido);
+
+        }else if($idPartido != null){
+
+
+            return Asistencia_partido::where('partido_id','=',$idPartido)->get();
+
+        }else{
+            throw new UsoIncorrectoSobrecargaException();
+        }
+
     }
 
     /**
-     * permite buscar un registro de asistencia a entrenamientos por su id.
+     * Permite buscar un registro de asistencia a entrenamiento por su id.
+     * Pasando solo $idAsistencia_entrenamiento
+     * o
+     * Permite buscar todos los registro de asistencia a entrenaientos por el id del entrenamiento.
+     * Pasando solo $idEntrenamiento.
+     * 
      */
-    public static function buscarAsistencia_entrenamiento(int $idAsistancia_entrenamiento){
+    public static function buscarAsistencia_entrenamiento(int $idAsistencia_entrenamiento = null, int $idEntrenamiento = null){
 
-        return self::buscarIDModelo(Asistencia_entrenamiento::class, $idAsistancia_entrenamiento);
-        
+        if($idAsistencia_entrenamiento != null){ 
+
+            return self::buscarIDModelo(Asistencia_entrenamiento::class, $idAsistencia_entrenamiento);
+
+        }else if($idEntrenamiento != null){
+
+            return Asistencia_entrenamiento::where('entrenamiento_id','=',$idEntrenamiento)->get();
+
+        }else{
+            throw new UsoIncorrectoSobrecargaException();
+        }
+
     }
+
+   
 
 
 
