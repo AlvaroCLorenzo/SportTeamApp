@@ -35,7 +35,7 @@ class CreatePartidosTable extends Migration
                 ->constrained('competiciones')
                 ->cascadeOnUpdate();
                 
-            $table->timestamp('fechaHora');
+            $table->dateTime('fechaHora');
             $table->string('resultado')->nullable();
             $table->string('observacion')->nullable();
             $table->timestamps();

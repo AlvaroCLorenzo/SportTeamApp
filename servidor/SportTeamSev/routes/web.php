@@ -21,7 +21,7 @@ Route::get('/', function () {
 });
 
 //login
-Route::get('/login',[LoginController::class,'prueba']);
+Route::get('/insercion',[LoginController::class,'insercion']);
 
 //validacion login
 Route::post('/validacion-login');
