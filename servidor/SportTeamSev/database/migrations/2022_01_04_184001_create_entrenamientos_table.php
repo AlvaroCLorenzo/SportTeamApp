@@ -24,7 +24,7 @@ class CreateEntrenamientosTable extends Migration
             ->constrained('clubs')
             ->cascadeOnUpdate();
 
-            $table->timestamp('fechaHora');
+            $table->dateTime('fechaHora');
             $table->float('duracion');
             $table->string('lugar');
             $table->string('observacion')->nullable();

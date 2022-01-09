@@ -21,18 +21,21 @@ class CreatePartidosTable extends Migration
             $table->id();
 
             $table->foreignId('local_id')
+                ->nullable()
                 ->constrained('clubs')
                 ->cascadeOnUpdate();
 
             $table->foreignId('visitante_id')
+                ->nullable()
                 ->constrained('clubs')
                 ->cascadeOnUpdate();
 
             $table->foreignId('competicion_id')
+                ->nullable()
                 ->constrained('competiciones')
                 ->cascadeOnUpdate();
                 
-            $table->timestamp('fechaHora');
+            $table->dateTime('fechaHora');
             $table->string('resultado')->nullable();
             $table->string('observacion')->nullable();
             $table->timestamps();
