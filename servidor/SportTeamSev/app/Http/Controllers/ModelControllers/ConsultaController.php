@@ -103,6 +103,7 @@ class ConsultaController
         }else if($idClub != null){
 
             return Entrenamiento::where('club_id','=',$idClub)
+                                  ->orderBy('fechaHora','DESC')
                                   ->get();
 
         }
@@ -195,7 +196,7 @@ class ConsultaController
             return Jugadore::where('club_id','=',$idClub)
                            ->get();
 
-        }else{    
+        }else{
             throw new UsoIncorrectoSobrecargaException();
         }
 

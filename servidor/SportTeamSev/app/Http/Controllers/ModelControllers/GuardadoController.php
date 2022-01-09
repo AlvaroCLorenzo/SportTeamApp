@@ -109,7 +109,7 @@ class GuardadoController
      * Está permitido el duplicado de registros.
      * 
      */
-    public static function guardarEntrenamiento($club, string $fechaHora,  $duracion, string $lugar,string $observacion = null){
+    public static function guardarEntrenamiento($club, string $fechaHora,float  $duracion, string $lugar,string $observacion = null){
 
 
         $resultado = ConsultaController::buscarClub($club);

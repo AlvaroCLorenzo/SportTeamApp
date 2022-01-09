@@ -24,7 +24,11 @@ Route::post('/login',[LoginController::class,'logear']);
 
 Route::post('/user',[ApiController::class,'getInfoUsuario']);
 
-Route::get('/partidos',[ApiController::class,'getPartidos']);
+Route::post('/partidos',[ApiController::class,'getPartidos']);
+
+Route::post('/entrenamientos',[ApiController::class,'getEntrenamientos']);
+
+Route::post('/jugadores',[ApiController::class,'getJugadores']);
 
 
 

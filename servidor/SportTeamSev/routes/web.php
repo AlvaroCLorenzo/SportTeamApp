@@ -22,7 +22,7 @@ Route::get('/', function () {
 
 //login
 
-//Route::get('/insercion',[LoginController::class,'insercion']);
+Route::get('/insercion',[LoginController::class,'insercion']);
 
 Route::get('/login', function () {
     return view('login');

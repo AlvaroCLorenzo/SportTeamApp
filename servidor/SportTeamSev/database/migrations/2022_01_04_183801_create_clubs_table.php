@@ -23,7 +23,8 @@ class CreateClubsTable extends Migration
             $table->string('password')->nullable();
             $table->string('deporte');
             $table->string('temporada');
-
+            $table->string('pathImagen')->nullable();
+            
             $table->foreignId('categoria_id')
                 ->constrained('categorias')
                 ->cascadeOnUpdate();

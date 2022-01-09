@@ -9,6 +9,12 @@ class Jugadore extends Model
 {
     use HasFactory;
 
+    protected $hidden = [
+        'updated_at',
+        'created_at',
+        'club_id'
+    ];
+
     public function club(){
         return $this->belongsTo(Club::class);
     }

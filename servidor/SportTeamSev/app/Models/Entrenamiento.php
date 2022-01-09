@@ -9,7 +9,14 @@ class Entrenamiento extends Model
 {
     use HasFactory;
 
+    protected $appends = [
+    ];
 
+    protected $hidden = [
+        'updated_at',
+        'created_at',
+        'club_id',
+    ];
     
 
     public function club(){
