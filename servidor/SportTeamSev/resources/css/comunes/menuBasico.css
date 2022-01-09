@@ -1,0 +1,36 @@
+a#marca {
+    font-size: 26.25px;
+}
+
+li {
+    height: 36px;
+    font-size: 16.50px;
+    /* padding */
+    padding-top: 4px;
+    padding-bottom: 4px;
+    padding-left: 20px;
+    padding-right: 20px;
+    /* margin */
+    margin-left: 50px;
+    border-radius: 18px;
+    transition: 0.5s;
+    background-color: #79be7c;
+    /* borde */
+    border: solid 2px #ffffff00;
+}
+
+li:hover {
+    transition: 0.5s;
+    background-color: #4eb26c;
+}
+
+li#registrate {
+    background-color: #ffffff00;
+    border: solid 2px #ffffff;
+}
+
+li#registrate:hover {
+    transition: 0.5s;
+    background-color: #79be7c;
+    border: solid 2px #ffffff00;
+}
