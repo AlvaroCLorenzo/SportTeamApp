@@ -17,35 +17,22 @@
     <link rel="stylesheet" href="../resources/css/comunes/colores/textos.css">
     <link rel="stylesheet" href="../resources/css/comunes/colores/textosLinks.css">
     {{-- propios --}}
-    <link rel="stylesheet" href="../resources/css/index/section.css">
-    <link rel="stylesheet" href="../resources/css/index/botonPlaystore.css">
     <title>SportTeam</title>
 </head>
 
 <body>
     <div>@include('componentes/menuBasico')</div>
 
-    <section class="w-100 mx-auto row align-items-center">
-        <div class="container-fluid my-auto textoBlanco">
-            <div class="text-center">
-                <h1>Sport Team</h1>
-            </div>
-            <div class="container w-25 px-auto">
-                <a class="linkB" href="#">
-                    <button id="playstore" class="row align-items-center textoBlanco bgVerde2">
-                        <div class="col-lg-4 py-2">
-                            <img class="w-50 mx-auto" src="../resources/img/iconos/playstoreIcon.png"
-                                alt="Logo PlayStore">
-                        </div>
-                        <div class="col-lg-8 d-none d-lg-block">
-                            <p>Descargar app</p>
-                        </div>
-                    </button>
-                </a>
+    <section class="w-100 mx-auto row align-items-center bgVerde1">
+        <div class="container-fluid my-auto textoBlanco bg-Verde5">
+            <div class="">
+                <form action="">
+                    <input type="input">
+                </form>
             </div>
         </div>
     </section>
 
+    <div>@include('componentes/footer')</div>
 </body>
-
 </html>
