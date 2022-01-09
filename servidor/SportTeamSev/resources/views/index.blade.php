@@ -39,7 +39,7 @@
                         <ul class="navbar-nav ms-auto">
                             <li id="registrate" class="nav-item"><a class="linkB" href="#">Regístrate</a>
                             </li>
-                            <li class="nav-item"><a class="linkBV" href="#">Login</a></li>
+                            <li class="nav-item"><a class="linkB" href="#">Login</a></li>
                         </ul>
                     </div>
                 </div>
