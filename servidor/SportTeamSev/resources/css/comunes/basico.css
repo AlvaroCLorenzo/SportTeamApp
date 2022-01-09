@@ -1,0 +1,15 @@
+@font-face {
+    src: url('../fuentes/gothamBold.otf');
+    font-family: gotham;
+}
+
+* {
+    list-style-type: none;
+    font-family: gotham;
+}
+
+html,
+body {
+    height: 100%;
+    width: 100%;
+}

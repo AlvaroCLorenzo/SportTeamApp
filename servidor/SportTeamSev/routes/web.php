@@ -17,7 +17,7 @@ use App\Http\Controllers\LoginController;
 
 //vista de entrada index
 Route::get('/', function () {
-    return view('vistaPrincipal');
+    return view('index');
 });
 
 //login
