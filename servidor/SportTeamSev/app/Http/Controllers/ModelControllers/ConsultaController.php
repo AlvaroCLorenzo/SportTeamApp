@@ -88,26 +88,91 @@ class ConsultaController
 
     /**
      * permite buscar un entrenamiento por su id.
-     */
-    public static function buscarEntrenamiento(int $idEntrenamiento){
-
-        return self::buscarIDModelo(Entrenamiento::class, $idEntrenamiento);
-        
-    }
-
-    /**
-     * permite buscar un partido por su id.
-     */
-    public static function buscarPartido(int $idPartido){
-
-        return self::buscarIDModelo(Partido::class, $idPartido);
-        
-    }
-
-    /**
-     * permite buscar un jugador por su id.
+     * Pasando solo $idEntrenamiento.
      * o
-     * permite buscar por el id del club al que pertenece, su nombre y sus apellidos.
+     * permite buscar todos los entrenamientos de un club por su id.
+     * Pasando solo $idClub.
+     *
+     */
+    public static function buscarEntrenamiento(int $idEntrenamiento = null, int $idClub = null){
+
+        if($idEntrenamiento != null){
+
+            return self::buscarIDModelo(Entrenamiento::class, $idEntrenamiento);
+
+        }else if($idClub != null){
+
+            return Entrenamiento::where('club_id','=',$idClub)
+                                  ->get();
+
+        }
+        
+    }
+
+    /**
+     * Permite buscar un partido por su id.
+     * Pasando solo $idPartido.
+     * o
+     * Permite buscar todos los partidos en los que está involucrado un club como local.
+     * Pasando solo $idClubLocal.
+     * o
+     * Permite buscar todos los partidos en los que está involucrado un club como visitante.
+     * Pasando solo $idClubVisitante.
+     * o
+     * Permite buscar todos los partidos en lso que está involucrado un club en ambos roles (visitante y local)
+     * PAsando solo $ambos
+     */
+    public static function buscarPartido(int $idPartido = null, int $idClubLocal = null, int $idClubVisitante = null,int $ambos=null){
+
+        //bvusqueda solo por el idPartido
+        if($idPartido != null){
+
+            return self::buscarIDModelo(Partido::class, $idPartido);
+
+        //busqueda de todos los partidos de una combinacion visitante local
+        }else if($idClubLocal != null && $idClubVisitante != null){
+
+            return Partido::where('local_id','=',$idClubLocal)
+                          ->where('visitante_id','=',$idClubVisitante)
+                          ->orderBy('fechaHora','DESC')
+                          ->get();
+
+
+        }else if($idClubLocal != null){
+
+            return Partido::where('local_id','=',$idClubLocal)
+                          ->orderBy('fechaHora','DESC')
+                          ->get();
+
+        }else if($idClubVisitante != null){
+
+            return Partido::where('visitante_id','=',$idClubVisitante)
+                          ->orderBy('fechaHora','DESC')
+                          ->get();
+
+        }else if($ambos != null){
+
+        return Partido::where('visitante_id','=',$ambos)
+                      ->orWhere('local_id','=',$ambos)
+                      ->orderBy('fechaHora','DESC')
+                      ->get();
+        }else{
+            throw new UsoIncorrectoSobrecargaException();
+        }
+        
+    }
+
+    /**
+     * Permite buscar un jugador por su id. 
+     * Pasando solo $idJugador.
+     * o
+     * Permite buscar por el id del club al que pertenece, su nombre y sus apellidos.
+     * Pasando solo $idClub, $nombre, $apellidos.
+     * o
+     * Permite buscar todos los jugadores de un club.
+     * Pasando solo $idClub.
+     * 
+     * 
      */
     public static function buscarJugador(int $idJugador = null, int $idClub = null, string $nombre = null, string $apellidos = null){
 
@@ -124,7 +189,13 @@ class ConsultaController
                            ->where('apellidos','=',$apellidos)
                            ->get();
 
-        }else{
+        //buscar los todos los jugadores de un
+        }else if($idClub != null){
+
+            return Jugadore::where('club_id','=',$idClub)
+                           ->get();
+
+        }else{    
             throw new UsoIncorrectoSobrecargaException();
         }
 
