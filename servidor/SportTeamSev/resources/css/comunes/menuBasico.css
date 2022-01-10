@@ -20,7 +20,6 @@ li {
 }
 
 li:hover {
-    transition: 0.5s;
     background-color: #4eb26c;
 }
 
@@ -30,7 +29,6 @@ li#registrate {
 }
 
 li#registrate:hover {
-    transition: 0.5s;
     background-color: #79be7c;
     border: solid 2px #ffffff00;
 }
