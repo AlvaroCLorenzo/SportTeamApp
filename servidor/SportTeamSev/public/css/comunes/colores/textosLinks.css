@@ -30,6 +30,5 @@ Cuando no esta seleccionado blanco,
 cuando estas sobre él o en esa página verde */
 
 a.linkBV:hover {
-    transition: 0.5s;
     color: #79BE7C;
 }
