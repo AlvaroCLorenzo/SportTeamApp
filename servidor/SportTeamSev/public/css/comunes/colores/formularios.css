@@ -1,0 +1,39 @@
+div.formulario {
+    max-width: 700px;
+}
+
+form .grupo {
+    margin: 50px 0px;
+    position: relative;
+}
+
+input {
+    background: none;
+    padding: 5px 5px 5px 0px;
+    display: block;
+    width: 100%;
+    border: none;
+    border-bottom: 2px solid;
+}
+
+input:focus {
+    outline: none;
+}
+
+form label.textfield {
+    position: absolute;
+    top: 5px;
+    transition: 0.5s ease-in-out all;
+    pointer-events: none;
+}
+
+input:focus~label,
+input:valid~label {
+    top: -14px;
+}
+
+select {
+    border: 2px solid #bfdaa0;
+    padding: 2px 20px 2px 0px;
+    margin-left: 20px;
+}

@@ -29,6 +29,7 @@ Route::get('/login', function () {
 });
 
 
+
 //validacion login
 Route::post('/validacion-login',function () {
     return view('validacion-login');
