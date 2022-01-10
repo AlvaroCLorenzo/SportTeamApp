@@ -34,3 +34,5 @@ Route::post('/convocatoriaPartido',[ApiController::class,'getConvocatoriaPartido
 
 Route::post('/convocatoriaEntrenamiento',[ApiController::class,'getConvocatoriaEntrenamiento']);
 
+Route::post('/actualizarPartido',[ApiController::class,'actPartido']);
+

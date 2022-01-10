@@ -114,4 +114,16 @@ class ApiController extends Controller
 
     }
 
+    public function actPartido(Request $request){
+        
+        //se valida la petición
+        $idClub = LoginController::logearApi($request);
+
+        if($idClub == null){
+            return LoginController::RESPUESTA_ERROR_LOGIN;
+        }
+
+        
+    }
+
 }
