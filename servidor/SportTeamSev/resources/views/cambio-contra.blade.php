@@ -25,7 +25,7 @@
     <div>@include('componentes/menuBasico')</div>
 
     <section class="w-100 mx-auto row align-items-center bgVerde1">
-        <div class="container-fluid my-auto textoBlanco ">
+        <div class="container-fluid my-auto textoBlanco">
             <div class="container-sm contenedor formulario bgBlanco">
                 <h1 class="textoVerde3 centrado">Cambio contraseña</h1>
                 <form action="">
