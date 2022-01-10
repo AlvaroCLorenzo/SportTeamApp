@@ -23,7 +23,7 @@
 </head>
 
 <body>
-    @include('componentes/menuBasico', ['btnRegistro' => true, 'btnLogin' => true])
+    @include('componentes/menuBasico', ['btnDesplegable' => true, 'btnRegistro' => true, 'btnLogin' => true])
 
     <section class="w-100 mx-auto row align-items-center">
         <div class="container-fluid my-auto textoBlanco">

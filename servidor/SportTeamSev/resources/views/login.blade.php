@@ -21,7 +21,7 @@
 </head>
 
 <body>
-    @include('componentes/menuBasico', ['btnRegistro' => true, 'btnLogin' => false])
+    @include('componentes/menuBasico', ['btnDesplegable' => true, 'btnRegistro' => true, 'btnLogin' => false])
 
     <section class="w-100 mx-auto row align-items-center bgVerde1">
         <div class="container-fluid my-auto textoBlanco ">
@@ -37,7 +37,7 @@
                         <label class="textoVerde1 textfield" for="">Contraseña</label>
                     </div>
                     <div class="centrado">
-                        <button class="submit">Login</button>
+                        <button class="submit botonVerde">Login</button>
                     </div>
                 </form>
             </div>

@@ -1,6 +1,6 @@
 /* BOTONES NORMALES */
 
-button {
+button#playstore {
     min-height: 60px;
     /* pading */
     padding-top: 5px;
@@ -16,17 +16,22 @@ button {
     border-radius: 100px;
 }
 
+button#playstore img {
+    min-height: 25px;
+    min-width: 25px;
+}
+
 
 /* boton */
 
 @media screen and (orientation: portrait) {
-    button {
+    button#playstore {
         padding-left: 0px;
         padding-right: 0px;
     }
 }
 
-button:hover {
+button#playstore:hover {
     transition-duration: 0.5s;
     background-color: #4eb26c;
 }

@@ -1,6 +1,6 @@
 /* BOTONES NORMALES */
 
-button {
+button.botonVerde {
     color: white;
     /* pading */
     padding-top: 5px;
@@ -16,10 +16,6 @@ button {
     transition-duration: 0.5s;
 }
 
-button:hover {
+button.botonVerde:hover {
     background-color: #4eb26c;
-}
-
-button#playstore {
-    border-radius: 100px;
 }
