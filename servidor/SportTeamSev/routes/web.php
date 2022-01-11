@@ -21,9 +21,14 @@ Route::get('/', function () {
 });
 
 //login
+
+Route::get('/insercion',[LoginController::class,'insercion']);
+
 Route::get('/login', function () {
     return view('login');
 });
+
+
 
 //validacion login
 Route::post('/validacion-login',function () {

@@ -22,14 +22,17 @@ class LoginController extends Controller
      * Se espera el nombre del usuario y la password encriptada con SHA256.
      */
 
-    public const RESPUESTA_OK_LOGIN = "admitido";
     public const RESPUESTA_ERROR_LOGIN = "denegado";
 
     //funcion de login para dispositivos móviles
     public function logear(Request $request){
 
-        if(self::logearApi($request) != null){
-            return self::RESPUESTA_OK_LOGIN;
+        $validacion = self::logearApi($request);
+
+        if($validacion != null){
+            
+            return ConsultaController::buscarClub($validacion)[0];
+
         }else{
             return self::RESPUESTA_ERROR_LOGIN;
         }
@@ -75,6 +78,7 @@ class LoginController extends Controller
         try{
 
             
+
             GuardadoController::guardarCategoria("Primera division");
 
             GuardadoController::guardarCategoria("Segunda division");
@@ -99,8 +103,6 @@ class LoginController extends Controller
 
             GuardadoController::guardarJugador('real madrid', 'Willy', 'Rex Sánchez', '+34 652359346', '2000-05-19 00:00:00');
 
-            
-
             GuardadoController::guardarEntrenamiento(1, '2022-11-05 00:39:31', 2.5, 'campos de entrenamiento');
   
             GuardadoController::guardarAsistenciaPartidos(1,1);
@@ -109,7 +111,6 @@ class LoginController extends Controller
             
             GuardadoController::guardarJugador('barsa', 'Enrique', 'Sánchez Vicente', '+34 652359346', '2000-05-19 00:00:00');
 
-
             GuardadoController::guardarPartido(2,1,null,'2023-01-09 02:26:49',null,null);
             GuardadoController::guardarPartido(1,2,null,'2021-11-30 02:26:49',null,null);
             GuardadoController::guardarPartido(2,1,null,'2022-02-10 02:26:49',null,null);
@@ -117,6 +118,16 @@ class LoginController extends Controller
             GuardadoController::guardarPartido(2,1,null,'2022-09-01 02:26:49',null,null);
             GuardadoController::guardarPartido(1,2,null,'2023-11-30 02:26:49',null,null);
             
+            
+
+            GuardadoController::guardarEntrenamiento(2,'2022-03-10 02:26:49',2.5,"sala de entrenamiento",null);
+
+            GuardadoController::guardarEntrenamiento(2,'2023-10-20 02:26:49',2.2,"sala de entrenamiento",null);
+
+            GuardadoController::guardarEntrenamiento(2,'2023-09-8 02:26:49',2.5,"sala de entrenamiento",null);
+
+
+
         }catch(ClaveForaneaNullaException | FormatoParametroIncorrectoException | UsoIncorrectoSobrecargaException | InsercionDuplicadaException $ex){
             echo($ex->getMessage());
         }

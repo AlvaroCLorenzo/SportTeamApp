@@ -17,13 +17,11 @@ class Partido extends Model
     ];
 
     protected $hidden = [
-        'id',
         'updated_at',
         'created_at',
         'competicion_id',
         'local_id',
         'visitante_id'
-
     ];
 
     /**
