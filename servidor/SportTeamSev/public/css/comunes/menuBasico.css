@@ -3,6 +3,7 @@ a#marca {
 }
 
 li {
+    text-align: center;
     height: 36px;
     font-size: 16.50px;
     /* padding */
@@ -11,21 +12,11 @@ li {
     padding-left: 20px;
     padding-right: 20px;
     /* margin */
-    margin-left: 50px;
     border-radius: 18px;
     transition: 0.5s;
     background-color: #79be7c;
     /* borde */
     border: solid 2px #ffffff00;
-}
-
-
-/* si la pantalla es vertical pongo los margenes de los li a 0 */
-
-@media screen and (orientation: portrait) {
-    li {
-        margin-left: 0px;
-    }
 }
 
 li:hover {

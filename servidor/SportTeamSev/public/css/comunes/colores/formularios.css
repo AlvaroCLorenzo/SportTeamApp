@@ -22,6 +22,7 @@ input:focus {
 
 form label.textfield {
     position: absolute;
+    font-size: 1rem;
     top: 5px;
     transition: 0.5s ease-in-out all;
     pointer-events: none;
