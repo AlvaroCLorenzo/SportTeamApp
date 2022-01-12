@@ -15,8 +15,8 @@
 <body>
     @include('componentes/menuLogueado')
 
-    {{-- le pongo padding 0 porque aquí no me interesa que el menu sea fixed --}}
-    <section class="p-0">
+    {{-- le pongo padding 0 para quitar el padding el de que pongo en el css de basico --}}
+    <section class="px-0 pb-0">
         <div class="mx-0 px-0 row align-items-center">
             <div id="partidos" class="col-lg px-0 text-center seccion">
                 <h1 class="my-auto centrarTexto textoBlanco">Partidos</h1>

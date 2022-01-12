@@ -2,19 +2,36 @@ body {
     background-color: #000000;
 }
 
+
+/* el section lleva este padding top personalizado por el menu.
+El tamaño del padding esta relacionado con el tamaño vertical del menu */
+
+section {
+    padding-top: 100.22px;
+}
+
 .centrarTexto {
     text-shadow: 0 0 0.5em black;
     min-height: 100vh;
     line-height: 100vh;
 }
 
+
+/* no funciona la transición */
+
 div.seccion {
-    transition: 0.4;
+    transition: 0.4s;
 }
 
 div.seccion:hover {
     opacity: 0.8;
 }
+
+
+/* En bootstrap tenemos para el div del menu un breakpoint de ≥992px (large).
+En css no podemos poner menor o igual, asi que ponemos un pixel menos.
+Esto hará que en caso de que el ancho de la ventana sea menor a 992,
+el alto de las columnas cambie*/
 
 @media only screen and (max-width: 991px) {
     .centrarTexto {

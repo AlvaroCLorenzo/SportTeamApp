@@ -1,5 +1,5 @@
 <!-- menu -->
-<header class="fixed-top py-3  bgVerde4">
+<header class="fixed-top py-3 bgVerde4">
     <div class="container-lg">
         <nav class="navbar">
             <div class="container-fluid">
@@ -21,10 +21,6 @@
                 </a>
 
                 <a class="nav-link linkB" href="">
-                    <li id="contornoBlanco" class="nav-item">Cerrar sesión</li>
-                </a>
-
-                <a class="nav-link linkB" href="">
                     <li class="nav-item seccion">Partidos</li>
                 </a>
 
@@ -34,6 +30,10 @@
 
                 <a class="nav-link linkB" href="">
                     <li class="nav-item seccion">Jugadores</li>
+                </a>
+
+                <a class="nav-link linkB" href="">
+                    <li id="contornoBlanco" class="nav-item">Cerrar sesión</li>
                 </a>
             </ul>
         </div>
