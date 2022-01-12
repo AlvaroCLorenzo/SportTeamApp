@@ -1,0 +1,46 @@
+body {
+    background-color: #000000;
+}
+
+.centrarTexto {
+    text-shadow: 0 0 0.5em black;
+    min-height: 100vh;
+    line-height: 100vh;
+}
+
+div.seccion {
+    transition: 0.4;
+}
+
+div.seccion:hover {
+    opacity: 0.8;
+}
+
+@media only screen and (max-width: 991px) {
+    .centrarTexto {
+        line-height: 34vh;
+        min-height: 33.33333333vh;
+        max-height: 33.33333333vh;
+    }
+}
+
+#partidos {
+    background-image: url("../../img/fotos/partidos.jpg");
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+}
+
+#entrenamientos {
+    background-image: url("../../img/fotos/entrenamientos.jpg");
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+}
+
+#jugadores {
+    background-image: url("../../img/fotos/jugadores.jpg");
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+}

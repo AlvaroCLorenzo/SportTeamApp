@@ -1,27 +1,20 @@
 <!doctype html>
-<html lang="en">
+<html lang="es">
 
 <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
 
-    {{-- bootstrap link --}}
-    <link href={{asset('css/app.css')}} rel="stylesheet">
+    @include('componentes/head/headConstantes')
+    
+    {{-- propios --}}
+    <link rel="stylesheet" href="css/comunes/formularios.css">
 
-    {{-- CSS LINKS --}}
-    {{-- generales --}}
-    <link rel="stylesheet" href="css/comunes/basico.css">
-    <link rel="stylesheet" href="css/comunes/menuBasico.css">
-    <link rel="stylesheet" href="css/comunes/botones.css">
-    <link rel="stylesheet" href="css/comunes/colores/fondos.css">
-    <link rel="stylesheet" href="css/comunes/colores/textos.css">
-    <link rel="stylesheet" href="css/comunes/colores/textosLinks.css">
-    <link rel="stylesheet" href="css/comunes/colores/formularios.css">
-    <title>SportTeam</title>
+    <title>Login - Sport Team</title>
 </head>
 
 <body>
-    @include('componentes/menuBasico', ['btnDesplegable' => true, 'btnRegistro' => true, 'btnLogin' => false])
+    @include('componentes/menuDeslogueado', ['btnDesplegable' => true, 'btnRegistro' => true, 'btnLogin' => false])
 
     <section class="w-100 mx-auto row align-items-center bgVerde1">
         <div class="container-fluid my-auto textoBlanco ">
@@ -43,8 +36,8 @@
             </div>
         </div>
     </section>
-
-    <div>@include('componentes/footer')</div>
+    
+    @include('componentes/footer')
     <script src={{ asset('js/app.js')}}></script>
 </body>
 </html>

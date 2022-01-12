@@ -18,7 +18,7 @@
 
                         @if ($btnRegistro)
                             <a class="nav-link linkB" href="registro">
-                                <li id="registrate" class="nav-item">Regístrate</li>
+                                <li id="contornoBlanco" class="nav-item">Regístrate</li>
                             </a>
                         @endif
 
