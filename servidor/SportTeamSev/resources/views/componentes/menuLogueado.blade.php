@@ -16,25 +16,25 @@
         <div class="collapse" id="navbarToggleExternalContent">
             <ul class="navbar-nav ms-auto">
 
-                <a class="nav-link linkB" href="">
-                    <li class="nav-item">Mi club</li>
-                </a>
-
-                <a class="nav-link linkB" href="">
-                    <li class="nav-item seccion">Partidos</li>
-                </a>
-
-                <a class="nav-link linkB" href="">
-                    <li class="nav-item seccion">Entrenamientos</li>
-                </a>
-
-                <a class="nav-link linkB" href="">
-                    <li class="nav-item seccion">Jugadores</li>
-                </a>
-
-                <a class="nav-link linkB" href="">
-                    <li id="contornoBlanco" class="nav-item">Cerrar sesión</li>
-                </a>
+                <li class="nav-item logueado">
+                    <a class="nav-link linkB p-0" href="#">Mi club</a>
+                </li>
+                
+                <li class="nav-item logueado">
+                    <a class="nav-link linkB p-0" href="#">Partidos</a>
+                </li>
+                
+                <li class="nav-item logueado">
+                    <a class="nav-link linkB p-0" href="#">Entrenamientos</a>
+                </li>
+                
+                <li class="nav-item logueado">
+                    <a class="nav-link linkB p-0" href="#">Jugadores</a>
+                </li>
+                
+                <li id="contornoBlanco" class="nav-item logueado">
+                    <a class="nav-link linkB p-0" href="#">Cerrar sesión</a>
+                </li>
             </ul>
         </div>
     </div>

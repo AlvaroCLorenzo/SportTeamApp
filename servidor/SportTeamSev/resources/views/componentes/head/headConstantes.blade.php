@@ -10,3 +10,5 @@
 <link rel="stylesheet" href="css/comunes/colores/fondos.css">
 <link rel="stylesheet" href="css/comunes/colores/textos.css">
 <link rel="stylesheet" href="css/comunes/colores/textosLinks.css">
+
+<script src={{ asset('js/controlMenuLogueado.js') }}></script>

@@ -17,15 +17,15 @@
                     <ul class="navbar-nav ms-auto">
 
                         @if ($btnRegistro)
-                            <a class="nav-link linkB" href="registro">
-                                <li id="contornoBlanco" class="nav-item">Regístrate</li>
-                            </a>
+                        <li id="contornoBlanco" class="nav-item">
+                            <a class="nav-link linkB p-0" href="registro">Regístrate</a>
+                        </li>
                         @endif
 
                         @if ($btnLogin)
-                            <a class="nav-link linkB" href="login">
-                                <li class="nav-item">Login</li>
-                            </a>
+                            <li class="nav-item">
+                                <a class="nav-link linkB p-0" href="login">Login</a>
+                            </li>
                         @endif
                     </ul>
                 </div>
