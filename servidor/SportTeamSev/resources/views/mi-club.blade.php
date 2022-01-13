@@ -16,6 +16,7 @@
     <section class="bgVerde1">
 
     </section>
+    
     @include('componentes/footer')
     <script src={{ asset('js/app.js') }}></script>
 </body>

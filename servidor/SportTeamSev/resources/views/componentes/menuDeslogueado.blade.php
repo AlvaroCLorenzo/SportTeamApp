@@ -18,13 +18,13 @@
 
                         @if ($btnRegistro)
                         <li id="contornoBlanco" class="nav-item">
-                            <a class="nav-link linkB p-0" href="registro">Regístrate</a>
+                            <a class="nav-link linkB p-0" href="{{ url('/registro') }}">Regístrate</a>
                         </li>
                         @endif
 
                         @if ($btnLogin)
                             <li class="nav-item">
-                                <a class="nav-link linkB p-0" href="login">Login</a>
+                                <a class="nav-link linkB p-0" href="{{ url('/login') }}">Login</a>
                             </li>
                         @endif
                     </ul>
