@@ -1,0 +1,80 @@
+a#marca {
+    font-size: 26.25px;
+}
+
+li.generico {
+    text-align: center;
+    height: 36px;
+    font-size: 16.50px;
+    padding-top: 4px;
+    padding-bottom: 4px;
+    padding-left: 20px;
+    padding-right: 20px;
+    margin-left: 50px;
+    border: solid 2px #ffffff00;
+    border-radius: 18px;
+    transition: 0.5s;
+    background-color: #79be7c;
+}
+
+li.logueado {
+    margin: 5px 0px;
+}
+
+li.generico:hover {
+    background-color: #4eb26c;
+}
+
+li.generico#contornoBlanco {
+    background-color: #ffffff00;
+    border: solid 2px #ffffff;
+}
+
+li.generico#contornoBlanco:hover {
+    background-color: #79be7c;
+    border: solid 2px #ffffff00;
+}
+
+#iconoMenu {
+    background-image: url("data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 30 30'%3e%3cpath stroke='rgba%28255, 255, 255, 0.55%29' stroke-linecap='round' stroke-miterlimit='10' stroke-width='2' d='M4 7h22M4 15h22M4 23h22'/%3e%3c/svg%3e");
+}
+
+
+/* para el menu exclusivo de secciones */
+
+div#menuSecciones {
+    position: fixed;
+    /* este top esta relacionado con el tamaño del menu principal */
+    top: 100.22px;
+    left: 0px;
+    width: 100%;
+}
+
+li.secciones {
+    text-align: center;
+    font-size: 16.50px;
+    height: max-content;
+    transition: 0.5s;
+    background-color: #496e56;
+}
+
+li.secciones:hover {
+    background-color: #3c5c47;
+}
+
+li.secciones a {
+    line-height: 100%;
+}
+
+li.secciones.linkActual {
+    background-color: #3c5c47;
+}
+
+
+/* Esto sirve para el menu deslogueado, ya que tiene dos estados  */
+
+@media only screen and (max-width: 575px) {
+    li {
+        margin: 5px 0px;
+    }
+}

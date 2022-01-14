@@ -32,3 +32,11 @@ cuando estas sobre él o en esa página verde */
 a.linkBV:hover {
     color: #79BE7C;
 }
+
+li.secciones a:hover {
+    color: #79BE7C;
+}
+
+li.secciones a.linkActual {
+    color: #79BE7C;
+}

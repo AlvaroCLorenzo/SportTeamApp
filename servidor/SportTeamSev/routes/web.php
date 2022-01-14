@@ -84,3 +84,8 @@ Route::get('/jugadores', function () {
 Route::get('/info-jugador', function () {
     return view('info-jugador');
 });
+
+//vista jugadroes seccion info
+Route::get('/cerrar-sesion', function () {
+    return view('cerrar-sesion');
+});
