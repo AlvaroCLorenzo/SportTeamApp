@@ -148,12 +148,11 @@ class GuardadoController
      */
     public static function guardarPartido($clubLocal, $clubVisitante, $competicion = null, string $fechaHora, string $resultado = null ,string $observacion = null){
 
-
         $resultadoClubLocal = ConsultaController::buscarClub($clubLocal);
 
         $resultadoClubVisitante = ConsultaController::buscarClub($clubVisitante);
 
-
+        
         $resultadoCompeticion = null;
 
         if($competicion != null){
@@ -161,7 +160,6 @@ class GuardadoController
             $resultadoCompeticion = ConsultaController::buscarCompeticion($competicion);
 
         }
-        
         
         //comprobamos que han existido resultados a la hora de buscar las referencias objeto de las claves foraneas
         $hayClaveForaneaNulla = false;
@@ -190,8 +188,6 @@ class GuardadoController
             throw new ClaveForaneaNullaException($clavesForaneasFallidas);
         }
 
-
-       
         /*cogemos el primer resultado del array de resultados, es un array por el restorno 
         de la consulta pero solo debería haber un elemento en el indice 0 del array si se 
         conserva bien la integridad referencial.
@@ -206,11 +202,15 @@ class GuardadoController
             $competicionRelacionado = $resultadoCompeticion[0];
         }
 
+        
+
         //creamos el objeto partido
         $partido= new Partido();
 
         //guardamos los datos estáticos
         $partido->fechaHora = $fechaHora;
+
+        
 
         if($resultado != null){
             $partido->resultado = $resultado;
@@ -230,6 +230,7 @@ class GuardadoController
             $competicionRelacionado->partidos()->save($partido);
         }
 
+        
         $partido->save();
 
     }
@@ -394,21 +395,22 @@ class GuardadoController
 
         $jugadorRelacionado = $resultadoJugador[0];
 
-        $asistanciaPartido = new Asistencia_partido();
+        $asistenciaPartido = new Asistencia_partido();
 
-        if($asistido != null){
-            $asistanciaPartido->asistido = $asistido;
-        }
-
-        if($justificado != null){
-            $asistanciaPartido->justificado = $justificado;
+        if($asistido !== null){
+            $asistenciaPartido->asistido = $asistido;
         }
         
-        $partidoRelacionado->asistencia_partido()->save($asistanciaPartido);
+        if($justificado !== null){
+            $asistenciaPartido->justificado = $justificado;
+        }
+        
+        
+        $partidoRelacionado->asistencia_partido()->save($asistenciaPartido);
 
-        $jugadorRelacionado->asistencia_partido()->save($asistanciaPartido);
+        $jugadorRelacionado->asistencia_partido()->save($asistenciaPartido);
 
-        $asistanciaPartido->save();
+        $asistenciaPartido->save();
 
     }
 
