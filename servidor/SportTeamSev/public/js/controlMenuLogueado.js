@@ -17,6 +17,8 @@ function recogerElementos() {
     liMiClub = document.getElementById("miClub");
 }
 
+// comentario de prueba. git no funcoina como debería
+
 function crearLi() {
     for (let i = 0; i < NOMBRE_SECCIONES.length; i++) {
         // creo el li con su respectivas clases
