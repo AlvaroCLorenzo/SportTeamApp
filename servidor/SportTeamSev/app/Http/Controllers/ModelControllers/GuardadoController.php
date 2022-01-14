@@ -394,21 +394,22 @@ class GuardadoController
 
         $jugadorRelacionado = $resultadoJugador[0];
 
-        $asistanciaPartido = new Asistencia_partido();
+        $asistenciaPartido = new Asistencia_partido();
 
-        if($asistido != null){
-            $asistanciaPartido->asistido = $asistido;
-        }
-
-        if($justificado != null){
-            $asistanciaPartido->justificado = $justificado;
+        if($asistido !== null){
+            $asistenciaPartido->asistido = $asistido;
         }
         
-        $partidoRelacionado->asistencia_partido()->save($asistanciaPartido);
+        if($justificado !== null){
+            $asistenciaPartido->justificado = $justificado;
+        }
+        
+        
+        $partidoRelacionado->asistencia_partido()->save($asistenciaPartido);
 
-        $jugadorRelacionado->asistencia_partido()->save($asistanciaPartido);
+        $jugadorRelacionado->asistencia_partido()->save($asistenciaPartido);
 
-        $asistanciaPartido->save();
+        $asistenciaPartido->save();
 
     }
 

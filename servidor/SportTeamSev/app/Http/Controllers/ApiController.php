@@ -209,6 +209,7 @@ class ApiController extends Controller
             return LoginController::RESPUESTA_ERROR_LOGIN;
         }
 
+        //si no existe el argumento necesario se retorna error
         if(!isset($request->idPartido)){
             return self::ARGUMENTOS_INVALIDOS;
         }
@@ -230,6 +231,116 @@ class ApiController extends Controller
             return $ex->getMessage();
 
         }
+    }
+
+
+    /**
+     * Permite actualizar los campos de asistido y justificado de un registro de convocatoria a un partido
+     */
+
+    public function actConvocatoriaPartido(Request $request){
+
+
+        //se valida la petición
+        $idClub = LoginController::logearApi($request);
+
+        if($idClub == null){
+            return LoginController::RESPUESTA_ERROR_LOGIN;
+        }
+
+         //si no existe el argumento necesario se retorna error
+        if(!isset($request->idConvocatoria)){
+            return self::ARGUMENTOS_INVALIDOS;
+        }
+
+
+        //se comprueba si existe el argumento asistido en la peticion y su valor
+        $asistido = null;
+
+        if(isset($request->asistido)){
+
+            $asistido = (strcmp($request->asistido,'true')==0) ? true : false;
+            
+        }
+
+
+        //se comprueba si existe el argumento justificado en la peticion y su valor
+        $justificado = null;
+
+        if(isset($request->justificado)){
+
+            $justificado = (strcmp($request->justificado,'true')==0) ? true : false;
+
+        }
+
+        
+        try{
+
+            ActualizacionController::actualizarConvocatoriaPartido($idClub, (int)$request->idConvocatoria, $asistido, $justificado);
+
+            return self::ACTUALIZACION_EXITOSA;
+
+        }catch(ModificacionNoAutorizadaException $ex){
+
+            return $ex->getMessage();
+
+        }
+
+    }
+
+
+
+    /**
+     * Permite actualizar los campos de asistido y justificado de un registro de convocatoria a un entrenamiento
+     */
+
+    public function actConvocatoriaEntrenamiento(Request $request){
+
+        //se valida la petición
+        $idClub = LoginController::logearApi($request);
+
+        if($idClub == null){
+            return LoginController::RESPUESTA_ERROR_LOGIN;
+        }
+
+         //si no existe el argumento necesario se retorna error
+        if(!isset($request->idConvocatoria)){
+            return self::ARGUMENTOS_INVALIDOS;
+        }
+
+
+        //se comprueba si existe el argumento asistido en la peticion y su valor
+        $asistido = null;
+
+        if(isset($request->asistido)){
+
+            $asistido = (strcmp($request->asistido,'true')==0) ? true : false;
+            
+        }
+
+
+        //se comprueba si existe el argumento justificado en la peticion y su valor
+        $justificado = null;
+
+        if(isset($request->justificado)){
+
+            $justificado = (strcmp($request->justificado,'true')==0) ? true : false;
+
+        }
+
+        
+        try{
+
+            ActualizacionController::actualizarConvocatoriaEntrenamiento($idClub, (int)$request->idConvocatoria, $asistido, $justificado);
+
+            return self::ACTUALIZACION_EXITOSA;  
+
+        }catch(ModificacionNoAutorizadaException $ex){
+
+            return $ex->getMessage();
+
+        }
+
     }
 
 }
