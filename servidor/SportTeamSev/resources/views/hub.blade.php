@@ -19,13 +19,19 @@
     <section class="px-0 pb-0">
         <div class="mx-0 px-0 row align-items-center">
             <div id="partidos" class="col-lg px-0 text-center seccion">
-                <h1 class="my-auto centrarTexto textoBlanco">Partidos</h1>
+                <a href="{{ url('/partidos') }}">
+                    <h1 class="my-auto centrarTexto textoBlanco">Partidos</h1>
+                </a>
             </div>
             <div id="entrenamientos" class="col-lg px-0 text-center seccion">
-                <h1 class="my-auto centrarTexto textoBlanco">Entrenamientos</h1>
+                <a href="{{ url('/entrenamientos') }}">
+                    <h1 class="my-auto centrarTexto textoBlanco">Entrenamientos</h1>
+                </a>
             </div>
             <div id="jugadores" class="col-lg px-0 text-center seccion">
-                <h1 class="my-auto centrarTexto textoBlanco">Jugadores</h1>
+                <a href="{{ url('/jugadores') }}">
+                    <h1 class="my-auto centrarTexto textoBlanco">Jugadores</h1>
+                </a>
             </div>
         </div>
     </section>

@@ -16,11 +16,11 @@
         <div class="collapse" id="navbarToggleExternalContent">
             <ul class="navbar-nav ms-auto">
 
-                <li id="miClub" class="nav-item logueado">
+                <li id="miClub" class="nav-item logueado generico">
                     <a class="nav-link linkB p-0" href="{{ url('/mi-club') }}">Mi club</a>
                 </li>
 
-                <li id="contornoBlanco" class="nav-item logueado">
+                <li id="contornoBlanco" class="nav-item logueado generico">
                     <a class="nav-link linkB p-0" href="{{ url('/cerrar-sesion') }}">Cerrar sesión</a>
                 </li>
             </ul>

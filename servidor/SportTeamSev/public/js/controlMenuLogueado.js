@@ -21,12 +21,12 @@ function crearLi() {
     for (let i = 0; i < NOMBRE_SECCIONES.length; i++) {
         // creo el li con su respectivas clases
         var li = document.createElement('li');
-        li.className = "nav-item logueado";
+        li.className = "nav-item logueado generico";
         var a = document.createElement('a');
         a.textContent = NOMBRE_SECCIONES[i];
         a.className = "nav-link linkB p-0";
         // Hay que configurar el link del componente a. 
-        a.href = "{{ url('/partidos') }}";
+        a.href = "'{{ url('/partidos') }}'";
         li.appendChild(a);
         arrayLi[i] = li;
     }

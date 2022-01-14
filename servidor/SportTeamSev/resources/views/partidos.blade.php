@@ -12,7 +12,7 @@
 
 <body>
     @include('componentes/menuLogueado')
-    @include('componentes/menuSecciones', ['partidos' => false,'entrenamientos' => false,'jugadores' => false])
+    @include('componentes/menuSecciones', ['partidos' => true,'entrenamientos' => false,'jugadores' => false])
 
     <section class="bgVerde1">
 
