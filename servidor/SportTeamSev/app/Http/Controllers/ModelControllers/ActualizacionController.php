@@ -37,6 +37,42 @@ class ActualizacionController{
 
     }
 
+    public static function actualizarEntrenamiento(int $idClubModificador, int $idEntrenamiento, string $observacion = null){
+
+        $entrenamiento = ConsultaController::buscarEntrenamiento($idEntrenamiento,null)[0];
+
+        if($idClubModificador !== (int)$entrenamiento->club_id){
+            throw new ModificacionNoAutorizadaException();
+        }
+
+        if($observacion != null){
+
+            $entrenamiento->observacion = $observacion;
+
+        }
+
+        $entrenamiento->save();
+
+    }
+
+    public static function actualizarJugador(int $idClubModificador, int $idJugador, string $observacion = null){
+
+        $jugador = ConsultaController::buscarJugador($idJugador,null,null,null)[0];
+
+        if($idClubModificador !== (int)$jugador->club_id){
+            throw new ModificacionNoAutorizadaException();
+        }
+
+        if($observacion != null){
+
+            $jugador->observacion = $observacion;
+
+        }
+
+        $jugador->save();
+
+    }
+
     /**
      * Permite actualizar los cmpos asistido y justificado de un registro
      *  de asistencia a partido, hay recibir en el request obligatoriamente el 
