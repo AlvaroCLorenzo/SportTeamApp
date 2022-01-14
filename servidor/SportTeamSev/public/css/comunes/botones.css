@@ -1,0 +1,21 @@
+/* BOTONES NORMALES */
+
+button.botonVerde {
+    color: white;
+    /* pading */
+    padding-top: 5px;
+    padding-bottom: 5px;
+    padding-left: 20px;
+    padding-right: 20px;
+    /* fondo */
+    background-color: #79be7c;
+    /* borde */
+    border-radius: 18px;
+    border: none;
+    /* transición */
+    transition-duration: 0.5s;
+}
+
+button.botonVerde:hover {
+    background-color: #4eb26c;
+}

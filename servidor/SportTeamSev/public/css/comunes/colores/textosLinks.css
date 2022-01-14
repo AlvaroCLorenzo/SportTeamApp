@@ -1,0 +1,42 @@
+/* quita decoración a todos los link */
+
+a:link,
+a:visited,
+a:active,
+a:hover {
+    text-decoration: none;
+}
+
+
+/* en todos los link por defecto la letra es blanca */
+
+a:link,
+a:visited,
+a:active {
+    transition: 0.5s;
+    color: white;
+}
+
+
+/* Link de color blanco en todas sus formas */
+
+a.linkB:hover {
+    color: white;
+}
+
+
+/* Link de dos colores. 
+Cuando no esta seleccionado blanco, 
+cuando estas sobre él o en esa página verde */
+
+a.linkBV:hover {
+    color: #79BE7C;
+}
+
+li.secciones a:hover {
+    color: #79BE7C;
+}
+
+li.secciones a.linkActual {
+    color: #79BE7C;
+}
