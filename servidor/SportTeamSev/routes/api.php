@@ -16,9 +16,11 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
-    return $request->user();
-});
+/**
+ * Debe recibir
+ */
+
+//Route::post('/alta',[LoginController::class,'alta']);
 
 Route::post('/login',[LoginController::class,'logear']);
 
@@ -45,3 +47,9 @@ Route::post('/actualizarConvocatoriaPartido',[ApiController::class,'actConvocato
 Route::post('/actualizarConvocatoriaEntrenamiento',[ApiController::class,'actConvocatoriaEntrenamiento']);
 
 Route::post('/insertarPartido',[ApiController::class,'insPartido']);
+
+Route::post('/insertarEntrenamiento',[ApiController::class,'insEntrenamiento']);
+
+Route::post('/insertarJugador',[ApiController::class,'insJugador']);
+
+Route::post('/insertarConvocatoriaPartido',[ApiController::class,'insConvocatoriaPartido']);

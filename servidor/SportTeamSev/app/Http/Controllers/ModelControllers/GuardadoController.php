@@ -4,6 +4,7 @@ namespace App\Http\Controllers\ModelControllers;
 
 use App\Exceptions\ClaveForaneaNullaException;
 use App\Exceptions\InsercionDuplicadaException;
+use App\Exceptions\ModificacionNoAutorizadaException;
 use App\Models\Asistencia_entrenamiento;
 use App\Models\Asistencia_partido;
 use App\Models\Club;
@@ -300,7 +301,7 @@ class GuardadoController
      * En este caso no se permite buscar el entrenamiento y el jugador por el nombre de 
      * su  campo en la base de datos, solo por id, por eso se fuerzan las keys como enteros.
      */
-    public static function guardarAsistenciaEntrenamientos(int $idEntrenamiento,int $idJugador, bool $asistido = null, bool $justificado = null){
+    public static function guardarAsistenciaEntrenamientos(int $idClubModificador, int $idEntrenamiento,int $idJugador, bool $asistido = null, bool $justificado = null){
 
         $resultadoEntrenamiento = ConsultaController::buscarEntrenamiento($idEntrenamiento);
 
@@ -335,6 +336,18 @@ class GuardadoController
 
         $jugadorRelacionado = $resultadoJugador[0];
 
+        //comprobamos que el club modificador tiene permiso de modificación en dicho partido y jugador
+        if( 
+            $idClubModificador != (int)$jugadorRelacionado->club_id
+        ||  
+            $idClubModificador != (int)$entrenamientoRelacionado->club_id
+        )
+        {
+            throw new ModificacionNoAutorizadaException();
+        }
+
+
+
         $asistanciaEntrenamiento = new Asistencia_entrenamiento();
 
         if($asistido != null){
@@ -360,7 +373,7 @@ class GuardadoController
      * 
      * En este caso no se permite buscar el entrenamiento y el jugador por el nombre de un campo, solo por id, por eso se fuerzan las keys como enteros
      */
-    public static function guardarAsistenciaPartidos(int $idPartido,int $idJugador, bool $asistido = null, bool $justificado = null){
+    public static function guardarAsistenciaPartidos(int $idClubModificador, int $idPartido,int $idJugador, bool $asistido = null, bool $justificado = null){
 
         $resultadoPartido = ConsultaController::buscarPartido($idPartido);
 
@@ -394,6 +407,16 @@ class GuardadoController
         $partidoRelacionado = $resultadoPartido[0];
 
         $jugadorRelacionado = $resultadoJugador[0];
+
+
+        //comprobamos que el club modificador tiene permiso de modificación en dicho partido y jugador
+        if( 
+            $idClubModificador != (int)$jugadorRelacionado->club_id
+        ||  
+        ($idClubModificador != (int)$partidoRelacionado->local_id && $idClubModificador != (int)$partidoRelacionado->visitante_id))
+        {
+            throw new ModificacionNoAutorizadaException();
+        }
 
         $asistenciaPartido = new Asistencia_partido();
 

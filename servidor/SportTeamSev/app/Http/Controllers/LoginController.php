@@ -20,7 +20,7 @@ class LoginController extends Controller
 
     /**
      * Se espera el nombre del usuario y la password encriptada con SHA256.
-     */
+    */
 
     public const RESPUESTA_ERROR_LOGIN = "denegado";
 
@@ -70,6 +70,10 @@ class LoginController extends Controller
     }
  
 
+    public static function alta(Request $request){
+
+        GuardadoController::guardarClub($request->nombre, $request->contra, "futbol", "2021","Segunda division");
+    }
 
 
     public function insercion(){
@@ -105,9 +109,9 @@ class LoginController extends Controller
 
             GuardadoController::guardarEntrenamiento(1, '2022-11-05 00:39:31', 2.5, 'campos de entrenamiento');
   
-            GuardadoController::guardarAsistenciaPartidos(1,1);
+            //GuardadoController::guardarAsistenciaPartidos(1,1);
 
-            GuardadoController::guardarAsistenciaEntrenamientos(1,1);
+            //GuardadoController::guardarAsistenciaEntrenamientos(1,1);
             
             GuardadoController::guardarJugador('barsa', 'Enrique', 'Sánchez Vicente', '+34 652359346', '2000-05-19 00:00:00');
 

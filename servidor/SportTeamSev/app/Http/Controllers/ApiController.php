@@ -236,6 +236,14 @@ class ApiController extends Controller
     }
 
 
+    /**
+     * Permite actualizar el resultado y la obsercavion de un partido exclusivamente 
+     * a un club que forma parte de dicho encuentro.
+     * 
+     * Para eso el request debe de tener los argumentos:
+     * observacion
+     * 
+     */
     public function actEntrenamiento(Request $request){
 
         //se valida la petición
@@ -448,5 +456,143 @@ class ApiController extends Controller
         }
     
     }
+
+
+    /**
+     * Permite insertar un entrenamiento.
+     */
+    public function insEntrenamiento(Request $request){
+
+        //se valida la petición
+        $idClub = LoginController::logearApi($request);
+
+        if($idClub == null){
+            return LoginController::RESPUESTA_ERROR_LOGIN;
+        }
+
+        
+        if(!isset($request->lugar) || !isset($request->duracion) || !isset($request->fechaHora)){
+            return self::ARGUMENTOS_INVALIDOS;
+        }
+        
+        try{
+
+            GuardadoController::guardarEntrenamiento($idClub,$request->fechaHora,$request->duracion,$request->lugar,null);
+
+            return self::ACTUALIZACION_EXITOSA; 
+
+        }catch(ClaveForaneaNullaException | FormatoParametroIncorrectoException
+        $ex){
+
+            return $ex->getMessage();
+
+        }
+    
+    }
+
+
+    /**
+     * Permite insertar un entrenamiento.
+     */
+    public function insJugador(Request $request){
+
+        //se valida la petición
+        $idClub = LoginController::logearApi($request);
+
+        if($idClub == null){
+            return LoginController::RESPUESTA_ERROR_LOGIN;
+        }
+
+        
+        if(!isset($request->nombreJugador) || !isset($request->apellidos) || !isset($request->telefono) || !isset($request->fechaHora)){
+            return self::ARGUMENTOS_INVALIDOS;
+        }
+        
+        try{
+
+            GuardadoController::guardarJugador($idClub, $request->nombreJugador, $request->apellidos, $request->telefono,$request->fechaHora,null);
+
+            return self::ACTUALIZACION_EXITOSA; 
+
+        }catch(ClaveForaneaNullaException | FormatoParametroIncorrectoException
+        $ex){
+
+            return $ex->getMessage();
+
+        }
+    
+    }
+
+
+    /**
+     * Permite instertar una comvoactoria de partido
+     */
+    public function insConvocatoriaPartido(Request $request){
+
+        //se valida la petición
+        $idClub = LoginController::logearApi($request);
+
+        if($idClub == null){
+            return LoginController::RESPUESTA_ERROR_LOGIN;
+        }
+
+        if(!isset($request->idJugador) || !isset($request->idPartido)){
+            return self::ARGUMENTOS_INVALIDOS;
+        }
+
+
+        try{
+
+            GuardadoController::guardarAsistenciaPartidos($idClub, (int)$request->idPartido, (int)$request->idJugador, null, null);
+
+            return self::ACTUALIZACION_EXITOSA; 
+
+        }catch(ModificacionNoAutorizadaException | ClaveForaneaNullaException | FormatoParametroIncorrectoException
+        $ex){
+
+            return $ex->getMessage();
+
+        }
+
+
+    }
+
+
+    /**
+     * Permite instertar una comvoactoria de entrenamiento
+     */
+    public function insConvocatoriaEntrenamiento(Request $request){
+
+        //se valida la petición
+        $idClub = LoginController::logearApi($request);
+
+        if($idClub == null){
+            return LoginController::RESPUESTA_ERROR_LOGIN;
+        }
+
+        if(!isset($request->idJugador) || !isset($request->idEntrenamiento)){
+            return self::ARGUMENTOS_INVALIDOS;
+        }
+
+
+        try{
+
+            GuardadoController::guardarAsistenciaPartidos($idClub, (int)$request->idEntrenamiento, (int)$request->idJugador, null, null);
+
+            return self::ACTUALIZACION_EXITOSA; 
+
+        }catch(ModificacionNoAutorizadaException | ClaveForaneaNullaException | FormatoParametroIncorrectoException
+        $ex){
+
+            return $ex->getMessage();
+
+        }
+
+
+    }
+
+    
+
+
 
 }
