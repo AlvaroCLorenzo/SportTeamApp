@@ -6,13 +6,64 @@
 
     @include('componentes/head/headConstantes', ['logueado'=>true, 'mostrarMenuSecciones'=>true, 'nombrePaginaActivo'=>'Entrenamientos'])
 
+    {{-- propios --}}
+    <link rel="stylesheet" href="css/comunes/formularios.css">
+
     <title>Entrenamientos - Sport Team</title>
 </head>
 <body>
     @include('componentes/menuLogueado')
     
-    <section class="bgVerde1">
+    <section class="bgVerde1 login">
+        <div class="container-lg mx-auto p-0 row">
+            <div class="col-lg-5 my-3">
+                <div class="container-sm contenedor formulario bgBlanco">
+                    <h1 class="textoVerde3 centrado">Crear entrenamiento</h1>
+                    <form action="">
+                        <div class="grupo">
+                            <input class="textoVerde1" type="text" required>
+                            <label class="textoVerde1 textfield" for="">Duración</label>
+                        </div>
 
+                        <div class="grupo">
+                            <input class="textoVerde1" type="text" required>
+                            <label class="textoVerde1 textfield" for="">Fecha</label>
+                        </div>
+
+                        <div class="grupo">
+                            <input class="textoVerde1" type="text" required>
+                            <label class="textoVerde1 textfield" for="">Hora</label>
+                        </div>
+
+                        <div class="grupo">
+                            <input class="textoVerde1" type="text" required>
+                            <label class="textoVerde1 textfield" for="">Lugar</label>
+                        </div>
+
+                        <div class="centrado">
+                            <button class="submit botonVerde">Crear</button>
+                        </div>
+                    </form>
+                </div>
+            </div>
+
+            {{-- Entrenamientos --}}
+            <div class="col-lg-7 my-3">
+                @include('componentes/entrenamientosLayout')
+                @include('componentes/entrenamientosLayout')
+                @include('componentes/entrenamientosLayout')
+                @include('componentes/entrenamientosLayout')
+                @include('componentes/entrenamientosLayout')
+                @include('componentes/entrenamientosLayout')
+                @include('componentes/entrenamientosLayout')
+                @include('componentes/entrenamientosLayout')
+                @include('componentes/entrenamientosLayout')
+                @include('componentes/entrenamientosLayout')
+                @include('componentes/entrenamientosLayout')
+                @include('componentes/entrenamientosLayout')
+                @include('componentes/entrenamientosLayout')
+            </div>
+        </div>
     </section>
     
     @include('componentes/footer')

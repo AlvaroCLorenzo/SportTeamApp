@@ -27,15 +27,21 @@ form label.textfield {
     top: 5px;
     transition: 0.5s ease-in-out all;
     pointer-events: none;
+    background: #fff;
 }
 
 input:focus~label,
 input:valid~label {
-    top: -14px;
+    top: -15px;
+    font-size: 0.9rem;
 }
 
 select {
     border: 2px solid #bfdaa0;
     padding: 2px 20px 2px 0px;
     margin-left: 20px;
+}
+
+input.inputFecha label {
+    top: -14px;
 }

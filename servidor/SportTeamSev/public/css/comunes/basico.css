@@ -18,8 +18,14 @@ body {
 
 section {
     min-height: 100%;
-    padding-top: 150px;
-    padding-bottom: 100px;
+    padding-top: 15em;
+    padding-top: 12em;
+}
+
+section.login {
+    min-height: 100%;
+    padding-top: 15em;
+    padding-top: 15em;
 }
 
 div.contenedor {
@@ -29,4 +35,16 @@ div.contenedor {
 
 .centrado {
     text-align: center;
+}
+
+.separador {
+    height: 0.4em;
+    width: 100%;
+    border-radius: 10px;
+}
+
+.separadorEntrenamiento {
+    height: 3em;
+    width: 0.5em;
+    border-radius: 10px;
 }
