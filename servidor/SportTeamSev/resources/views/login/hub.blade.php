@@ -5,7 +5,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-    @include('componentes/head/headConstantes')
+    @include('componentes/head/headConstantes', ['logueado'=>true, 'mostrarMenuSecciones'=>false])
 
     <link rel="stylesheet" href="css/hub/botonesSecciones.css">
 

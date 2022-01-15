@@ -5,7 +5,7 @@
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
 
-    @include('componentes/head/headConstantes')
+    @include('componentes/head/headConstantes', ['mostrarMenuSecciones'=>false])
 
     {{-- propios --}}
     <link rel="stylesheet" href="css/index/section.css">

@@ -5,8 +5,7 @@
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
 
-    @include('componentes/head/headConstantes')
-    /cssLinks')
+    @include('componentes/head/headConstantes', ['logueado'=>false])
     
     {{-- propios --}}
     <link rel="stylesheet" href="css/comunes/formularios.css">
