@@ -16,7 +16,7 @@
 </head>
 
 <body>
-    @include('componentes/menuLogueado')
+    @include('componentes/menus/menuLogueado')
 
     <section class="bgVerde1 login">
         <div class="container-lg mx-auto p-0 row">
@@ -79,19 +79,25 @@
 
             {{-- Partidos --}}
             <div class="col-lg-7 my-3">
-                @include('componentes/partidosLayout')
-                @include('componentes/partidosLayout')
-                @include('componentes/partidosLayout')
-                @include('componentes/partidosLayout')
-                @include('componentes/partidosLayout')
-                @include('componentes/partidosLayout')
-                @include('componentes/partidosLayout')
-                @include('componentes/partidosLayout')
-                @include('componentes/partidosLayout')
-                @include('componentes/partidosLayout')
-                @include('componentes/partidosLayout')
-                @include('componentes/partidosLayout')
-                @include('componentes/partidosLayout')
+                @include('componentes/layoutsSecciones/partidosLayout')
+                @include('componentes/layoutsSecciones/partidosLayout')
+                @include('componentes/layoutsSecciones/partidosLayout')
+                @include('componentes/layoutsSecciones/partidosLayout')
+                @include('componentes/layoutsSecciones/partidosLayout')
+                @include('componentes/layoutsSecciones/partidosLayout')
+                @include('componentes/layoutsSecciones/partidosLayout')
+                @include('componentes/layoutsSecciones/partidosLayout')
+                @include('componentes/layoutsSecciones/partidosLayout')
+                @include('componentes/layoutsSecciones/partidosLayout')
+                @include('componentes/layoutsSecciones/partidosLayout')
+                @include('componentes/layoutsSecciones/partidosLayout')
+                @include('componentes/layoutsSecciones/partidosLayout')
+                @include('componentes/layoutsSecciones/partidosLayout')
+                @include('componentes/layoutsSecciones/partidosLayout')
+                @include('componentes/layoutsSecciones/partidosLayout')
+                @include('componentes/layoutsSecciones/partidosLayout')
+                @include('componentes/layoutsSecciones/partidosLayout')
+                @include('componentes/layoutsSecciones/partidosLayout')
             </div>
         </div>
     </section>

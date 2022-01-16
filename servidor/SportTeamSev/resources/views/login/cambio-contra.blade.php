@@ -14,7 +14,7 @@
 </head>
 
 <body>
-    @include('componentes/menuDeslogueado', ['btnDesplegable' => false,'btnRegistro' => false, 'btnLogin' => false])
+    @include('componentes/menus/menuDeslogueado', ['btnDesplegable' => false,'btnRegistro' => false, 'btnLogin' => false])
 
     <section class="w-100 mx-auto row align-items-center bgVerde1">
         <div class="container-fluid my-auto textoBlanco">

@@ -12,7 +12,7 @@
                     </div>
                 </div>
                 <div class="row align-items-center">
-                    <button class="botonVerde">Información del entrenamiento</button>
+                    <button class="botonVerde">Información del jugador</button>
                 </div>
             </div>
         </div>

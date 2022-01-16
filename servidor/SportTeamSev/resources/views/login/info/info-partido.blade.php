@@ -9,7 +9,7 @@
     <title>Partidos - Sport Team</title>
 </head>
 <body>
-    @include('componentes/menuLogueado')
+    @include('componentes/menus/menuLogueado')
     
     <section class="bgVerde1">
 

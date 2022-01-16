@@ -9,18 +9,18 @@
         </div>
     </div>
 
-    {{-- Fila nombre equipos --}}
+    {{-- Fila resultado y fotos --}}
     <div class="row align-items-center mb-4">
         <div class="col-3">
             <img class="w-100 mx-auto" src="{{ url('/img/iconos/clubIcon.png') }}" alt="">
         </div>
-        <div class="col-2 puntuación">
+        <div class="col-2 puntuación px-2 text-center">
             <p class="w-50 mx-auto my-0 puntuacion texto bgVerde5">0</p>
         </div>
         <div class="col-2">
             <img class="w-100 mx-auto" src="{{ url('/img/iconos/vsIcon.png') }}" alt="">
         </div>
-        <div class="col-2 puntuación">
+        <div class="col-2 puntuación px-2 text-center">
             <p class="w-50 mx-auto my-0 puntuacion texto bgVerde5">0</p>
         </div>
         <div class="col-3">
@@ -46,7 +46,7 @@
         </div>
     </div>
 
-    {{-- Fila contenedor verde --}}
+    {{-- Separador --}}
     <div class="my-5 bgVerde5 separador">
     </div>
 </div>

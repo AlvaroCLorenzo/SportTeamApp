@@ -12,7 +12,7 @@
     <title>Entrenamientos - Sport Team</title>
 </head>
 <body>
-    @include('componentes/menuLogueado')
+    @include('componentes/menus/menuLogueado')
     
     <section class="bgVerde1 login">
         <div class="container-lg mx-auto p-0 row">
@@ -49,19 +49,18 @@
 
             {{-- Entrenamientos --}}
             <div class="col-lg-7 my-3">
-                @include('componentes/entrenamientosLayout')
-                @include('componentes/entrenamientosLayout')
-                @include('componentes/entrenamientosLayout')
-                @include('componentes/entrenamientosLayout')
-                @include('componentes/entrenamientosLayout')
-                @include('componentes/entrenamientosLayout')
-                @include('componentes/entrenamientosLayout')
-                @include('componentes/entrenamientosLayout')
-                @include('componentes/entrenamientosLayout')
-                @include('componentes/entrenamientosLayout')
-                @include('componentes/entrenamientosLayout')
-                @include('componentes/entrenamientosLayout')
-                @include('componentes/entrenamientosLayout')
+                @include('componentes/layoutsSecciones/entrenamientosLayout')
+                @include('componentes/layoutsSecciones/entrenamientosLayout')
+                @include('componentes/layoutsSecciones/entrenamientosLayout')
+                @include('componentes/layoutsSecciones/entrenamientosLayout')
+                @include('componentes/layoutsSecciones/entrenamientosLayout')
+                @include('componentes/layoutsSecciones/entrenamientosLayout')
+                @include('componentes/layoutsSecciones/entrenamientosLayout')
+                @include('componentes/layoutsSecciones/entrenamientosLayout')
+                @include('componentes/layoutsSecciones/entrenamientosLayout')
+                @include('componentes/layoutsSecciones/entrenamientosLayout')
+                @include('componentes/layoutsSecciones/entrenamientosLayout')
+                @include('componentes/layoutsSecciones/entrenamientosLayout')
             </div>
         </div>
     </section>

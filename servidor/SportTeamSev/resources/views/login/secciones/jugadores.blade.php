@@ -15,7 +15,7 @@
 </head>
 
 <body>
-    @include('componentes/menuLogueado')
+    @include('componentes/menus/menuLogueado')
 
     <section class="bgVerde1 login">
         <div class="container-lg mx-auto p-0 row">
@@ -53,19 +53,21 @@
 
             {{-- Jugadores --}}
             <div class="col-lg-7 my-3">
-                @include('componentes/jugadoresLayout')
-                @include('componentes/jugadoresLayout')
-                @include('componentes/jugadoresLayout')
-                @include('componentes/jugadoresLayout')
-                @include('componentes/jugadoresLayout')
-                @include('componentes/jugadoresLayout')
-                @include('componentes/jugadoresLayout')
-                @include('componentes/jugadoresLayout')
-                @include('componentes/jugadoresLayout')
-                @include('componentes/jugadoresLayout')
-                @include('componentes/jugadoresLayout')
-                @include('componentes/jugadoresLayout')
-                @include('componentes/jugadoresLayout')
+                @include('componentes/layoutsSecciones/jugadoresLayout')
+                @include('componentes/layoutsSecciones/jugadoresLayout')
+                @include('componentes/layoutsSecciones/jugadoresLayout')
+                @include('componentes/layoutsSecciones/jugadoresLayout')
+                @include('componentes/layoutsSecciones/jugadoresLayout')
+                @include('componentes/layoutsSecciones/jugadoresLayout')
+                @include('componentes/layoutsSecciones/jugadoresLayout')
+                @include('componentes/layoutsSecciones/jugadoresLayout')
+                @include('componentes/layoutsSecciones/jugadoresLayout')
+                @include('componentes/layoutsSecciones/jugadoresLayout')
+                @include('componentes/layoutsSecciones/jugadoresLayout')
+                @include('componentes/layoutsSecciones/jugadoresLayout')
+                @include('componentes/layoutsSecciones/jugadoresLayout')
+                @include('componentes/layoutsSecciones/jugadoresLayout')
+                @include('componentes/layoutsSecciones/jugadoresLayout')
             </div>
         </div>
     </section>
