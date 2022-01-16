@@ -30,7 +30,7 @@
 
     {{-- Fila contenedor verde --}}
     <div class="contenedor bgVerde5">
-        <div class="row align-items-center mb-4">
+        <div class="row">
             <div class="col-sm-4">
                 <p class="w-50 mx-auto my-0 texto text-center">Competición</p>
             </div>
@@ -41,9 +41,12 @@
                 <p class="w-50 mx-auto my-0 texto text-center">Hora</p>
             </div>
         </div>
-        <div class="row align-items-center">
-            <button class="botonVerde">Información del partido</button>
-        </div>
+
+        @if ($botonInformacion)
+            <div class="row align-items-center mt-4">
+                <button class="botonVerde">Información del partido</button>
+            </div>
+        @endif
     </div>
 
     {{-- Separador --}}

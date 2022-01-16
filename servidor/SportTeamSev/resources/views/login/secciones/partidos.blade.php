@@ -29,12 +29,11 @@
                             <label class="textoVerde1" for="">Local</label>
                             <select class="textoVerde1" name="deportes" id="local">
                                 {{-- casos de ejemplo --}}
-                                <option value="baloncesto">Real Madrid</option>
-                                <option value="futbol">Fútbol Club Barcelona</option>
-                                <option value="tenis">Chamberi FC</option>
-                                <option value="tenis">Sevilla</option>
-                                <option value="tenis">Rayo vallecano</option>
-                                <option value="tenis">Real Madrid</option>
+                                <option value="Real Madrid">Real Madrid</option>
+                                <option value="Fútbol Club Barcelona">Fútbol Club Barcelona</option>
+                                <option value="Chamberi FC">Chamberi FC</option>
+                                <option value="Sevilla">Sevilla</option>
+                                <option value="Rayo Vallecano">Rayo Vallecano</option>
                             </select>
                         </div>
 
@@ -42,12 +41,11 @@
                             <label class="textoVerde1" for="">Visitante</label>
                             <select class="textoVerde1" name="deportes" id="visitante">
                                 {{-- casos de ejemplo --}}
-                                <option value="baloncesto">Real Madrid</option>
-                                <option value="futbol">Fútbol Club Barcelona</option>
-                                <option value="tenis">Chamberi FC</option>
-                                <option value="tenis">Sevilla</option>
-                                <option value="tenis">Rayo vallecano</option>
-                                <option value="tenis">Real Madrid</option>
+                                <option value="Real Madrid">Real Madrid</option>
+                                <option value="Fútbol Club Barcelona">Fútbol Club Barcelona</option>
+                                <option value="Chamberi FC">Chamberi FC</option>
+                                <option value="Sevilla">Sevilla</option>
+                                <option value="Rayo Vallecano">Rayo Vallecano</option>
                             </select>
                         </div>
 
@@ -79,25 +77,25 @@
 
             {{-- Partidos --}}
             <div class="col-lg-7 my-3">
-                @include('componentes/layoutsSecciones/partidosLayout')
-                @include('componentes/layoutsSecciones/partidosLayout')
-                @include('componentes/layoutsSecciones/partidosLayout')
-                @include('componentes/layoutsSecciones/partidosLayout')
-                @include('componentes/layoutsSecciones/partidosLayout')
-                @include('componentes/layoutsSecciones/partidosLayout')
-                @include('componentes/layoutsSecciones/partidosLayout')
-                @include('componentes/layoutsSecciones/partidosLayout')
-                @include('componentes/layoutsSecciones/partidosLayout')
-                @include('componentes/layoutsSecciones/partidosLayout')
-                @include('componentes/layoutsSecciones/partidosLayout')
-                @include('componentes/layoutsSecciones/partidosLayout')
-                @include('componentes/layoutsSecciones/partidosLayout')
-                @include('componentes/layoutsSecciones/partidosLayout')
-                @include('componentes/layoutsSecciones/partidosLayout')
-                @include('componentes/layoutsSecciones/partidosLayout')
-                @include('componentes/layoutsSecciones/partidosLayout')
-                @include('componentes/layoutsSecciones/partidosLayout')
-                @include('componentes/layoutsSecciones/partidosLayout')
+                @include('componentes/layoutsSecciones/partidosLayout',['botonInformacion'=>true])
+                @include('componentes/layoutsSecciones/partidosLayout',['botonInformacion'=>true])
+                @include('componentes/layoutsSecciones/partidosLayout',['botonInformacion'=>true])
+                @include('componentes/layoutsSecciones/partidosLayout',['botonInformacion'=>true])
+                @include('componentes/layoutsSecciones/partidosLayout',['botonInformacion'=>true])
+                @include('componentes/layoutsSecciones/partidosLayout',['botonInformacion'=>true])
+                @include('componentes/layoutsSecciones/partidosLayout',['botonInformacion'=>true])
+                @include('componentes/layoutsSecciones/partidosLayout',['botonInformacion'=>true])
+                @include('componentes/layoutsSecciones/partidosLayout',['botonInformacion'=>true])
+                @include('componentes/layoutsSecciones/partidosLayout',['botonInformacion'=>true])
+                @include('componentes/layoutsSecciones/partidosLayout',['botonInformacion'=>true])
+                @include('componentes/layoutsSecciones/partidosLayout',['botonInformacion'=>true])
+                @include('componentes/layoutsSecciones/partidosLayout',['botonInformacion'=>true])
+                @include('componentes/layoutsSecciones/partidosLayout',['botonInformacion'=>true])
+                @include('componentes/layoutsSecciones/partidosLayout',['botonInformacion'=>true])
+                @include('componentes/layoutsSecciones/partidosLayout',['botonInformacion'=>true])
+                @include('componentes/layoutsSecciones/partidosLayout',['botonInformacion'=>true])
+                @include('componentes/layoutsSecciones/partidosLayout',['botonInformacion'=>true])
+                @include('componentes/layoutsSecciones/partidosLayout',['botonInformacion'=>true])
             </div>
         </div>
     </section>
