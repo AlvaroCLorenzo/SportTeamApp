@@ -40,7 +40,7 @@ Route::post('/actualizarPartido',[ApiController::class,'actPartido']);
 
 Route::post('/actualizarEntrenamiento',[ApiController::class,'actEntrenamiento']);
 
-Route::post('/actualizarJugadores',[ApiController::class,'actJugadores']);
+Route::post('/actualizarJugador',[ApiController::class,'actJugador']);
 
 Route::post('/actualizarConvocatoriaPartido',[ApiController::class,'actConvocatoriaPartido']);
 
