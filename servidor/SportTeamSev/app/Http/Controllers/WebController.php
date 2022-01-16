@@ -3,8 +3,11 @@
 namespace App\Http\Controllers;
 
 use App\Exceptions\InsercionDuplicadaException;
+use App\Http\Controllers\ModelControllers\ActualizacionController;
+use App\Http\Controllers\ModelControllers\ConsultaController;
 use App\Http\Controllers\ModelControllers\GuardadoController;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Storage;
 
 class WebController extends Controller
 {
@@ -107,6 +110,46 @@ class WebController extends Controller
 
         return view('login/hub');
  
+    }
+
+
+    public function getMiClub(Request $request){
+
+        if(session(self::ID_CLUB) == null){
+            return view('unlogin/index');
+        }
+
+        $club = ConsultaController::buscarClub(session(self::ID_CLUB))[0];
+
+        return view('login/mi-club',[
+
+            'club'=>$club
+
+        ]);
+    }
+
+    public function cambiarImagen(Request $request){
+
+        if(session(self::ID_CLUB) == null){
+            return view('unlogin/index');
+        }
+
+        $club = ConsultaController::buscarClub(session(self::ID_CLUB))[0];
+
+        $file = $request->file('avatar');
+
+        $referencia = $file->hashName();
+
+        $file->store(null,'public');
+
+        ActualizacionController::actualizarPathImagenClub(session(self::ID_CLUB), $referencia);
+        
+
+        return view('login/mi-club', [
+
+            'club'=>$club
+
+        ]);
     }
 
 

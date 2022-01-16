@@ -6,6 +6,20 @@ use App\Exceptions\ModificacionNoAutorizadaException;
 
 class ActualizacionController{
 
+
+
+    public static function actualizarPathImagenClub(int $idClub, string $nuvaImagenPath){
+
+        $clubResultado = ConsultaController::buscarClub($idClub, null);
+
+        $club = $clubResultado[0];
+
+        $club->pathImagen = $nuvaImagenPath;
+
+        $club->save();
+
+    }
+    
     /**
      * Permite actualizar el resultado y la obsercavion de un partido exclusivamente 
      * a un $idClubModificador que forma parte de dicho encuentro como local o visitante.
@@ -85,7 +99,7 @@ class ActualizacionController{
      */
     public static function actualizarConvocatoriaPartido(int $idClubModificador, int $idComvocatoriaPartido, bool $asistido = null, bool $justificado = null){
         
-        $comvocatoriaPartido = ConsultaController::buscarAsistencia_partido($idComvocatoriaPartido,null)[0];
+        $comvocatoriaPartido = ConsultaController::buscarAsistencia_partido($idComvocatoriaPartido)[0];
 
         /*se comprueba si el club que está realizando la modificación puede modificar ese registro
          mirando si el partido al que pertenece este registro de comvocatoria pertenece a el club 
