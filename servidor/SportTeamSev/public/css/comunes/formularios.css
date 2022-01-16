@@ -8,6 +8,9 @@ form .grupo {
 }
 
 input[type="text"],
+input[type="password"],
+input[type="number"],
+input[type="time"],
 input[type="date"] {
     background: none;
     padding: 5px 5px 5px 0px;
@@ -33,7 +36,7 @@ form label.textfield {
 
 input:focus~label,
 input:valid~label {
-    top: -15px;
+    top: -20px;
     font-size: 0.9rem;
 }
 

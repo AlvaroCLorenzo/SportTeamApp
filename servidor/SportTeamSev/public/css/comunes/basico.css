@@ -50,5 +50,10 @@ div.contenedor {
 }
 
 span:focus {
-    outline: none;
+    outline-width: 2px;
+    outline-color: #bfdaa0;
+}
+
+.texto-justificado {
+    text-align: justify;
 }

@@ -27,19 +27,19 @@
 
                         <div class="grupo">
                             <input class="textoVerde1" type="text" required>
-                            <label class="textoVerde1 textfield" for="">Fecha</label>
-                        </div>
-
-                        <div class="grupo">
-                            <input class="textoVerde1" type="text" required>
-                            <label class="textoVerde1 textfield" for="">Hora</label>
-                        </div>
-
-                        <div class="grupo">
-                            <input class="textoVerde1" type="text" required>
                             <label class="textoVerde1 textfield" for="">Lugar</label>
                         </div>
 
+
+                        <div class="grupo">
+                            <input class="textoVerde1" type="date" required>
+                            <label class="textoVerde1 textfield" for="">Fecha del entrenamiento</label>
+                        </div>
+
+                        <div class="grupo">
+                            <input class="textoVerde1" type="time" required>
+                            <label class="textoVerde1 textfield" value="" for="">Hora</label>
+                        </div>
                         <div class="centrado">
                             <button class="submit botonVerde">Crear</button>
                         </div>
@@ -49,21 +49,6 @@
 
             {{-- Entrenamientos --}}
             <div class="col-lg-7 my-3">
-                @include('componentes/layoutsSecciones/entrenamientosLayout', ['botonInformacion'=>true])
-                @include('componentes/layoutsSecciones/entrenamientosLayout', ['botonInformacion'=>true])
-                @include('componentes/layoutsSecciones/entrenamientosLayout', ['botonInformacion'=>true])
-                @include('componentes/layoutsSecciones/entrenamientosLayout', ['botonInformacion'=>true])
-                @include('componentes/layoutsSecciones/entrenamientosLayout', ['botonInformacion'=>true])
-                @include('componentes/layoutsSecciones/entrenamientosLayout', ['botonInformacion'=>true])
-                @include('componentes/layoutsSecciones/entrenamientosLayout', ['botonInformacion'=>true])
-                @include('componentes/layoutsSecciones/entrenamientosLayout', ['botonInformacion'=>true])
-                @include('componentes/layoutsSecciones/entrenamientosLayout', ['botonInformacion'=>true])
-                @include('componentes/layoutsSecciones/entrenamientosLayout', ['botonInformacion'=>true])
-                @include('componentes/layoutsSecciones/entrenamientosLayout', ['botonInformacion'=>true])
-                @include('componentes/layoutsSecciones/entrenamientosLayout', ['botonInformacion'=>true])
-                @include('componentes/layoutsSecciones/entrenamientosLayout', ['botonInformacion'=>true])
-                @include('componentes/layoutsSecciones/entrenamientosLayout', ['botonInformacion'=>true])
-                @include('componentes/layoutsSecciones/entrenamientosLayout', ['botonInformacion'=>true])
                 @include('componentes/layoutsSecciones/entrenamientosLayout', ['botonInformacion'=>true])
             </div>
         </div>
