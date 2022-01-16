@@ -2,7 +2,7 @@
     {{-- Entrenamiento --}}
     <div class="contenedor bgVerde5">
         <div class="row align-items-center">
-            <div class="col-2 textoBlanco text-center">
+            <div class="col-2 text-center textoBlanco">
                 <h2>ID</h2>
             </div>
             <div class="col-9">

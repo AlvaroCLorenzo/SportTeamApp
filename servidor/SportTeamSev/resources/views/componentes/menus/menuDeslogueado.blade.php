@@ -17,9 +17,9 @@
                     <ul class="navbar-nav ms-auto">
 
                         @if ($btnRegistro)
-                        <li id="contornoBlanco" class="nav-item generico">
-                            <a class="nav-link linkB p-0" href="{{ url('/registro') }}">Regístrate</a>
-                        </li>
+                            <li id="contornoBlanco" class="nav-item generico">
+                                <a class="nav-link linkB p-0" href="{{ url('/registro') }}">Regístrate</a>
+                            </li>
                         @endif
 
                         @if ($btnLogin)

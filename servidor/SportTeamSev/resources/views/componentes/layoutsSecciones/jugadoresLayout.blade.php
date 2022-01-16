@@ -2,21 +2,23 @@
     {{-- Jugador --}}
     <div>
         <div class="row align-items-center mb-4">
-            <div class="col-4 textoBlanco">
+            <div class="col-4 d-none d-lg-block textoBlanco">
                 <img class="w-100 mx-auto" src="{{ url('/img/iconos/jugadorIcon.png') }}" alt="">
             </div>
-            <div class="contenedor col-8 bgVerde5">
-                <div class="row align-items-center mb-4">
-                    <div class="col-sm">
-                        <h2 class="my-0 text-center">Juan Pérez</h2>
+            <div class="col-lg-8">
+                <div class="contenedor bgVerde5">
+                    <div class="row w-100 mx-auto align-items-center">
+                        <div class="col-sm">
+                            <h2 class="my-0 text-center">Juan Pérez</h2>
+                        </div>
                     </div>
+    
+                    @if ($botonInformacion)
+                        <div class="row w-100 mx-auto align-items-center mt-4">
+                            <button class="botonVerde">Información del jugador</button>
+                        </div>
+                    @endif
                 </div>
-
-                @if ($botonInformacion)
-                    <div class="row align-items-center">
-                        <button class="botonVerde">Información del jugador</button>
-                    </div>
-                @endif
             </div>
         </div>
     </div>

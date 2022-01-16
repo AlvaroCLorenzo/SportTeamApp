@@ -25,37 +25,49 @@
                 <div class="container-sm contenedor formulario bgBlanco">
                     <h1 class="textoVerde3 centrado">Crear partido</h1>
                     <form action="">
-                        <div class="grupo">
-                            <label class="textoVerde1" for="">Local</label>
-                            <select class="textoVerde1" name="deportes" id="local">
-                                {{-- casos de ejemplo --}}
-                                <option value="Real Madrid">Real Madrid</option>
-                                <option value="Fútbol Club Barcelona">Fútbol Club Barcelona</option>
-                                <option value="Chamberi FC">Chamberi FC</option>
-                                <option value="Sevilla">Sevilla</option>
-                                <option value="Rayo Vallecano">Rayo Vallecano</option>
-                            </select>
+                        <div class="row grupo">
+                            <div class="col-4 p-0">
+                                <label class="textoVerde1" for="">Local</label>
+                            </div>
+                            <div class="col-8 p-0">
+                                <select class="m-0 textoVerde1" name="equipoLocal" id="local">
+                                    {{-- casos de ejemplo --}}
+                                    <option value="Real Madrid">Real Madrid</option>
+                                    <option value="Fútbol Club Barcelona">Fútbol Club Barcelona</option>
+                                    <option value="Chamberi FC">Chamberi FC</option>
+                                    <option value="Sevilla">Sevilla</option>
+                                    <option value="Rayo Vallecano">Rayo Vallecano</option>
+                                </select>
+                            </div>
                         </div>
 
-                        <div class="grupo">
-                            <label class="textoVerde1" for="">Visitante</label>
-                            <select class="textoVerde1" name="deportes" id="visitante">
-                                {{-- casos de ejemplo --}}
-                                <option value="Real Madrid">Real Madrid</option>
-                                <option value="Fútbol Club Barcelona">Fútbol Club Barcelona</option>
-                                <option value="Chamberi FC">Chamberi FC</option>
-                                <option value="Sevilla">Sevilla</option>
-                                <option value="Rayo Vallecano">Rayo Vallecano</option>
-                            </select>
+                        <div class="row grupo">
+                            <div class="col-4 p-0">
+                                <label class="textoVerde1" for="">Visitante</label>
+                            </div>
+                            <div class="col-8 p-0">
+                                <select class="m-0 textoVerde1" name="equipoVisitante" id="visitante">
+                                    {{-- casos de ejemplo --}}
+                                    <option value="Real Madrid">Real Madrid</option>
+                                    <option value="Fútbol Club Barcelona">Fútbol Club Barcelona</option>
+                                    <option value="Chamberi FC">Chamberi FC</option>
+                                    <option value="Sevilla">Sevilla</option>
+                                    <option value="Rayo Vallecano">Rayo Vallecano</option>
+                                </select>
+                            </div>
                         </div>
 
-                        <div class="grupo">
+                        <div class="row grupo">
+                            <div class="col-4 p-0">
                             <label class="textoVerde1" for="">Competición</label>
-                            <select class="textoVerde1" name="categorias" id="competicion">
-                                <option value="baloncesto">1ª Categoría</option>
-                                <option value="futbol">2ª Categoría</option>
-                                <option value="tenis">3ª Categoría</option>
-                            </select>
+                            </div>
+                            <div class="col-8 p-0">
+                                <select class="m-0 textoVerde1" name="copeticion" id="competicion">
+                                    <option value="1ª Categoría">1ª Categoría</option>
+                                    <option value="2ª Categoría">2ª Categoría</option>
+                                    <option value="3ª Categoría">3ª Categoría</option>
+                                </select>
+                            </div>
                         </div>
 
                         <div class="grupo">
@@ -64,7 +76,7 @@
                         </div>
 
                         <div class="grupo">
-                            <input class="textoVerde1" type="text" required>
+                            <input class="textoVerde1" type="time" required>
                             <label class="textoVerde1 textfield" for="">Hora</label>
                         </div>
 
@@ -77,24 +89,6 @@
 
             {{-- Partidos --}}
             <div class="col-lg-7 my-3">
-                @include('componentes/layoutsSecciones/partidosLayout',['botonInformacion'=>true])
-                @include('componentes/layoutsSecciones/partidosLayout',['botonInformacion'=>true])
-                @include('componentes/layoutsSecciones/partidosLayout',['botonInformacion'=>true])
-                @include('componentes/layoutsSecciones/partidosLayout',['botonInformacion'=>true])
-                @include('componentes/layoutsSecciones/partidosLayout',['botonInformacion'=>true])
-                @include('componentes/layoutsSecciones/partidosLayout',['botonInformacion'=>true])
-                @include('componentes/layoutsSecciones/partidosLayout',['botonInformacion'=>true])
-                @include('componentes/layoutsSecciones/partidosLayout',['botonInformacion'=>true])
-                @include('componentes/layoutsSecciones/partidosLayout',['botonInformacion'=>true])
-                @include('componentes/layoutsSecciones/partidosLayout',['botonInformacion'=>true])
-                @include('componentes/layoutsSecciones/partidosLayout',['botonInformacion'=>true])
-                @include('componentes/layoutsSecciones/partidosLayout',['botonInformacion'=>true])
-                @include('componentes/layoutsSecciones/partidosLayout',['botonInformacion'=>true])
-                @include('componentes/layoutsSecciones/partidosLayout',['botonInformacion'=>true])
-                @include('componentes/layoutsSecciones/partidosLayout',['botonInformacion'=>true])
-                @include('componentes/layoutsSecciones/partidosLayout',['botonInformacion'=>true])
-                @include('componentes/layoutsSecciones/partidosLayout',['botonInformacion'=>true])
-                @include('componentes/layoutsSecciones/partidosLayout',['botonInformacion'=>true])
                 @include('componentes/layoutsSecciones/partidosLayout',['botonInformacion'=>true])
             </div>
         </div>
