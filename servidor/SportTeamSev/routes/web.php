@@ -3,6 +3,7 @@
 use Illuminate\Support\Facades\Route;
 
 use App\Http\Controllers\LoginController;
+use App\Http\Controllers\WebController;
 
 /*
 |--------------------------------------------------------------------------
@@ -15,40 +16,38 @@ use App\Http\Controllers\LoginController;
 |
 */
 
-//vista de entrada index
-Route::get('/', function () {
-    return view('unlogin/index');
-});
-
-//login
-
 Route::get('/insercion',[LoginController::class,'insercion']);
 
-Route::get('/login', function () {
-    return view('unlogin/login');
-});
+//vista de entrada index
+Route::get('/',[WebController::class,'getIndex']);
 
+//login
+Route::get('/login',[WebController::class,'getLogin']);
 
 
 //validacion login
-Route::post('/validacion-login',function () {
-    return view('validacion-login');
-});
+Route::post('/validacion-login',[WebController::class,'logear']);
+
+//vista jugadroes seccion info
+Route::get('/cerrar-sesion',[WebController::class,'unLogear']);
+
 
 //registro
 Route::get('/registro', function () {
     return view('unlogin/registro');
 });
 
+//registro
+Route::post('/registrarUsuario',[WebController::class, 'registrarClub']);
+
 //cambio de contraseña
 Route::get('/cambio-contra', function () {
     return view('login/cambio-contra');
 });
 
-//hub de secciones
-Route::get('/hub', function () {
-    return view('login/hub');
-});
+//hub
+//validacion login
+Route::get('/hub',[WebController::class,'getHub']);
 
 //perfil
 Route::get('/mi-club', function () {
@@ -85,7 +84,4 @@ Route::get('/info-jugador', function () {
     return view('login/info/info-jugador');
 });
 
-//vista jugadroes seccion info
-Route::get('/cerrar-sesion', function () {
-    return view('cerrar-sesion');
-});
+

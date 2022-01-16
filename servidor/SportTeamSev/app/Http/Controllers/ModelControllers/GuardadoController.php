@@ -75,9 +75,8 @@ class GuardadoController
      */
     public static function guardarClub(string $nombre, string $password=null, string $deporte=null, string $temporada=null, $categoria = null){
 
-        //si ya existe un club con el mismo nombre salta una excepcion del tipo InsercionDuplicadaException
-        self::comprobarDuplicado(ConsultaController::buscarClub($nombre),'$nombre');
-
+        //si ya existe un club con el mismo nombre y contraseña salta una excepcion del tipo InsercionDuplicadaException
+        self::comprobarDuplicado(ConsultaController::buscarClub($nombre, $password),'$nombre $contraseña');
 
         $categoriaRelacionada = null;
 
@@ -86,7 +85,6 @@ class GuardadoController
             $resultado = ConsultaController::buscarCategoria($categoria);
         
             //en este punto $categoria no puede ser null
-
             //si no se encuentra la categoría en la consulta que se ha realizado se lanza una excepcion
             if(count($resultado)==0){
                 throw new ClaveForaneaNullaException(['$categoria']);
@@ -95,14 +93,27 @@ class GuardadoController
             //cogemos el primer resultado, no debería haber más
             $categoriaRelacionada = $resultado[0];
 
+
         }
 
+        //miramos si ya existe un club dado de alta con la contraseña nola, es decir, un club que no ha sido recoalamdo por nadie
+        $clubHuerfano = ConsultaController::buscarClub($nombre);
 
-        $club = new Club();
+        //si se ha encontrado un club huerfano
+        if(count($clubHuerfano)>0){
+
+            $club = $clubHuerfano[0];
+        }else{
+
+            $club = new Club();
+        }
+
         $club->nombre = $nombre;
         $club->password = $password;
         $club->deporte = $deporte;
         $club->temporada = $temporada;
+
+        
 
         if($categoriaRelacionada != null){
 

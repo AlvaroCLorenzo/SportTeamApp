@@ -145,7 +145,7 @@ class ApiController extends Controller
 
         try{
 
-            $registrosComvocatoriaPartido = ConsultaController::buscarAsistencia_partido(null,(int)$request->idPartido);
+            $registrosComvocatoriaPartido = ConsultaController::buscarAsistencia_partido(null, $idClub, (int)$request->idPartido);
 
             return $registrosComvocatoriaPartido;
 
@@ -431,9 +431,9 @@ class ApiController extends Controller
         }
         
 
-        $busquedaLocal = ConsultaController::buscarClub($request->eqLocal);
+        $busquedaLocal = ConsultaController::buscarClub($request->eqLocal,null);
 
-        $busquedaVisitante = ConsultaController::buscarClub($request->eqVisitante);
+        $busquedaVisitante = ConsultaController::buscarClub($request->eqVisitante,null);
 
         //si no existe en la bade de datos un club se crea vacío
         if(count($busquedaLocal)==0){
