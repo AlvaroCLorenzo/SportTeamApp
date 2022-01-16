@@ -25,7 +25,7 @@ class LoginController extends Controller
     public const RESPUESTA_ERROR_LOGIN = "denegado";
 
     //funcion de login para dispositivos móviles
-    public function logear(Request $request){
+    public static function logear(Request $request){
 
         $validacion = self::logearApi($request);
 
@@ -34,7 +34,7 @@ class LoginController extends Controller
             return ConsultaController::buscarClub($validacion)[0];
 
         }else{
-            return self::RESPUESTA_ERROR_LOGIN;
+            return null;
         }
 
     }

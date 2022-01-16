@@ -20,13 +20,13 @@
         <div class="container-fluid my-auto textoBlanco ">
             <div class="container-sm contenedor formulario bgBlanco">
                 <h1 class="textoVerde3 centrado">Login</h1>
-                <form action="">
+                <form action="{{url('/validacion-login')}}" method="post">
                     <div class="grupo">
-                        <input class="textoVerde1" type="text" required>
+                        <input class="textoVerde1" type="text" name="nombre" required>
                         <label class="textoVerde1 textfield" for="">Club</label>
                     </div>
                     <div class="grupo">
-                        <input class="textoVerde1" type="password" required>
+                        <input class="textoVerde1" type="password" name="contra" required>
                         <label class="textoVerde1 textfield" for="">Contraseña</label>
                     </div>
                     <div class="centrado">

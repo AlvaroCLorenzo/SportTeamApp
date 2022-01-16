@@ -16,6 +16,7 @@ class Asistencia_partido extends Model
     ];
 
     protected $hidden = [
+        'partido_id',
         'updated_at',
         'created_at',
         'jugador_id'
