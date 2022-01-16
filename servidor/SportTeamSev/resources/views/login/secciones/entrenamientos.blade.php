@@ -49,18 +49,22 @@
 
             {{-- Entrenamientos --}}
             <div class="col-lg-7 my-3">
-                @include('componentes/layoutsSecciones/entrenamientosLayout')
-                @include('componentes/layoutsSecciones/entrenamientosLayout')
-                @include('componentes/layoutsSecciones/entrenamientosLayout')
-                @include('componentes/layoutsSecciones/entrenamientosLayout')
-                @include('componentes/layoutsSecciones/entrenamientosLayout')
-                @include('componentes/layoutsSecciones/entrenamientosLayout')
-                @include('componentes/layoutsSecciones/entrenamientosLayout')
-                @include('componentes/layoutsSecciones/entrenamientosLayout')
-                @include('componentes/layoutsSecciones/entrenamientosLayout')
-                @include('componentes/layoutsSecciones/entrenamientosLayout')
-                @include('componentes/layoutsSecciones/entrenamientosLayout')
-                @include('componentes/layoutsSecciones/entrenamientosLayout')
+                @include('componentes/layoutsSecciones/entrenamientosLayout', ['botonInformacion'=>true])
+                @include('componentes/layoutsSecciones/entrenamientosLayout', ['botonInformacion'=>true])
+                @include('componentes/layoutsSecciones/entrenamientosLayout', ['botonInformacion'=>true])
+                @include('componentes/layoutsSecciones/entrenamientosLayout', ['botonInformacion'=>true])
+                @include('componentes/layoutsSecciones/entrenamientosLayout', ['botonInformacion'=>true])
+                @include('componentes/layoutsSecciones/entrenamientosLayout', ['botonInformacion'=>true])
+                @include('componentes/layoutsSecciones/entrenamientosLayout', ['botonInformacion'=>true])
+                @include('componentes/layoutsSecciones/entrenamientosLayout', ['botonInformacion'=>true])
+                @include('componentes/layoutsSecciones/entrenamientosLayout', ['botonInformacion'=>true])
+                @include('componentes/layoutsSecciones/entrenamientosLayout', ['botonInformacion'=>true])
+                @include('componentes/layoutsSecciones/entrenamientosLayout', ['botonInformacion'=>true])
+                @include('componentes/layoutsSecciones/entrenamientosLayout', ['botonInformacion'=>true])
+                @include('componentes/layoutsSecciones/entrenamientosLayout', ['botonInformacion'=>true])
+                @include('componentes/layoutsSecciones/entrenamientosLayout', ['botonInformacion'=>true])
+                @include('componentes/layoutsSecciones/entrenamientosLayout', ['botonInformacion'=>true])
+                @include('componentes/layoutsSecciones/entrenamientosLayout', ['botonInformacion'=>true])
             </div>
         </div>
     </section>

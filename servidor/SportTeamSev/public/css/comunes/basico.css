@@ -19,13 +19,13 @@ body {
 section {
     min-height: 100%;
     padding-top: 15em;
-    padding-top: 12em;
+    padding-bottom: 12em;
 }
 
 section.login {
     min-height: 100%;
     padding-top: 15em;
-    padding-top: 15em;
+    padding-bottom: 15em;
 }
 
 div.contenedor {
@@ -47,4 +47,8 @@ div.contenedor {
     height: 3em;
     width: 0.5em;
     border-radius: 10px;
+}
+
+span:focus {
+    outline: none;
 }

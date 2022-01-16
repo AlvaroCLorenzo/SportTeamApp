@@ -1,4 +1,4 @@
-<div class="container-sm textoBlanco mb-5">
+<div class="container-sm textoBlanco">
     {{-- Fila nombre equipos --}}
     <div class="row align-items-center mb-4">
         <div class="col-6">

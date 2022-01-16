@@ -1,9 +1,9 @@
-<div class="container-sm mb-5">
+<div class="container-sm">
     {{-- Entrenamiento --}}
     <div class="contenedor bgVerde5">
         <div class="row align-items-center">
             <div class="col-2 textoBlanco text-center">
-                <h1>ID</h1>
+                <h2>ID</h2>
             </div>
             <div class="col-9">
                 <div class="row align-items-center">
@@ -24,9 +24,12 @@
                 </div>
             </div>
         </div>
-        <div class="row align-items-center">
-            <button class="botonVerde">Información del entrenamiento</button>
-        </div>
+
+        @if ($botonInformacion)
+            <div class="row align-items-center">
+                <button class="botonVerde">Información del entrenamiento</button>
+            </div>
+        @endif
     </div>
 
     {{-- Fila contenedor verde --}}

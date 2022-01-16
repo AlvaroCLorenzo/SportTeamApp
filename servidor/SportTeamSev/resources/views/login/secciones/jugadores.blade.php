@@ -53,21 +53,21 @@
 
             {{-- Jugadores --}}
             <div class="col-lg-7 my-3">
-                @include('componentes/layoutsSecciones/jugadoresLayout')
-                @include('componentes/layoutsSecciones/jugadoresLayout')
-                @include('componentes/layoutsSecciones/jugadoresLayout')
-                @include('componentes/layoutsSecciones/jugadoresLayout')
-                @include('componentes/layoutsSecciones/jugadoresLayout')
-                @include('componentes/layoutsSecciones/jugadoresLayout')
-                @include('componentes/layoutsSecciones/jugadoresLayout')
-                @include('componentes/layoutsSecciones/jugadoresLayout')
-                @include('componentes/layoutsSecciones/jugadoresLayout')
-                @include('componentes/layoutsSecciones/jugadoresLayout')
-                @include('componentes/layoutsSecciones/jugadoresLayout')
-                @include('componentes/layoutsSecciones/jugadoresLayout')
-                @include('componentes/layoutsSecciones/jugadoresLayout')
-                @include('componentes/layoutsSecciones/jugadoresLayout')
-                @include('componentes/layoutsSecciones/jugadoresLayout')
+                @include('componentes/layoutsSecciones/jugadoresLayout', ['botonInformacion'=>true])
+                @include('componentes/layoutsSecciones/jugadoresLayout', ['botonInformacion'=>true])
+                @include('componentes/layoutsSecciones/jugadoresLayout', ['botonInformacion'=>true])
+                @include('componentes/layoutsSecciones/jugadoresLayout', ['botonInformacion'=>true])
+                @include('componentes/layoutsSecciones/jugadoresLayout', ['botonInformacion'=>true])
+                @include('componentes/layoutsSecciones/jugadoresLayout', ['botonInformacion'=>true])
+                @include('componentes/layoutsSecciones/jugadoresLayout', ['botonInformacion'=>true])
+                @include('componentes/layoutsSecciones/jugadoresLayout', ['botonInformacion'=>true])
+                @include('componentes/layoutsSecciones/jugadoresLayout', ['botonInformacion'=>true])
+                @include('componentes/layoutsSecciones/jugadoresLayout', ['botonInformacion'=>true])
+                @include('componentes/layoutsSecciones/jugadoresLayout', ['botonInformacion'=>true])
+                @include('componentes/layoutsSecciones/jugadoresLayout', ['botonInformacion'=>true])
+                @include('componentes/layoutsSecciones/jugadoresLayout', ['botonInformacion'=>true])
+                @include('componentes/layoutsSecciones/jugadoresLayout', ['botonInformacion'=>true])
+                @include('componentes/layoutsSecciones/jugadoresLayout', ['botonInformacion'=>true])
             </div>
         </div>
     </section>
