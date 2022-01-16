@@ -73,23 +73,30 @@ class GuardadoController
      * 
      * El campo nombre debe ser único en la tabla.
      */
-    public static function guardarClub(string $nombre, string $password, string $deporte, string $temporada, $categoria){
+    public static function guardarClub(string $nombre, string $password=null, string $deporte=null, string $temporada=null, $categoria = null){
 
         //si ya existe un club con el mismo nombre salta una excepcion del tipo InsercionDuplicadaException
         self::comprobarDuplicado(ConsultaController::buscarClub($nombre),'$nombre');
 
-        $resultado = ConsultaController::buscarCategoria($categoria);
-        
-        
-        //en este punto $categoria no puede ser null
 
-        //si no se encuentra la categoría en la consulta que se ha realizado se lanza una excepcion
-        if(count($resultado)==0){
-            throw new ClaveForaneaNullaException(['$categoria']);
+        $categoriaRelacionada = null;
+
+        if($categoria != null){
+
+            $resultado = ConsultaController::buscarCategoria($categoria);
+        
+            //en este punto $categoria no puede ser null
+
+            //si no se encuentra la categoría en la consulta que se ha realizado se lanza una excepcion
+            if(count($resultado)==0){
+                throw new ClaveForaneaNullaException(['$categoria']);
+            }
+
+            //cogemos el primer resultado, no debería haber más
+            $categoriaRelacionada = $resultado[0];
+
         }
-       
-        //cogemos el primer resultado, no debería haber más
-        $categoriaRelacionada = $resultado[0];
+
 
         $club = new Club();
         $club->nombre = $nombre;
@@ -97,7 +104,12 @@ class GuardadoController
         $club->deporte = $deporte;
         $club->temporada = $temporada;
 
-        $categoriaRelacionada->clubs()->save($club);
+        if($categoriaRelacionada != null){
+
+            $categoriaRelacionada->clubs()->save($club);
+
+        }
+        
 
         $club->save();
 
@@ -153,7 +165,6 @@ class GuardadoController
 
         $resultadoClubVisitante = ConsultaController::buscarClub($clubVisitante);
 
-        
         $resultadoCompeticion = null;
 
         if($competicion != null){

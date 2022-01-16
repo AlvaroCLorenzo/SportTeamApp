@@ -20,7 +20,7 @@ use Illuminate\Support\Facades\Route;
  * Debe recibir
  */
 
-//Route::post('/alta',[LoginController::class,'alta']);
+Route::get('/inicializacion',[LoginController::class,'insercion']);
 
 Route::post('/login',[LoginController::class,'logear']);
 

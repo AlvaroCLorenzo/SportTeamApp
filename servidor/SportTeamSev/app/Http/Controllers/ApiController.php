@@ -10,6 +10,7 @@ use App\Http\Controllers\ModelControllers\ConsultaController;
 use App\Http\Controllers\ModelControllers\GuardadoController;
 use Illuminate\Http\Request;
 use App\Exceptions\ModificacionNoAutorizadaException;
+use Exception;
 
 class ApiController extends Controller
 {
@@ -416,7 +417,7 @@ class ApiController extends Controller
      * Permite insertar un partido.
      */
     public function insPartido(Request $request){
-
+        
         //se valida la petición
         $idClub = LoginController::logearApi($request);
 
@@ -428,31 +429,55 @@ class ApiController extends Controller
         if(!isset($request->eqLocal) || !isset($request->eqVisitante) || !isset($request->fechaHora)){
             return self::ARGUMENTOS_INVALIDOS;
         }
+        
 
+        $busquedaLocal = ConsultaController::buscarClub($request->eqLocal);
+
+        $busquedaVisitante = ConsultaController::buscarClub($request->eqVisitante);
+
+        //si no existe en la bade de datos un club se crea vacío
+        if(count($busquedaLocal)==0){
+            //se crea
+            GuardadoController::guardarClub($request->eqLocal,null,null,null,null);
+            //se recupera la entidad
+            $busquedaLocal = ConsultaController::buscarClub($request->eqLocal);
+
+        }
+
+        if(count($busquedaVisitante)==0){
+            //se crea
+            GuardadoController::guardarClub($request->eqVisitante,null,null,null,null);
+            //se recupera la entidad
+            $busquedaLocal = ConsultaController::buscarClub($request->eqVisitante);
+
+        }
         
         //se comprueba si el club logueado es uno de los dos participantes del partido
-        if($idClub != (int)ConsultaController::buscarClub($request->eqLocal)[0]->id
+        if($idClub != (int)$busquedaLocal[0]->id
            &&
-           $idClub != (int)ConsultaController::buscarClub($request->eqVisitante)[0]->id
+           $idClub != (int)$busquedaVisitante[0]->id
         ){
             return (new ModificacionNoAutorizadaException())->getMessage();
         }
 
         
+        
+
         $competicion = isset($request->competicion) ? $request->competicion : null;
         
         try{
 
             GuardadoController::guardarPartido($request->eqLocal, $request->eqVisitante, $competicion, $request->fechaHora, null, null);
 
-            return self::ACTUALIZACION_EXITOSA; 
+            return self::ACTUALIZACION_EXITOSA;
 
-        }catch(ClaveForaneaNullaException | FormatoParametroIncorrectoException
+        }catch(ClaveForaneaNullaException | FormatoParametroIncorrectoException | Exception
         $ex){
 
             return $ex->getMessage();
 
         }
+        
     
     }
 
@@ -469,10 +494,19 @@ class ApiController extends Controller
             return LoginController::RESPUESTA_ERROR_LOGIN;
         }
 
+       
         
         if(!isset($request->lugar) || !isset($request->duracion) || !isset($request->fechaHora)){
             return self::ARGUMENTOS_INVALIDOS;
         }
+
+        $trozos = explode(",",$request->duracion);
+
+        if(count($trozos)>=2){
+            $request->duracion = $trozos[0].".".$trozos[1];
+        }
+
+        
         
         try{
 
@@ -589,8 +623,6 @@ class ApiController extends Controller
 
 
     }
-
-    
 
 
 
