@@ -43,7 +43,8 @@ select {
     margin-left: 20px;
 }
 
-input[type="button"] {
+input[type="button"],
+input[type="file"]::-webkit-file-upload-button {
     color: white;
     /* pading */
     padding-top: 5px;

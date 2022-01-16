@@ -7,6 +7,8 @@
 
     @include('componentes/head/headConstantes', ['logueado'=>true, 'mostrarMenuSecciones'=>true])
 
+    <link rel="stylesheet" href="css/comunes/formularios.css">
+
     <title>Mi club - Sport Team</title>
 </head>
 
@@ -40,15 +42,19 @@
                         <div class="row align-items-center my-5">
                             <button class="botonVerde">Cambio contraseña</button>
                         </div>
-                        <form action="">
-                            <input type="file">
-                        </form>
+
+                        <div class="row w-100 m-0 my-5">
+                            <form action="" class="text-center">
+                                <input type="file" accept=".png">
+                                <input type="button" name="Guardar" value="Guardar">
+                            </form>
+                        </div>
                     </div>
                 </div>
             </div>
         </div>
     </section>
-    
+
     @include('componentes/footer')
     <script src={{ asset('js/app.js') }}></script>
 </body>
