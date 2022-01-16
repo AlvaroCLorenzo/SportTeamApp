@@ -6,13 +6,24 @@
 
     @include('componentes/head/headConstantes', ['logueado'=>true, 'mostrarMenuSecciones'=>true])
 
+    <link rel="stylesheet" href="css/comunes/formularios.css">
+    
     <title>Partidos - Sport Team</title>
 </head>
 <body>
     @include('componentes/menus/menuLogueado')
     
-    <section class="bgVerde1">
+    <section class="bgVerde1 login">
+        <div class="container-lg">
+            {{-- Resumen --}}
+            <div class="row mx-auto p-0">
+                @include('componentes/layoutsSecciones/jugadoresLayout',['botonInformacion'=>false])
+            </div>
 
+
+            {{-- Observación --}}
+            @include('componentes/informacion/observacion')
+        </div>
     </section>
     
     @include('componentes/footer')

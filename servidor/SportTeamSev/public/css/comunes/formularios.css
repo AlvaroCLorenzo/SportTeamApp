@@ -7,7 +7,8 @@ form .grupo {
     position: relative;
 }
 
-input {
+input[type="text"],
+input[type="date"] {
     background: none;
     padding: 5px 5px 5px 0px;
     font-size: 1rem;
@@ -42,6 +43,22 @@ select {
     margin-left: 20px;
 }
 
-input.inputFecha label {
-    top: -14px;
+input[type="button"] {
+    color: white;
+    /* pading */
+    padding-top: 5px;
+    padding-bottom: 5px;
+    padding-left: 20px;
+    padding-right: 20px;
+    /* fondo */
+    background-color: #79be7c;
+    /* borde */
+    border-radius: 18px;
+    border: none;
+    /* transición */
+    transition-duration: 0.5s;
+}
+
+input[type="button"]:hover {
+    background-color: #4eb26c;
 }

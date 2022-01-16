@@ -8,12 +8,15 @@
             <div class="contenedor col-8 bgVerde5">
                 <div class="row align-items-center mb-4">
                     <div class="col-sm">
-                        <h1 class="my-0 text-center">Juan Pérez</h1>
+                        <h2 class="my-0 text-center">Juan Pérez</h2>
                     </div>
                 </div>
-                <div class="row align-items-center">
-                    <button class="botonVerde">Información del jugador</button>
-                </div>
+
+                @if ($botonInformacion)
+                    <div class="row align-items-center">
+                        <button class="botonVerde">Información del jugador</button>
+                    </div>
+                @endif
             </div>
         </div>
     </div>
