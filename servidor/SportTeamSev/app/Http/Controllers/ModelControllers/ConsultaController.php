@@ -121,7 +121,7 @@ class ConsultaController
      * Pasando solo $idClubVisitante.
      * o
      * Permite buscar todos los partidos en lso que está involucrado un club en ambos roles (visitante y local)
-     * PAsando solo $ambos
+     * Pasando solo $ambos
      */
     public static function buscarPartido(int $idPartido = null, int $idClubLocal = null, int $idClubVisitante = null,int $ambos=null){
 

@@ -16,9 +16,11 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
-    return $request->user();
-});
+/**
+ * Debe recibir
+ */
+
+//Route::post('/alta',[LoginController::class,'alta']);
 
 Route::post('/login',[LoginController::class,'logear']);
 
@@ -34,5 +36,20 @@ Route::post('/convocatoriaPartido',[ApiController::class,'getConvocatoriaPartido
 
 Route::post('/convocatoriaEntrenamiento',[ApiController::class,'getConvocatoriaEntrenamiento']);
 
-Route::get('/actualizarPartido',[ApiController::class,'actPartido']);
+Route::post('/actualizarPartido',[ApiController::class,'actPartido']);
 
+Route::post('/actualizarEntrenamiento',[ApiController::class,'actEntrenamiento']);
+
+Route::post('/actualizarJugadores',[ApiController::class,'actJugadores']);
+
+Route::post('/actualizarConvocatoriaPartido',[ApiController::class,'actConvocatoriaPartido']);
+
+Route::post('/actualizarConvocatoriaEntrenamiento',[ApiController::class,'actConvocatoriaEntrenamiento']);
+
+Route::post('/insertarPartido',[ApiController::class,'insPartido']);
+
+Route::post('/insertarEntrenamiento',[ApiController::class,'insEntrenamiento']);
+
+Route::post('/insertarJugador',[ApiController::class,'insJugador']);
+
+Route::post('/insertarConvocatoriaPartido',[ApiController::class,'insConvocatoriaPartido']);
