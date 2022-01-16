@@ -99,8 +99,8 @@ class GuardadoController
         //miramos si ya existe un club dado de alta con la contraseña nola, es decir, un club que no ha sido recoalamdo por nadie
         $clubHuerfano = ConsultaController::buscarClub($nombre);
 
-        //si se ha encontrado un club huerfano
-        if(count($clubHuerfano)>0){
+        //si se ha encontrado un club huerfano  y sis ese club huerfano tiene la contraseña nula
+        if(count($clubHuerfano)>0 && $clubHuerfano[0]->password == null){
 
             $club = $clubHuerfano[0];
         }else{

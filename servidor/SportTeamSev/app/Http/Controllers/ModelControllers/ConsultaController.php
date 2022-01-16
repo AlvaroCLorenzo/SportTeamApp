@@ -226,7 +226,7 @@ class ConsultaController
      * Pasando $idClub $idPartido.
      * 
      */
-    public static function buscarAsistencia_partido(int $idAsistencia_partido = null, int $idClub, int $idPartido = null){
+    public static function buscarAsistencia_partido(int $idAsistencia_partido = null, int $idClub = null, int $idPartido = null){
 
         if($idAsistencia_partido != null){ 
 

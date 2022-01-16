@@ -49,10 +49,11 @@ Route::get('/cambio-contra', function () {
 //validacion login
 Route::get('/hub',[WebController::class,'getHub']);
 
-//perfil
-Route::get('/mi-club', function () {
-    return view('login/mi-club');
-});
+//perfil del usuario
+Route::get('/mi-club',[WebController::class,'getMiClub']);
+
+//cambiar imagen
+Route::post('/cambiar-imagen',[WebController::class,'cambiarImagen']);
 
 //vista partidos
 Route::get('/partidos', function () {
