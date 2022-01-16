@@ -8,7 +8,6 @@ use App\Exceptions\UsoIncorrectoSobrecargaException;
 use App\Http\Controllers\ModelControllers\ActualizacionController;
 use App\Http\Controllers\ModelControllers\ConsultaController;
 use App\Http\Controllers\ModelControllers\GuardadoController;
-use App\Models\Partido;
 use Illuminate\Http\Request;
 use App\Exceptions\ModificacionNoAutorizadaException;
 
@@ -16,7 +15,7 @@ class ApiController extends Controller
 {
     const ARGUMENTOS_INVALIDOS = 'argumentos invalidos';
 
-    const ACTUALIZACION_EXITOSA = 'actualizacion existosa';
+    const ACTUALIZACION_EXITOSA = 'actualizacion exitosa';
 
     const ERROR_GENERICO = 'error';
     
@@ -158,7 +157,6 @@ class ApiController extends Controller
             return self::ERROR_GENERICO;
         }
 
-        
 
     }
 
@@ -245,7 +243,8 @@ class ApiController extends Controller
      * 
      */
     public function actEntrenamiento(Request $request){
-
+        
+        
         //se valida la petición
         $idClub = LoginController::logearApi($request);
 
@@ -267,7 +266,7 @@ class ApiController extends Controller
 
         }catch(ModificacionNoAutorizadaException | UsoIncorrectoSobrecargaException
         $ex){
-
+            
             return $ex->getMessage();
 
         }
@@ -290,7 +289,7 @@ class ApiController extends Controller
 
         try{
 
-            ActualizacionController::actualizarEntrenamiento($idClub, $request->idJugador, $observacion);
+            ActualizacionController::actualizarJugador($idClub, $request->idJugador, $observacion);
 
             return self::ACTUALIZACION_EXITOSA;
 
