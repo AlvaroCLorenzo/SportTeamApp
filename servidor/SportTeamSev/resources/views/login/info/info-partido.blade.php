@@ -45,7 +45,7 @@
             {{-- Convocatoria --}}
             @include('componentes/informacion/convocatoria',[
                 'convocatorias' => $convocatorias,
-                'accion' => url('/actualizarConvocar'),
+                'accion' => url('/actualizarAsistenciaPartido'),
                 'idToken' => $partido->id
             ])
 

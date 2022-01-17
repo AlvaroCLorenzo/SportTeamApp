@@ -11,18 +11,27 @@
     <title>Información jugador - Sport Team</title>
 </head>
 <body>
-    @include('componentes/menus/menuLogueado')
+    
+    @include('componentes/menus/menuLogueado',[
+        'imagen' => $imagen
+    ])
     
     <section class="bgVerde1 login">
         <div class="container-lg">
             {{-- Resumen --}}
             <div class="row mx-auto p-0">
-                @include('componentes/informacion/jugador')
+                @include('componentes/informacion/jugador',[
+                    'jugador' => $jugador
+                ])
             </div>
 
 
             {{-- Observación --}}
-            @include('componentes/informacion/observacion')
+            @include('componentes/informacion/observacion',[
+                'accion' => url('/actObservacionJugador'),
+                'idToken' => $jugador->id,
+                'observacion' => $jugador->observacion
+            ])
         </div>
     </section>
     

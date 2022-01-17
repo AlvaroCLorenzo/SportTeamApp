@@ -13,7 +13,10 @@
 </head>
 
 <body>
-    @include('componentes/menus/menuLogueado')
+
+    @include('componentes/menus/menuLogueado',[
+        'imagen' => $imagen
+    ])
 
     <section class="bgVerde1 login">
         <div class="container-lg">
@@ -24,13 +27,29 @@
 
 
             {{-- Observación --}}
-            @include('componentes/informacion/observacion')
+            @include('componentes/informacion/observacion',[
+                'observacion' => $entrenamiento->observacion,
+                'accion' => url('/actualizarObservacionEntrenamiento'),
+                'idToken' => $entrenamiento->id
+            ])
 
+
+            
             {{-- Convocar --}}
-            @include('componentes/informacion/convocar')
+            @include('componentes/informacion/convocar',[
+                'jugadores' => $jugadores,
+                'accion' => url('/actualizarConvocarEntrenamiento'),
+                'idToken' => $entrenamiento->id
+            ])
 
-            {{-- Convocatoria --}}
-            @include('componentes/informacion/convocatoria')
+            
+            @include('componentes/informacion/convocatoria',[
+                'convocatorias' => $convocatorias,
+                'accion' => url('/actualizarAsistenciaEntrenamiento'),
+                'idToken' => $entrenamiento->id
+            ])
+            
+            
         </div>
     </section>
 

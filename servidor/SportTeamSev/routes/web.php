@@ -41,9 +41,10 @@ Route::get('/registro', function () {
 Route::post('/registrarUsuario',[WebController::class, 'registrarClub']);
 
 //cambio de contraseña
-Route::get('/cambio-contra', function () {
-    return view('login/cambio-contra');
-});
+Route::post('/cambio-contra',[WebController::class,'cambiarContra']);
+
+//cambio de contraseña
+Route::post('/actualizarContra',[WebController::class,'actualizarContra']);
 
 //hub
 //validacion login
@@ -72,6 +73,9 @@ Route::post('/actualizarObservacionPartido',[WebController::class,'actObservacio
 Route::post('/actualizarConvocar',[WebController::class,'actConvocarPartidoJugador']);
 
 
+Route::post('/actualizarAsistenciaPartido',[WebController::class,'actAsistenciaPartidoJugador']);
+
+
 //vista entrenamientos
 Route::get('/entrenamientos',[WebController::class, 'getEntrenamientos']);
 
@@ -79,9 +83,13 @@ Route::get('/entrenamientos',[WebController::class, 'getEntrenamientos']);
 Route::post('/crearEntrenamiento',[WebController::class, 'crearEntrenamiento']);
 
 //vista entrenamientos seccion info
-Route::get('/info-entrenamiento', function () {
-    return view('login/info/info-entrenamientos');
-});
+Route::post('/info-entrenamiento',[WebController::class, 'getInfoEntrenamiento']);
+
+Route::post('/actualizarObservacionEntrenamiento',[WebController::class, 'actObservacionEntrenamiento']);
+
+Route::post('/actualizarConvocarEntrenamiento',[WebController::class, 'actConvocarEntrenamiento']);
+
+Route::post('/actualizarAsistenciaEntrenamiento',[WebController::class, 'actAsistenciaEntrenamiento']);
 
 //vista jugadores
 Route::get('/jugadores',[WebController::class, 'getJugadores']);
@@ -90,9 +98,10 @@ Route::get('/jugadores',[WebController::class, 'getJugadores']);
 Route::post('/crearJugador',[WebController::class, 'crearJugador']);
 
 //vista jugadroes seccion info
-Route::get('/info-jugador', function () {
-    return view('login/info/info-jugador');
-});
+Route::post('/info-jugador', [WebController::class, 'getInfoJugador']);
+
+Route::post('/actObservacionJugador', [WebController::class, 'actObservacionJugador']);
+
 
 Route::get('/error', function () {
     return view('login/error');

@@ -23,7 +23,7 @@
                 <h1>Sport Team</h1>
             </div>
             <div class="container w-25 px-auto">
-                <a class="linkB" href="#">
+                <a class="linkB" href="{{url('/descargas/Sport Team App.apk')}}" download="Sport Team App.apk">
                     <button id="playstore" class="row align-items-center textoBlanco bgVerde2">
                         <div class="col-lg-4 py-2">
                             <img class="w-50 mx-auto" src="{{ url('/img/iconos/playstoreIcon.png') }}"
