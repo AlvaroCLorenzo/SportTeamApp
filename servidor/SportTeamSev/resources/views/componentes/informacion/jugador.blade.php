@@ -6,7 +6,7 @@
                 <p class="my-0 text-start">Nombre:</p>
             </div>
             <div class="col-6">
-                <p class="my-0 text-end">Juan</p>
+                <p class="my-0 text-end">{{$jugador->nombre}}</p>
             </div>
         </div>
         <div class="row w-100 mx-auto my-3 align-items-center">
@@ -14,7 +14,7 @@
                 <p class="my-0 text-start">Apellido:</p>
             </div>
             <div class="col-6">
-                <p class="my-0 text-end">Perez</p>
+                <p class="my-0 text-end">{{$jugador->apellidos}}</p>
             </div>
         </div>
         <div class="row w-100 mx-auto my-3 align-items-center">
@@ -22,7 +22,7 @@
                 <p class="my-0 text-start">Fecha:</p>
             </div>
             <div class="col-6">
-                <p class="my-0 text-end">12/12/12</p>
+                <p class="my-0 text-end">{{$jugador->fechaNacimiento}}</p>
             </div>
         </div>
         <div class="row w-100 mx-auto my-3 align-items-center">
@@ -30,7 +30,7 @@
                 <p class="my-0 text-start">Teléfono:</p>
             </div>
             <div class="col-6">
-                <p class="my-0 text-end">346345634</p>
+                <p class="my-0 text-end">{{$jugador->telefono}}</p>
             </div>
         </div>
     </div>

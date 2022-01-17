@@ -3,7 +3,7 @@
     <div class="contenedor bgVerde5">
         <div class="row align-items-center">
             <div class="col-2 text-center textoBlanco">
-                <h2>ID</h2>
+                <h2>{{$entrenamiento->id}}</h2>
             </div>
             <div class="col-9">
                 <div class="row align-items-center">
@@ -22,7 +22,7 @@
 
                     <?php
                     
-                    $trozos = explode(' ', $entrenamiento->fechaHora);
+                        $trozos = explode(' ', $entrenamiento->fechaHora);
                     
                     ?>
 
@@ -43,8 +43,8 @@
         </div>
 
         @if ($botonInformacion)
-            <form action="{{ url('/info-jugador') }}" method="post">
-                <input type="hidden" name="idEntrenamiento" value="{{ $entrenamiento->id }}" />
+            <form action="{{ url('/info-entrenamiento') }}" method="post">
+                <input type="hidden" name="idEntrenamiento" value="{{$entrenamiento->id}}" />
                 <button class="botonVerde w-100">Información del entrenamiento</button>
             </form>
         @endif

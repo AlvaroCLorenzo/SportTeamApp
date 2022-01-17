@@ -52,7 +52,7 @@
                         <div class="row align-items-center my-5">
                             <form action="{{ url('/cambio-contra') }}" method="post"
                                 class="text-center">
-                                <input type="button" value="Cambio contraseña">
+                                <input type="submit" value="Cambio contraseña">
                             </form>
                         </div>
 

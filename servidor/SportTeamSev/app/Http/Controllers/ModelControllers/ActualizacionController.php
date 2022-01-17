@@ -172,5 +172,27 @@ class ActualizacionController{
 
     }
 
+    public static function actualizarContra(int $idClub, string $contraAnt, string $contraNueva){
+
+        $clubes = ConsultaController::buscarClub($idClub, null);
+
+        if(count($clubes) == 0){
+            throw new ModificacionNoAutorizadaException();
+        }
+
+        $club = $clubes[0];
+
+        if(strcmp($club->password,$contraAnt) == 0){
+            
+            $club->password = $contraNueva;
+
+            $club->save();
+        }else{
+
+            throw new ModificacionNoAutorizadaException();
+
+        }
+    }
+
     
 }

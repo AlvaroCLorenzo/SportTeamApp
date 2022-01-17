@@ -70,6 +70,7 @@ class ConsultaController
             return self::buscarIDModelo(Club::class, $club, 'nombre');
 
         }else if($club != null && $contra != null){
+
             
             return Club::where('nombre','=',$club)
                         ->where('password','=',$contra)

@@ -6,9 +6,7 @@
 
         <form id="observacionFormulario" action="{{$accion}}" method="post">
             <div class="row texto-justificado">
-                <textarea class="my-3 textoVerde1 p-2" name="observacion" id="" placeholder="Inserte aquí su observación" rows="3">
-                    @if($observacion != null) {{$observacion}} @endif
-                </textarea>
+                <textarea class="my-3 textoVerde1 p-2" name="observacion" id="" placeholder="Inserte aquí su observación" rows="3">@if($observacion != null) {{$observacion}} @endif</textarea>
             </div>
 
             <input type="hidden" name="token" value="{{$idToken}}"/>
