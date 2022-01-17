@@ -62,9 +62,7 @@ Route::get('/partidos',[WebController::class,'getPartidos']);
 Route::post('/crearPartido',[WebController::class,'crearPartido']);
 
 //vista partidos seccion info
-Route::get('/info-partido', function () {
-    return view('login/info/info-partido');
-});
+Route::post('/info-partido',[WebController::class,'getInfoPartido']);
 
 //vista entrenamientos
 Route::get('/entrenamientos',[WebController::class, 'getEntrenamientos']);

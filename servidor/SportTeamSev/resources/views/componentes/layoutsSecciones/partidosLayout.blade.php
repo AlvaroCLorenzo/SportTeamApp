@@ -68,8 +68,11 @@
         @if ($botonInformacion)
             <div class="row align-items-center mt-4">
                 
-                <button class="botonVerde">Información del partido</button>
-                
+                <form action="{{url('/info-partido')}}" method="post">
+                    <input type="hidden" name="idPartido" value="{{$partido->id}}"/>
+                    <button class="botonVerde">Información del partido</button>
+                </form>
+
             </div>
         @endif
     </div>

@@ -292,6 +292,12 @@ class WebController extends Controller
 
     }
 
+    public function getInfoPartido(Request $request){
+
+        
+
+    }
+
     
 
 
