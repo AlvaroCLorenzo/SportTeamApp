@@ -76,9 +76,10 @@ Route::get('/info-entrenamiento', function () {
 });
 
 //vista jugadores
-Route::get('/jugadores', function () {
-    return view('login/secciones/jugadores');
-});
+Route::get('/jugadores',[WebController::class, 'getJugadores']);
+
+//crear jugador
+Route::post('/crearJugador',[WebController::class, 'crearJugador']);
 
 //vista jugadroes seccion info
 Route::get('/info-jugador', function () {

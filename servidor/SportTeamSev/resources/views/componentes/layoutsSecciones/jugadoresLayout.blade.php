@@ -9,7 +9,7 @@
                 <div class="contenedor bgVerde5">
                     <div class="row w-100 mx-auto align-items-center">
                         <div class="col-sm">
-                            <h2 class="my-0 text-center">Juan Pérez</h2>
+                            <h2 class="my-0 text-center">{{$jugador->nombre.' '.$jugador->apellidos}}</h2>
                         </div>
                     </div>
     

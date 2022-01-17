@@ -22,25 +22,25 @@
             <div class="col-lg-5 my-3">
                 <div class="container-sm contenedor formulario bgBlanco">
                     <h1 class="textoVerde3 centrado">Agregar jugador</h1>
-                    <form action="">
+                    <form action="{{url('/crearJugador')}}" method="post">
                         <div class="grupo">
-                            <input class="textoVerde1" type="text" required>
+                            <input class="textoVerde1" type="text" name="nombre" required>
                             <label class="textoVerde1 textfield" for="">Nombre</label>
                         </div>
 
                         <div class="grupo">
-                            <input class="textoVerde1" type="text" required>
+                            <input class="textoVerde1" type="text" name="apellidos" required>
                             <label class="textoVerde1 textfield" for="">Apellidos</label>
                         </div>
 
                         <div class="grupo">
-                            <input class="textoVerde1" type="date" placeholder="" onfocus="(this.type='date')"
+                            <input class="textoVerde1" name="fechaNacimiento" type="date" placeholder="" onfocus="(this.type='date')"
                                 required>
                             <label class="textoVerde1 textfield inputFecha" for="">Fecha nacimiento</label>
                         </div>
 
                         <div class="grupo">
-                            <input class="textoVerde1" type="number" required>
+                            <input class="textoVerde1" type="number" name="telefono" required>
                             <label class="textoVerde1 textfield" for="">Teléfono</label>
                         </div>
 
@@ -52,9 +52,18 @@
             </div>
 
             {{-- Jugadores --}}
+
             <div class="col-lg-7 my-3">
-                @include('componentes/layoutsSecciones/jugadoresLayout', ['botonInformacion'=>true])
+                @foreach($jugadores as $jugador)
+                        @include('componentes/layoutsSecciones/jugadoresLayout', [
+                            'jugador' => $jugador,
+                            'botonInformacion'=>true
+                            ])
+                    
+                @endforeach
+
             </div>
+
         </div>
     </section>
 

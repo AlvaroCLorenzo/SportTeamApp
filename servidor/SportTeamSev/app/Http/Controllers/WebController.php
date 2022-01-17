@@ -144,7 +144,6 @@ class WebController extends Controller
 
         ActualizacionController::actualizarPathImagenClub(session(self::ID_CLUB), $referencia);
         
-
         return view('login/mi-club', [
 
             'club'=>$club
@@ -152,7 +151,56 @@ class WebController extends Controller
         ]);
     }
 
+    public function getJugadores(Request $request){
 
+        if(session(self::ID_CLUB) == null){
+            return view('unlogin/index');
+        }
+
+        $jugadores = ConsultaController::buscarJugador(null, session(self::ID_CLUB),null,null);
+
+        return view('login/secciones/jugadores',[
+            'jugadores' => $jugadores
+        ]);
+
+    }
+
+    public function crearJugador(Request $request){
+
+        if(session(self::ID_CLUB) == null){
+            return view('unlogin/index');
+        }
+
+        
+
+        if(
+            isset($request->nombre)
+            && 
+            isset($request->apellidos)
+            &&
+            isset($request->fechaNacimiento)
+            &&
+            isset($request->telefono)
+        ){
+
+            GuardadoController::guardarJugador(
+                session(self::ID_CLUB),
+                $request->nombre, 
+                $request->apellidos,
+                $request->telefono,
+                $request->fechaNacimiento.' 00:00:00');
+
+        }
+
+        $jugadores = ConsultaController::buscarJugador(null, session(self::ID_CLUB),null,null);
+
+        return view('login/secciones/jugadores',[
+            'jugadores' => $jugadores
+        ]);
+
+    }
+
+    
 
 
 }
