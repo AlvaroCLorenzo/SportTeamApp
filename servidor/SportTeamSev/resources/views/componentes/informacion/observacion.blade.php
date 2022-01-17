@@ -4,12 +4,17 @@
             <h2 class="m-0">Observaciones</h2>
         </div>
 
-        <form id="observacionFormulario">
+        <form id="observacionFormulario" action="{{$accion}}" method="post">
             <div class="row texto-justificado">
-                <textarea class="my-3 textoVerde1 p-2" name="" id="" placeholder="Inserte aquí su observación" rows="3"></textarea>
+                <textarea class="my-3 textoVerde1 p-2" name="observacion" id="" placeholder="Inserte aquí su observación" rows="3">
+                    @if($observacion != null) {{$observacion}} @endif
+                </textarea>
             </div>
+
+            <input type="hidden" name="token" value="{{$idToken}}"/>
+
             <div class="text-end">
-                <input type="button" name="Guardar" value="Guardar">
+                <input type="submit" name="Guardar" value="Guardar">
             </div>
         </form>
     </div>

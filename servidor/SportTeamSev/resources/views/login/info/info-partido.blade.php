@@ -20,17 +20,30 @@
         <div class="container-lg">
             {{-- Resumen --}}
             <div class="row mx-auto p-0">
-                @include('componentes/layoutsSecciones/partidosLayout',['botonInformacion'=>false])
+                @include('componentes/layoutsSecciones/partidosLayout',[
+                    'botonInformacion'=>false,
+                    'partido'=>$partido
+                    ])
             </div>
 
             {{-- Observación --}}
-            @include('componentes/informacion/observacion')
+            @include('componentes/informacion/observacion',[
+                'observacion' => $partido->observacion,
+                'accion' => url('/actualizarObservacionPartido'),
+                'idToken' => $partido->id
+            ])
 
             {{-- Convocar --}}
-            @include('componentes/informacion/convocar')
+            @include('componentes/informacion/convocar',[
+                'jugadores' => $jugadores,
+                'accion' => url('/actualizarConvocar'),
+                'idToken' => $partido->id
+            ])
             
             {{-- Convocatoria --}}
-            @include('componentes/informacion/convocatoria')
+            @include('componentes/informacion/convocatoria',[
+                'convocatorias' => $convocatorias
+            ])
     </section>
 
     @include('componentes/footer')

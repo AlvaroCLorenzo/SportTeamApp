@@ -64,6 +64,14 @@ Route::post('/crearPartido',[WebController::class,'crearPartido']);
 //vista partidos seccion info
 Route::post('/info-partido',[WebController::class,'getInfoPartido']);
 
+
+//actualizacionses partido
+
+Route::post('/actualizarObservacionPartido',[WebController::class,'actObservacionPartido']);
+
+Route::post('/actualizarConvocar',[WebController::class,'actConvocarJugador']);
+
+
 //vista entrenamientos
 Route::get('/entrenamientos',[WebController::class, 'getEntrenamientos']);
 

@@ -8,6 +8,7 @@ use App\Http\Controllers\ModelControllers\ConsultaController;
 use App\Http\Controllers\ModelControllers\GuardadoController;
 use App\Models\Club;
 use App\Models\Competicione;
+use Exception;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Storage;
 
@@ -294,9 +295,98 @@ class WebController extends Controller
 
     public function getInfoPartido(Request $request){
 
+        if(session(self::ID_CLUB) == null){
+            return view('unlogin/index');
+        }
         
+    
+
+        $partido = ConsultaController::buscarPartido($request->idPartido,null,null,null)[0];
+
+        $jugadoresClub = ConsultaController::buscarJugador(null,session(self::ID_CLUB),null,null);
+
+        $convocatorias = ConsultaController::buscarAsistencia_partido(null, session(self::ID_CLUB), $partido->id,null);
+
+        return view('/login/info/info-partido',[
+            'partido' => $partido,
+            'jugadores' => $jugadoresClub,
+            'convocatorias' => $convocatorias
+        ]);
 
     }
+
+    public function actObservacionPartido(Request $request){
+
+        if(session(self::ID_CLUB) == null){
+            return view('unlogin/index');
+        }
+
+        if(isset($request->observacion)){
+            
+            ActualizacionController::actualizarPartido(
+                session(self::ID_CLUB), 
+                $request->token,
+                null,
+                $request->observacion
+            );
+
+        }
+
+        $partido = ConsultaController::buscarPartido($request->token,null,null,null)[0];
+
+        $jugadoresClub = ConsultaController::buscarJugador(null,session(self::ID_CLUB),null,null);
+
+        $convocatorias = ConsultaController::buscarAsistencia_partido(null, session(self::ID_CLUB), $partido->id,null);
+
+        return view('/login/info/info-partido',[
+            'partido' => $partido,
+            'jugadores' => $jugadoresClub,
+            'convocatorias' => $convocatorias
+        ]);
+
+    }
+
+
+
+    public function actConvocarJugador(Request $request){
+
+        if(session(self::ID_CLUB) == null){
+            return view('unlogin/index');
+        }
+
+
+        try{
+
+            GuardadoController::guardarAsistenciaPartidos(
+                session(self::ID_CLUB),
+                $request->token,
+                (int)$request->idJugador,
+                null,
+                null
+            );
+
+        }catch(Exception $ex){
+
+        }
+
+        
+
+        $partido = ConsultaController::buscarPartido($request->token,null,null,null)[0];
+
+        $jugadoresClub = ConsultaController::buscarJugador(null,session(self::ID_CLUB),null,null);
+
+        $convocatorias = ConsultaController::buscarAsistencia_partido(null, session(self::ID_CLUB), $partido->id,null);
+
+        return view('/login/info/info-partido',[
+            'partido' => $partido,
+            'jugadores' => $jugadoresClub,
+            'convocatorias' => $convocatorias
+        ]);
+
+
+    }
+
+
 
     
 
