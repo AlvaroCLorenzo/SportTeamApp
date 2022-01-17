@@ -1,4 +1,4 @@
-<div class="container-sm">
+<div class="container-sm p-0">
     {{-- Entrenamiento --}}
     <div class="contenedor bgVerde5">
         <div class="row align-items-center">
@@ -30,9 +30,5 @@
                 <button class="botonVerde">Información del entrenamiento</button>
             </div>
         @endif
-    </div>
-
-    {{-- Fila contenedor verde --}}
-    <div class="my-5 bgVerde5 separador">
     </div>
 </div>

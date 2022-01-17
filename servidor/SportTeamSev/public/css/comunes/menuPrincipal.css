@@ -74,7 +74,7 @@ li.secciones.linkActual {
 /* Esto sirve para el menu deslogueado, ya que tiene dos estados  */
 
 @media only screen and (max-width: 575px) {
-    li {
+    li.generico {
         margin: 5px 0px;
     }
 }

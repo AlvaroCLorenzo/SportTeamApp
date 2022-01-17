@@ -54,6 +54,7 @@
             {{-- Jugadores --}}
 
             <div class="col-lg-7 my-3">
+
                 @foreach($jugadores as $jugador)
                 
                         @include('componentes/layoutsSecciones/jugadoresLayout', [
@@ -62,7 +63,7 @@
                             ])
                     
                 @endforeach
-
+                
             </div>
 
         </div>

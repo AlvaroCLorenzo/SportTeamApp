@@ -17,7 +17,7 @@
         <div class="container-lg">
             {{-- Resumen --}}
             <div class="row mx-auto p-0">
-                @include('componentes/layoutsSecciones/jugadoresLayout',['botonInformacion'=>false])
+                @include('componentes/informacion/jugador')
             </div>
 
 

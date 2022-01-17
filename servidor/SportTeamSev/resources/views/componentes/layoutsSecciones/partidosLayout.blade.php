@@ -1,4 +1,4 @@
-<div class="container-sm textoBlanco">
+<div class="container-sm p-0 textoBlanco">
     {{-- Fila nombre equipos --}}
     <div class="row align-items-center mb-4">
         <div class="col-6">
@@ -47,9 +47,5 @@
                 <button class="botonVerde">Información del partido</button>
             </div>
         @endif
-    </div>
-
-    {{-- Separador --}}
-    <div class="my-5 bgVerde5 separador">
     </div>
 </div>

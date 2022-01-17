@@ -1,4 +1,4 @@
-<div class="container-sm textoBlanco mb-5">
+<div class="container-sm p-0 textoBlanco">
     {{-- Jugador --}}
     <div>
         <div class="row align-items-center mb-4">
@@ -12,18 +12,11 @@
                             <h2 class="my-0 text-center">{{$jugador->nombre.' '.$jugador->apellidos}}</h2>
                         </div>
                     </div>
-    
-                    @if ($botonInformacion)
-                        <div class="row w-100 mx-auto align-items-center mt-4">
-                            <button class="botonVerde">Información del jugador</button>
-                        </div>
-                    @endif
+                    <div class="row w-100 mx-auto align-items-center mt-4">
+                        <button class="botonVerde">Información del jugador</button>
+                    </div>
                 </div>
             </div>
         </div>
-    </div>
-
-    {{-- Fila contenedor verde --}}
-    <div class="my-5 bgVerde5 separador">
     </div>
 </div>
