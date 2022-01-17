@@ -7,8 +7,6 @@
                     Sport Team
                 </a>
                 <div class="row">
-                    <div class="col-11">
-                    </div>
                     <div class="col-1">
                         <img class="w-100" src="{{ url('/img/iconos/jugadorMenuDeseleccionado.png') }}" alt="">
                     </div>
@@ -16,7 +14,10 @@
                 <button class="navbar-toggler" type="button" data-bs-toggle="collapse"
                     data-bs-target="#navbarToggleExternalContent" aria-controls="navbarNav" aria-expanded="false"
                     aria-label="Toggle navigation">
-                    <span id="iconoMenu" class="navbar-toggler-icon"></span>
+                    <span class="navbar-toggler-icon">
+                        {{-- meter imagen del equipo logueado --}}
+                        <img src="{{ ulr() }}" class="w-100">
+                    </span>
                 </button>
             </div>
         </nav>
