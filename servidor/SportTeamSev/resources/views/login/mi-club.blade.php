@@ -13,7 +13,9 @@
 </head>
 
 <body>
-    @include('componentes/menus/menuLogueado')
+    @include('componentes/menus/menuLogueado',[
+        'imagen' => $imagen
+    ])
 
     <section class="bgVerde1">
         <div class="container-lg py-5">

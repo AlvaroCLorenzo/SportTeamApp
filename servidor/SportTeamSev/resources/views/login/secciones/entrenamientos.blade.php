@@ -12,7 +12,9 @@
     <title>Entrenamientos - Sport Team</title>
 </head>
 <body>
-    @include('componentes/menus/menuLogueado')
+    @include('componentes/menus/menuLogueado',[
+        'imagen' => $imagen
+    ])
     
     <section class="bgVerde1 login">
         <div class="container-lg mx-auto p-0 row">

@@ -16,7 +16,16 @@
                     aria-label="Toggle navigation">
                     <span class="navbar-toggler-icon">
                         {{-- meter imagen del equipo logueado --}}
-                        <img src="{{ ulr() }}" class="w-100">
+
+                        <?php
+
+                            if($imagen == null){
+                                $imagen = 'userBig.png';
+                            }
+
+                        ?>
+
+                        <img src="{{ url('/storage/'.$imagen) }}" class="w-100">
                     </span>
                 </button>
             </div>

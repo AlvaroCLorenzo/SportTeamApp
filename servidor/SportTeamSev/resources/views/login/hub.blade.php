@@ -13,7 +13,9 @@
 </head>
 
 <body>
-    @include('componentes/menus/menuLogueado')
+    @include('componentes/menus/menuLogueado',[
+        'imagen' => $imagen
+    ])
 
     {{-- le pongo padding 0 para quitar el padding el de que pongo en el css de basico --}}
     <section class="px-0 pb-0">
