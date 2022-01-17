@@ -50,17 +50,17 @@
                         <div class="row align-items-center my-5">
                             <form action="{{ url('/cambio-contra') }}" method="post"
                                 class="text-center">
-                                <input class="botonVerde" value="Cambio contraseña">
+                                <input type="button" value="Cambio contraseña">
                             </form>
                         </div>
 
                         <div class="row w-100 m-0 my-5">
                             <form action="{{ url('/cambiar-imagen') }}" method="post" enctype="multipart/form-data"
                                 class="text-center">
-                                <div class="col-md-6 mx-auto">
+                                <div class="col-md-6 mx-auto my-2">
                                     <input type="file" name="avatar" accept=".png">
                                 </div>
-                                <div class="col-md-6 mx-auto">
+                                <div class="col-md-6 mx-auto my-2">
                                     <input type="submit" name="Guardar" value="Guardar">
                                 </div>
                             </form>
