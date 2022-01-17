@@ -37,6 +37,7 @@
                                 <h1 class="text-center">{{ $club->nombre }}</h1>
                             </div>
                         </div>
+                        
                         <div class="row align-items-center my-5">
                             <div class="col-sm-6">
                                 <h4 class="text-center">{{ $club->deporte }}</h4>
@@ -45,8 +46,12 @@
                                 <h4 class="text-center">@if ($club->categoria != null) {{ $club->categoria }} @else {{ 'sin categoría' }} @endif</h4>
                             </div>
                         </div>
+
                         <div class="row align-items-center my-5">
-                            <button class="botonVerde">Cambio contraseña</button>
+                            <form action="{{ url('/cambio-contra') }}" method="post"
+                                class="text-center">
+                                <input class="botonVerde" value="Cambio contraseña">
+                            </form>
                         </div>
 
                         <div class="row w-100 m-0 my-5">
