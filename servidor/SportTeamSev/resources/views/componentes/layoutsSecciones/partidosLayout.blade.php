@@ -70,7 +70,7 @@
                 
                 <form action="{{url('/info-partido')}}" method="post">
                     <input type="hidden" name="idPartido" value="{{$partido->id}}"/>
-                    <button class="botonVerde">Información del partido</button>
+                    <button class="botonVerde w-100">Información del partido</button>
                 </form>
 
             </div>

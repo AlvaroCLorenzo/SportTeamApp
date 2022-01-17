@@ -12,9 +12,11 @@
                             <h2 class="my-0 text-center">{{$jugador->nombre.' '.$jugador->apellidos}}</h2>
                         </div>
                     </div>
-                    <div class="row w-100 mx-auto align-items-center mt-4">
-                        <button class="botonVerde">Información del jugador</button>
-                    </div>
+                
+                    <form action="{{url('/info-jugador')}}" method="post">
+                        <input type="hidden" name="idJugador" value="{{$jugador->id}}"/>
+                        <button class="botonVerde w-100">Información del jugador</button>
+                    </form>
                 </div>
             </div>
         </div>
