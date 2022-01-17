@@ -99,16 +99,19 @@ class ActualizacionController{
      */
     public static function actualizarConvocatoriaPartido(int $idClubModificador, int $idComvocatoriaPartido, bool $asistido = null, bool $justificado = null){
         
+        
         $comvocatoriaPartido = ConsultaController::buscarAsistencia_partido($idComvocatoriaPartido)[0];
-
+        
         /*se comprueba si el club que está realizando la modificación puede modificar ese registro
          mirando si el partido al que pertenece este registro de comvocatoria pertenece a el club 
          que lo intenta modiciar.
         */
+        
         if(!self::comprobarPermisoModificacionPartido($idClubModificador, $comvocatoriaPartido->partido_id)){
             throw new ModificacionNoAutorizadaException();
         }
 
+        
 
         if($asistido !== null){
             $comvocatoriaPartido->asistido = $asistido;

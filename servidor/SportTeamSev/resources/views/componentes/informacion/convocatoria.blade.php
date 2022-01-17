@@ -6,6 +6,9 @@
 
             @foreach($convocatorias as $convocatoria)
                 @include('componentes/informacion/jugadorConvocado',[
+                    'action' => $accion,
+                    'idToken' => $idToken,
+                    'idTokenConvocatoria' => $convocatoria->id,
                     'convocatoria' => $convocatoria
                 ])
             @endforeach
