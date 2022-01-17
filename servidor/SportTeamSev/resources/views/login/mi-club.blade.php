@@ -19,7 +19,7 @@
         <div class="container-lg py-5">
             <div class="row align-items-center py-5 my-5">
                 {{-- Escudo --}}
-                <div class="col-4">
+                <div class="col-lg-4">
 
                     <?php
                         if($club->pathImagen == null){
@@ -30,7 +30,7 @@
                 </div>
 
                 {{-- Contenedor verde --}}
-                <div class="col-8">
+                <div class="col-lg-8">
                     <div class="contenedor bgVerde5 textoBlanco">
                         <div class="row w-100 m-0 my-5">
                             <div>

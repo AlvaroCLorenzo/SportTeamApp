@@ -66,3 +66,24 @@ input[type="file"]::-webkit-file-upload-button {
 input[type="button"]:hover {
     background-color: #4eb26c;
 }
+
+
+/* Prueba textArea */
+
+textarea {
+    border: none;
+    outline: none;
+    resize: none;
+}
+
+textarea::-webkit-scrollbar {
+    width: 3px;
+}
+
+textarea::-webkit-scrollbar-track {
+    -webkit-box-shadow: inset 0 0 10px #BDDAE0;
+}
+
+textarea::-webkit-scrollbar-thumb {
+    background-color: #0B8FF9;
+}
