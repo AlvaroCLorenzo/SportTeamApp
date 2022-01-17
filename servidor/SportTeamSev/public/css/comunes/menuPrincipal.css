@@ -41,7 +41,7 @@ li.generico#contornoBlanco:hover {
 div#menuSecciones {
     position: fixed;
     /* este top esta relacionado con el tamaño del menu principal */
-    top: 100.22px;
+    top: 106px;
     left: 0px;
     width: 100%;
 }
@@ -64,6 +64,10 @@ li.secciones a {
 
 li.secciones.linkActual {
     background-color: #3c5c47;
+}
+
+.redimensionarLogo {
+    font-size: 2rem;
 }
 
 

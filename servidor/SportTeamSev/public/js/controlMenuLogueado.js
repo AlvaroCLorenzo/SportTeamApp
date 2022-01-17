@@ -52,7 +52,6 @@ function crearLi() {
 }
 
 function crearMenu() {
-    // creo el li con su respectivas clases
     divMenu = document.createElement('div');
     divMenu.id = "menuSecciones";
     var nav = document.createElement('nav');
