@@ -73,6 +73,7 @@ input[type="button"]:hover {
 textarea {
     border-radius: 18px;
     border-color: #bfdaa0;
+    min-height: 100px;
     border-width: 2px;
     outline: none;
     resize: vertical;
