@@ -5,9 +5,7 @@
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
 
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.0/jquery.min.js"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/forge/0.8.2/forge.all.min.js"></script>
-    <script src="{{asset('/js/codificadorContra.js')}}"></script>
+    @include('componentes/head/scriptsBasicosEncriptar')
 
     <script>
 
@@ -27,8 +25,6 @@
             let contraSincodificar = inContra.value;
 
             let contraCodificada = generateHash(contraSincodificar);
-
-            console.log(contraCodificada);
 
             inContra.value = contraCodificada;
 

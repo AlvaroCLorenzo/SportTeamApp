@@ -5,9 +5,40 @@
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
 
+    @include('componentes/head/scriptsBasicosEncriptar')
+
+    <script>
+        window.onload = function() {
+
+            var boton = document.getElementById('btnlogin');
+
+            boton.onclick = enviar;
+
+        }
+
+        function enviar() {
+
+            var contras = document.getElementsByClassName('inputContra');
+
+            var formulario = document.getElementById('formularioRegistro');
+
+            for (let i = 0; i < contras.length; i++) {
+
+                let contraSincodificar = contras[i].value;
+
+                let contraCodificada = generateHash(contraSincodificar);
+
+                contras[i].value = contraCodificada;
+
+            }
+
+            formulario.submit();
+
+        }
+    </script>
     @include('componentes/head/headConstantes')
     /cssLinks')
-    
+
     {{-- propios --}}
     <link rel="stylesheet" href="css/comunes/formularios.css">
 
@@ -15,23 +46,24 @@
 </head>
 
 <body>
-    @include('componentes/menus/menuDeslogueado', ['btnDesplegable' => true, 'btnRegistro' => false, 'btnLogin' => true])
+    @include('componentes/menus/menuDeslogueado', ['btnDesplegable' => true, 'btnRegistro' => false, 'btnLogin' =>
+    true])
 
     <section class="w-100 mx-auto row align-items-center bgVerde1">
         <div class="container-fluid my-auto textoBlanco ">
             <div class="container-sm contenedor formulario bgBlanco">
                 <h1 class="textoVerde3 centrado">Regístrate</h1>
-                <form action="{{url('/registrarUsuario')}}" method="post">
+                <form action="{{ url('/registrarUsuario') }}" method="post" id="formularioRegistro">
                     <div class="grupo">
                         <input class="textoVerde1" type="text" name="nombreClub" required>
                         <label class="textoVerde1 textfield" for="">Nombre club</label>
                     </div>
                     <div class="grupo">
-                        <input class="textoVerde1" type="password" name="contra1Club" required>
+                        <input class="textoVerde1 inputContra" type="password" name="contra1Club" required>
                         <label class="textoVerde1 textfield" for="">Contraseña</label>
                     </div>
                     <div class="grupo">
-                        <input class="textoVerde1" type="password" name="contra2Club" required>
+                        <input class="textoVerde1 inputContra" type="password" name="contra2Club" required>
                         <label class="textoVerde1 textfield" for="">Repite la contraseña</label>
                     </div>
 
@@ -64,9 +96,9 @@
             </div>
         </div>
     </section>
-    
+
     @include('componentes/footer')
-    <script src={{ asset('js/app.js')}}></script>
+    <script src={{ asset('js/app.js') }}></script>
 </body>
 
 </html>
