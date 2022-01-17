@@ -10,7 +10,7 @@
     <link rel="stylesheet" href="css/secciones/partidos/partidos.css">
     <link rel="stylesheet" href="css/comunes/formularios.css">
 
-    <title>Partidos - Sport Team</title>
+    <title>Información partido - Sport Team</title>
 </head>
 
 <body>

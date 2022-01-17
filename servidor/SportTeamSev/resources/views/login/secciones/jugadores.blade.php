@@ -11,7 +11,7 @@
     {{-- propios --}}
     <link rel="stylesheet" href="css/comunes/formularios.css">
 
-    <title>Partidos - Sport Team</title>
+    <title>Jugadores - Sport Team</title>
 </head>
 
 <body>
