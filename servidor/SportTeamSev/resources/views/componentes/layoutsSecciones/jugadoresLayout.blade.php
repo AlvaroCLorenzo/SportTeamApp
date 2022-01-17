@@ -15,7 +15,7 @@
                 
                     <form action="{{url('/info-jugador')}}" method="post">
                         <input type="hidden" name="idJugador" value="{{$jugador->id}}"/>
-                        <button class="botonVerde w-100">Información del jugador</button>
+                        <button class="botonVerde w-100 mt-3">Información del jugador</button>
                     </form>
                 </div>
             </div>

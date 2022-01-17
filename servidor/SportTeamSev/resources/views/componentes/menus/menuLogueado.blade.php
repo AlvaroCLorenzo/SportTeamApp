@@ -6,11 +6,6 @@
                 <a id="marca" class="navbar-brand linkB" href="{{ url('/hub') }}">
                     Sport Team
                 </a>
-                <div class="row">
-                    <div class="col-1">
-                        <img class="w-100" src="{{ url('/img/iconos/jugadorMenuDeseleccionado.png') }}" alt="">
-                    </div>
-                </div>
                 <button class="navbar-toggler" type="button" data-bs-toggle="collapse"
                     data-bs-target="#navbarToggleExternalContent" aria-controls="navbarNav" aria-expanded="false"
                     aria-label="Toggle navigation">
