@@ -21,7 +21,7 @@ class WebController extends Controller
 
 
         if(session(self::ID_CLUB) != null){
-            return view('login/hub');
+            return redirect('/hub');
         }
         
         return view('unlogin/index');
@@ -43,7 +43,7 @@ class WebController extends Controller
             //se deja puesto el id
             session([self::ID_CLUB => $club->id]);
 
-            return view('login/hub');
+            return redirect('/hub');
         }
 
         return view('unlogin/login');
@@ -111,7 +111,12 @@ class WebController extends Controller
             return view('unlogin/index');
         }
 
-        return view('login/hub');
+        $club = ConsultaController::buscarClub(session(self::ID_CLUB))[0];
+
+        
+        return view('login/hub',[
+            'imagen' => $club->pathImagen
+        ]);
  
     }
 
@@ -125,7 +130,7 @@ class WebController extends Controller
         $club = ConsultaController::buscarClub(session(self::ID_CLUB))[0];
 
         return view('login/mi-club',[
-
+            'imagen' => $club->pathImagen,
             'club'=>$club
 
         ]);
@@ -158,7 +163,10 @@ class WebController extends Controller
 
         $jugadores = ConsultaController::buscarJugador(null, session(self::ID_CLUB),null,null);
 
+        $club = ConsultaController::buscarClub(session(self::ID_CLUB), null)[0];
+
         return view('login/secciones/jugadores',[
+            'imagen' => $club->pathImagen,
             'jugadores' => $jugadores
         ]);
 
@@ -203,7 +211,10 @@ class WebController extends Controller
 
         $entrenamientos = ConsultaController::buscarEntrenamiento(null, session(self::ID_CLUB));
 
+        $club = ConsultaController::buscarClub(session(self::ID_CLUB), null)[0];
+
         return view('login/secciones/entrenamientos',[
+            'imagen' => $club->pathImagen,
             'entrenamientos' => $entrenamientos
         ]);
 
@@ -250,9 +261,12 @@ class WebController extends Controller
         $partidos = ConsultaController::buscarPartido(null, null, null, session(self::ID_CLUB));
 
 
+        $club = ConsultaController::buscarClub(session(self::ID_CLUB), null)[0];
 
+        
 
         return view('login/secciones/partidos',[
+            'imagen' => $club->pathImagen,
             'partidos' => $partidos,
             'competiciones' => Competicione::all(),
             'clubes' => Club::all()
@@ -299,7 +313,7 @@ class WebController extends Controller
             return view('unlogin/index');
         }
         
-    
+        $club = ConsultaController::buscarClub(session(self::ID_CLUB), null)[0];
 
         $partido = ConsultaController::buscarPartido($request->idPartido,null,null,null)[0];
 
@@ -308,6 +322,7 @@ class WebController extends Controller
         $convocatorias = ConsultaController::buscarAsistencia_partido(null, session(self::ID_CLUB), $partido->id,null);
 
         return view('/login/info/info-partido',[
+            'imagen' => $club->pathImagen,
             'partido' => $partido,
             'jugadores' => $jugadoresClub,
             'convocatorias' => $convocatorias
@@ -332,6 +347,8 @@ class WebController extends Controller
 
         }
 
+        $club = ConsultaController::buscarClub(session(self::ID_CLUB), null)[0];
+
         $partido = ConsultaController::buscarPartido($request->token,null,null,null)[0];
 
         $jugadoresClub = ConsultaController::buscarJugador(null,session(self::ID_CLUB),null,null);
@@ -339,6 +356,7 @@ class WebController extends Controller
         $convocatorias = ConsultaController::buscarAsistencia_partido(null, session(self::ID_CLUB), $partido->id,null);
 
         return view('/login/info/info-partido',[
+            'imagen' => $club->pathImagen,
             'partido' => $partido,
             'jugadores' => $jugadoresClub,
             'convocatorias' => $convocatorias
@@ -348,7 +366,7 @@ class WebController extends Controller
 
 
 
-    public function actConvocarJugador(Request $request){
+    public function actConvocarPartidoJugador(Request $request){
 
         if(session(self::ID_CLUB) == null){
             return view('unlogin/index');
@@ -369,7 +387,7 @@ class WebController extends Controller
 
         }
 
-        
+        $club = ConsultaController::buscarClub(session(self::ID_CLUB), null)[0];
 
         $partido = ConsultaController::buscarPartido($request->token,null,null,null)[0];
 
@@ -378,6 +396,7 @@ class WebController extends Controller
         $convocatorias = ConsultaController::buscarAsistencia_partido(null, session(self::ID_CLUB), $partido->id,null);
 
         return view('/login/info/info-partido',[
+            'imagen' => $club->pathImagen,
             'partido' => $partido,
             'jugadores' => $jugadoresClub,
             'convocatorias' => $convocatorias

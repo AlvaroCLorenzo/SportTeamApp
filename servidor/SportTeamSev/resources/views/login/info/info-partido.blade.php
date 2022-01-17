@@ -14,7 +14,9 @@
 </head>
 
 <body>
-    @include('componentes/menus/menuLogueado')
+    @include('componentes/menus/menuLogueado',[
+        'imagen' => $imagen
+    ])
 
     <section class="bgVerde1 login">
         <div class="container-lg">
@@ -42,8 +44,11 @@
             
             {{-- Convocatoria --}}
             @include('componentes/informacion/convocatoria',[
-                'convocatorias' => $convocatorias
+                'convocatorias' => $convocatorias,
+                'accion' => url('/actualizarConvocar'),
+                'idToken' => $partido->id
             ])
+
     </section>
 
     @include('componentes/footer')

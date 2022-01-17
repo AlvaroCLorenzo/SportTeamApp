@@ -69,7 +69,7 @@ Route::post('/info-partido',[WebController::class,'getInfoPartido']);
 
 Route::post('/actualizarObservacionPartido',[WebController::class,'actObservacionPartido']);
 
-Route::post('/actualizarConvocar',[WebController::class,'actConvocarJugador']);
+Route::post('/actualizarConvocar',[WebController::class,'actConvocarPartidoJugador']);
 
 
 //vista entrenamientos
