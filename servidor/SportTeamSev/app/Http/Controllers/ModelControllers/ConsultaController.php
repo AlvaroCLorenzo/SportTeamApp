@@ -226,7 +226,7 @@ class ConsultaController
      * Pasando $idClub $idPartido.
      * 
      */
-    public static function buscarAsistencia_partido(int $idAsistencia_partido = null, int $idClub = null, int $idPartido = null){
+    public static function buscarAsistencia_partido(int $idAsistencia_partido = null, int $idClub = null, int $idPartido = null, int $idJugador = null){
 
         if($idAsistencia_partido != null){ 
 
@@ -239,6 +239,12 @@ class ConsultaController
                                     ->where('partido_id','=',$idPartido)
                                     ->where('jugadores.club_id','=',$idClub)
                                     ->get();
+
+        }else if($idPartido != null && $idJugador != null){
+
+            Asistencia_partido::where('partido_id','=',$idPartido)
+                                ->where('jugador_id','=',$idJugador)
+                                ->get();
 
         }else{
             throw new UsoIncorrectoSobrecargaException();

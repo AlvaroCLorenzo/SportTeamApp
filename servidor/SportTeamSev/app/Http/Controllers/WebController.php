@@ -6,6 +6,8 @@ use App\Exceptions\InsercionDuplicadaException;
 use App\Http\Controllers\ModelControllers\ActualizacionController;
 use App\Http\Controllers\ModelControllers\ConsultaController;
 use App\Http\Controllers\ModelControllers\GuardadoController;
+use App\Models\Club;
+use App\Models\Competicione;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Storage;
 
@@ -237,6 +239,62 @@ class WebController extends Controller
         return redirect('/entrenamientos');
 
     }
+
+    public function getPartidos(Request $request){
+
+        if(session(self::ID_CLUB) == null){
+            return view('unlogin/index');
+        }
+
+        $partidos = ConsultaController::buscarPartido(null, null, null, session(self::ID_CLUB));
+
+
+
+
+        return view('login/secciones/partidos',[
+            'partidos' => $partidos,
+            'competiciones' => Competicione::all(),
+            'clubes' => Club::all()
+        ]);
+
+    }
+
+    public function crearPartido(Request $request){
+
+        if(session(self::ID_CLUB) == null){
+            return view('unlogin/index');
+        }
+
+        
+
+        if(
+            isset($request->equipoLocal)
+            && 
+            isset($request->equipoVisitante)
+            &&
+            isset($request->copeticion)
+            &&
+            isset($request->fecha)
+            &&
+            isset($request->hora)
+        ){
+
+            GuardadoController::guardarPartido(
+                $request->equipoLocal,
+                $request->equipoVisitante,
+                $request->copeticion,
+                $request->fecha." ".$request->hora.":00"
+            );
+
+        }
+
+        return redirect('/partidos');
+
+    }
+
+    
+
+
 
     
 
