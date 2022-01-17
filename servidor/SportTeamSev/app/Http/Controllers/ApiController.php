@@ -615,7 +615,7 @@ class ApiController extends Controller
 
         try{
 
-            GuardadoController::guardarAsistenciaPartidos($idClub, (int)$request->idEntrenamiento, (int)$request->idJugador, null, null);
+            GuardadoController::guardarAsistenciaEntrenamientos($idClub, (int)$request->idEntrenamiento, (int)$request->idJugador, null,null);
 
             return self::ACTUALIZACION_EXITOSA;
 
@@ -623,6 +623,10 @@ class ApiController extends Controller
         $ex){
 
             return $ex->getMessage();
+
+        }catch(InsercionDuplicadaException $ex){
+
+            return self::ERROR_GENERICO;
 
         }
 
