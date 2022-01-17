@@ -14,6 +14,14 @@
 
         $trozosResultado = explode(':', $partido->resultado);
 
+        if(count($trozosResultado)<2){
+
+            $trozosResultado[0] = "";
+
+            $trozosResultado[1] = "";
+
+        }
+
 
         $trozosFecha = explode(' ',$partido->fechaHora);
 
@@ -44,7 +52,7 @@
             <img class="w-100 mx-auto" src="{{ url('/img/iconos/vsIcon.png') }}" alt="">
         </div>
         <div class="col-2 puntuación px-2 text-center">
-            <p class="w-50 mx-auto my-0 puntuacion texto bgVerde5">{{$trozosResultado[0]}}</p>
+            <p class="w-50 mx-auto my-0 puntuacion texto bgVerde5">{{$trozosResultado[1]}}</p>
         </div>
         <div class="col-3">
             <img class="w-100 mx-auto" src="{{ url('/storage/'.$partido->pathImagenVisitante) }}" alt="">

@@ -3,7 +3,12 @@
     <div class="row mx-auto contenedor bgBlanco">
         <div class="row p-0">
             <h2 >Convocatoria</h2>
-            @include('componentes/informacion/jugadorConvocado')
+
+            @foreach($convocatorias as $convocatoria)
+                @include('componentes/informacion/jugadorConvocado',[
+                    'convocatoria' => $convocatoria
+                ])
+            @endforeach
         </div>
     </div>
 </div>
