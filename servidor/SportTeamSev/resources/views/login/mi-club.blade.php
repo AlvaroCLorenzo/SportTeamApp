@@ -17,9 +17,9 @@
 
     <section class="bgVerde1">
         <div class="container-lg py-5">
-            <div class="row align-items-center py-5 my-5">
+            <div class="row align-items-center my-5">
                 {{-- Escudo --}}
-                <div class="col-lg-4 my-3">
+                <div class="col-6 col-lg-4 my-3 mx-auto">
 
                     <?php
                     if ($club->pathImagen == null) {
