@@ -406,6 +406,50 @@ class WebController extends Controller
     }
 
 
+    public function actAsistenciaPartidoJugador(Request $request){
+
+        if(session(self::ID_CLUB) == null){
+            return view('unlogin/index');
+        }
+
+        $asistido = isset($request->asistido) ? true:false;
+        $justificado = isset($request->justificado) ? true:false;
+
+        try{
+            
+            ActualizacionController::actualizarConvocatoriaPartido(
+                session(self::ID_CLUB),
+                (int)$request->tokenConvocatoria,
+                $asistido,
+                $justificado
+
+            );
+
+        }catch(Exception $ex){
+
+        }   
+
+        
+        $club = ConsultaController::buscarClub(session(self::ID_CLUB), null)[0];
+
+        $partido = ConsultaController::buscarPartido($request->token,null,null,null)[0];
+
+        $jugadoresClub = ConsultaController::buscarJugador(null,session(self::ID_CLUB),null,null);
+
+        $convocatorias = ConsultaController::buscarAsistencia_partido(null, session(self::ID_CLUB), $partido->id,null);
+
+        return view('/login/info/info-partido',[
+            'imagen' => $club->pathImagen,
+            'partido' => $partido,
+            'jugadores' => $jugadoresClub,
+            'convocatorias' => $convocatorias
+        ]);
+
+
+    }
+    
+
+
 
     
 

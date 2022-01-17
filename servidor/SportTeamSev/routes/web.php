@@ -72,6 +72,9 @@ Route::post('/actualizarObservacionPartido',[WebController::class,'actObservacio
 Route::post('/actualizarConvocar',[WebController::class,'actConvocarPartidoJugador']);
 
 
+Route::post('/actualizarAsistenciaPartido',[WebController::class,'actAsistenciaPartidoJugador']);
+
+
 //vista entrenamientos
 Route::get('/entrenamientos',[WebController::class, 'getEntrenamientos']);
 
