@@ -326,6 +326,10 @@ class GuardadoController
      */
     public static function guardarAsistenciaEntrenamientos(int $idClubModificador, int $idEntrenamiento,int $idJugador, bool $asistido = null, bool $justificado = null){
 
+        $resultado = ConsultaController::buscarAsistencia_entrenamiento(null, $idEntrenamiento, $idJugador);
+
+        self::comprobarDuplicado($resultado,'$idPartido $idJugador');
+
         $resultadoEntrenamiento = ConsultaController::buscarEntrenamiento($idEntrenamiento);
 
         $resultadoJugador = ConsultaController::buscarJugador($idJugador, null, null, null);
@@ -398,8 +402,9 @@ class GuardadoController
      */
     public static function guardarAsistenciaPartidos(int $idClubModificador, int $idPartido,int $idJugador, bool $asistido = null, bool $justificado = null){
 
+        $resultado = ConsultaController::buscarAsistencia_partido(null,null, $idPartido, $idJugador);
 
-        self::comprobarDuplicado(ConsultaController::buscarAsistencia_partido(null,null, $idPartido, $idJugador),'$idPartido $idJugador');
+        self::comprobarDuplicado($resultado,'$idPartido $idJugador');
 
         $resultadoPartido = ConsultaController::buscarPartido($idPartido);
 
