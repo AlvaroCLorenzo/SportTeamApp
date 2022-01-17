@@ -96,7 +96,6 @@ function putLi() {
             }
             putOnMainMenu();
             horizontal = true;
-            console.log("1: " + horizontal);
         }
     } else {
         while (horizontal) {
@@ -105,7 +104,6 @@ function putLi() {
                 putMenuSeccion();
             }
             horizontal = false;
-            console.log("2: " + horizontal);
         }
     }
 }
