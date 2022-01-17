@@ -53,3 +53,5 @@ Route::post('/insertarEntrenamiento',[ApiController::class,'insEntrenamiento']);
 Route::post('/insertarJugador',[ApiController::class,'insJugador']);
 
 Route::post('/insertarConvocatoriaPartido',[ApiController::class,'insConvocatoriaPartido']);
+
+Route::post('/insertarConvocatoriaEntrenamiento',[ApiController::class,'insConvocatoriaEntrenamiento']);

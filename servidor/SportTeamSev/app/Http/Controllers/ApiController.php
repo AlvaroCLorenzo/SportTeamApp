@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Exceptions\ClaveForaneaNullaException;
 use App\Exceptions\FormatoParametroIncorrectoException;
+use App\Exceptions\InsercionDuplicadaException;
 use App\Exceptions\UsoIncorrectoSobrecargaException;
 use App\Http\Controllers\ModelControllers\ActualizacionController;
 use App\Http\Controllers\ModelControllers\ConsultaController;
@@ -585,6 +586,10 @@ class ApiController extends Controller
 
             return $ex->getMessage();
 
+        }catch(InsercionDuplicadaException $ex){
+
+            return self::ERROR_GENERICO;
+
         }
 
 
@@ -612,7 +617,7 @@ class ApiController extends Controller
 
             GuardadoController::guardarAsistenciaPartidos($idClub, (int)$request->idEntrenamiento, (int)$request->idJugador, null, null);
 
-            return self::ACTUALIZACION_EXITOSA; 
+            return self::ACTUALIZACION_EXITOSA;
 
         }catch(ModificacionNoAutorizadaException | ClaveForaneaNullaException | FormatoParametroIncorrectoException
         $ex){

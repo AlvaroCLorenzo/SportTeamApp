@@ -15,6 +15,8 @@ class Partido extends Model
         'local',
         'visitante',
         'competicion',
+        'pathImagenLocal',
+        'pathImagenVisitante',
         'imagenLocal',
         'imagenVisitante'
     ];
@@ -26,6 +28,15 @@ class Partido extends Model
         'local_id',
         'visitante_id'
     ];
+
+
+    public function getPathImagenLocalAttribute(){
+        return ConsultaController::buscarClub((int)$this->attributes['local_id'])[0]->pathImagen;
+    }
+
+    public function getPathImagenVisitanteAttribute(){
+        return $pathImagen = ConsultaController::buscarClub((int)$this->attributes['visitante_id'])[0]->pathImagen;
+    }
 
 
     public function getImagenLocalAttribute(){

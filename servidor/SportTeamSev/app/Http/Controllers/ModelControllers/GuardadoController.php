@@ -103,6 +103,7 @@ class GuardadoController
         if(count($clubHuerfano)>0 && $clubHuerfano[0]->password == null){
 
             $club = $clubHuerfano[0];
+
         }else{
 
             $club = new Club();
@@ -396,6 +397,9 @@ class GuardadoController
      * En este caso no se permite buscar el entrenamiento y el jugador por el nombre de un campo, solo por id, por eso se fuerzan las keys como enteros
      */
     public static function guardarAsistenciaPartidos(int $idClubModificador, int $idPartido,int $idJugador, bool $asistido = null, bool $justificado = null){
+
+
+        self::comprobarDuplicado(ConsultaController::buscarAsistencia_partido(null,null, $idPartido, $idJugador),'$idPartido $idJugador');
 
         $resultadoPartido = ConsultaController::buscarPartido($idPartido);
 

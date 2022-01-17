@@ -56,9 +56,10 @@ Route::get('/mi-club',[WebController::class,'getMiClub']);
 Route::post('/cambiar-imagen',[WebController::class,'cambiarImagen']);
 
 //vista partidos
-Route::get('/partidos', function () {
-    return view('login/secciones/partidos');
-});
+Route::get('/partidos',[WebController::class,'getPartidos']);
+
+//vista partidos
+Route::post('/crearPartido',[WebController::class,'crearPartido']);
 
 //vista partidos seccion info
 Route::get('/info-partido', function () {

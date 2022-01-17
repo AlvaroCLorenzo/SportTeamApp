@@ -24,19 +24,16 @@
             <div class="col-lg-5 my-3">
                 <div class="container-sm contenedor formulario bgBlanco">
                     <h1 class="textoVerde3 centrado">Crear partido</h1>
-                    <form action="">
+                    <form action="{{url('/crearPartido')}}"  method="post">
                         <div class="row grupo">
                             <div class="col-4 p-0">
                                 <label class="textoVerde1" for="">Local</label>
                             </div>
                             <div class="col-8 p-0">
                                 <select class="m-0 textoVerde1" name="equipoLocal" id="local">
-                                    {{-- casos de ejemplo --}}
-                                    <option value="Real Madrid">Real Madrid</option>
-                                    <option value="Fútbol Club Barcelona">Fútbol Club Barcelona</option>
-                                    <option value="Chamberi FC">Chamberi FC</option>
-                                    <option value="Sevilla">Sevilla</option>
-                                    <option value="Rayo Vallecano">Rayo Vallecano</option>
+                                    @foreach($clubes as $club)
+                                        <option value="{{$club->nombre}}">{{$club->nombre}}</option>
+                                    @endforeach
                                 </select>
                             </div>
                         </div>
@@ -47,12 +44,9 @@
                             </div>
                             <div class="col-8 p-0">
                                 <select class="m-0 textoVerde1" name="equipoVisitante" id="visitante">
-                                    {{-- casos de ejemplo --}}
-                                    <option value="Real Madrid">Real Madrid</option>
-                                    <option value="Fútbol Club Barcelona">Fútbol Club Barcelona</option>
-                                    <option value="Chamberi FC">Chamberi FC</option>
-                                    <option value="Sevilla">Sevilla</option>
-                                    <option value="Rayo Vallecano">Rayo Vallecano</option>
+                                    @foreach($clubes as $club)
+                                        <option value="{{$club->nombre}}">{{$club->nombre}}</option>
+                                    @endforeach
                                 </select>
                             </div>
                         </div>
@@ -63,20 +57,22 @@
                             </div>
                             <div class="col-8 p-0">
                                 <select class="m-0 textoVerde1" name="copeticion" id="competicion">
-                                    <option value="1ª Categoría">1ª Categoría</option>
-                                    <option value="2ª Categoría">2ª Categoría</option>
-                                    <option value="3ª Categoría">3ª Categoría</option>
+
+                                    @foreach($competiciones as $competicion)
+                                        <option value="{{$competicion->nombreCompeticion}}">{{$competicion->nombreCompeticion}}</option>
+                                    @endforeach
+
                                 </select>
                             </div>
                         </div>
 
                         <div class="grupo">
-                            <input class="textoVerde1" type="date" required>
+                            <input class="textoVerde1" type="date" name="fecha" required>
                             <label class="textoVerde1 textfield" for="">Fecha del entrenamiento</label>
                         </div>
 
                         <div class="grupo">
-                            <input class="textoVerde1" type="time" required>
+                            <input class="textoVerde1" type="time" name="hora" required>
                             <label class="textoVerde1 textfield" for="">Hora</label>
                         </div>
 
@@ -89,7 +85,20 @@
 
             {{-- Partidos --}}
             <div class="col-lg-7 my-3">
-                @include('componentes/layoutsSecciones/partidosLayout',['botonInformacion'=>true])
+
+                @foreach ($partidos as $partido)
+                    
+                    @include('componentes/layoutsSecciones/partidosLayout',[
+                        'partido'=>$partido,
+                        'botonInformacion'=>true
+                        ])
+
+                    {{-- Fila contenedor verde --}}
+                    <div class="my-5 bgVerde5 separador"></div>
+
+                @endforeach
+
+
             </div>
         </div>
     </section>
