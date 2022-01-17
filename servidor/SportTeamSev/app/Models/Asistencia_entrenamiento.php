@@ -16,7 +16,7 @@ class Asistencia_entrenamiento extends Model
     ];
 
     protected $hidden = [
-
+        'entrenamiento_id',
         'updated_at',
         'created_at',
         'jugador_id'
