@@ -22,11 +22,11 @@
                 <div class="col-lg-4 my-3">
 
                     <?php
-                        if($club->pathImagen == null){
-                            $club->pathImagen = 'userBig.png';
-                        }
+                    if ($club->pathImagen == null) {
+                        $club->pathImagen = 'userBig.png';
+                    }
                     ?>
-                    <img src="{{ url('/storage/'.$club->pathImagen) }}" alt="" class="w-100">
+                    <img src="{{ url('/storage/' . $club->pathImagen) }}" alt="" class="w-100">
                 </div>
 
                 {{-- Contenedor verde --}}
@@ -34,15 +34,15 @@
                     <div class="contenedor bgVerde5 textoBlanco">
                         <div class="row w-100 m-0 my-5">
                             <div>
-                                <h1 class="text-center">{{$club->nombre}}</h1>
+                                <h1 class="text-center">{{ $club->nombre }}</h1>
                             </div>
                         </div>
                         <div class="row align-items-center my-5">
                             <div class="col-sm-6">
-                                <h4 class="text-center">{{$club->deporte}}</h4>
+                                <h4 class="text-center">{{ $club->deporte }}</h4>
                             </div>
                             <div class="col-sm-6">
-                                <h4 class="text-center">@if($club->categoria != null) {{ $club->categoria}} @else {{"sin categoría"}} @endif</h4>
+                                <h4 class="text-center">@if ($club->categoria != null) {{ $club->categoria }} @else {{ 'sin categoría' }} @endif</h4>
                             </div>
                         </div>
                         <div class="row align-items-center my-5">
@@ -50,9 +50,14 @@
                         </div>
 
                         <div class="row w-100 m-0 my-5">
-                            <form action="{{url('/cambiar-imagen')}}" method="post" enctype="multipart/form-data" class="text-center">
-                                <input type="file" name="avatar" accept=".png">
-                                <input type="submit" name="Guardar" value="Guardar">
+                            <form action="{{ url('/cambiar-imagen') }}" method="post" enctype="multipart/form-data"
+                                class="text-center">
+                                <div class="col-md-6 mx-auto">
+                                    <input type="file" name="avatar" accept=".png">
+                                </div>
+                                <div class="col-md-6 mx-auto">
+                                    <input type="submit" name="Guardar" value="Guardar">
+                                </div>
                             </form>
                         </div>
                     </div>

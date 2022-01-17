@@ -47,6 +47,7 @@ select {
 }
 
 input[type="button"],
+input[type="submit"],
 input[type="file"]::-webkit-file-upload-button {
     color: white;
     /* pading */
@@ -63,6 +64,7 @@ input[type="file"]::-webkit-file-upload-button {
     transition-duration: 0.5s;
 }
 
+input[type="submit"]:hover,
 input[type="button"]:hover {
     background-color: #4eb26c;
 }
