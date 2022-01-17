@@ -1,4 +1,4 @@
-<div class="row mx-auto p-0 textoVerde1 mb-5">
+<div class="row mx-auto p-0 textoVerde1 my-5">
     <div class="contenedor bgBlanco">
         <div class="row">
             <h2>Observaciones</h2>
