@@ -1,0 +1,18 @@
+@font-face {
+    src: url('../../fuentes/gothamBold.otf');
+    font-family: gotham;
+}
+
+* {
+    font-family: gotham;
+}
+
+section {
+    min-height: 100vh;
+    padding: 30vh 0px;
+    text-align: center;
+}
+
+h1 {
+    font-size: 8vw;
+}

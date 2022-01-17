@@ -94,4 +94,6 @@ Route::get('/info-jugador', function () {
     return view('login/info/info-jugador');
 });
 
-
+Route::get('/error', function () {
+    return view('login/error');
+});
