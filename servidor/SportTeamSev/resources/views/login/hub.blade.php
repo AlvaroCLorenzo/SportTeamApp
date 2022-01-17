@@ -9,7 +9,7 @@
 
     <link rel="stylesheet" href="css/hub/botonesSecciones.css">
 
-    <title>HUB - Sport Team</title>
+    <title>Sport Team</title>
 </head>
 
 <body>

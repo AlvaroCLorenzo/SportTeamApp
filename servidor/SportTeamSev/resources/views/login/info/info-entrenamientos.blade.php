@@ -9,7 +9,7 @@
 
     
     <link rel="stylesheet" href="css/comunes/formularios.css">
-    <title>Partidos - Sport Team</title>
+    <title>Información entrenamiento - Sport Team</title>
 </head>
 
 <body>

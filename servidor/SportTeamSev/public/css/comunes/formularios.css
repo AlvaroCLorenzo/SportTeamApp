@@ -71,9 +71,15 @@ input[type="button"]:hover {
 /* Prueba textArea */
 
 textarea {
-    border: none;
+    border-radius: 18px;
+    border-color: #bfdaa0;
+    border-width: 2px;
     outline: none;
-    resize: none;
+    resize: vertical;
+}
+
+textarea::placeholder {
+    color: #bfdaa0;
 }
 
 textarea::-webkit-scrollbar {
@@ -81,9 +87,9 @@ textarea::-webkit-scrollbar {
 }
 
 textarea::-webkit-scrollbar-track {
-    -webkit-box-shadow: inset 0 0 10px #BDDAE0;
+    -webkit-box-shadow: none;
 }
 
 textarea::-webkit-scrollbar-thumb {
-    background-color: #0B8FF9;
+    background-color: #496e56;
 }
