@@ -66,9 +66,10 @@ Route::get('/info-partido', function () {
 });
 
 //vista entrenamientos
-Route::get('/entrenamientos', function () {
-    return view('login/secciones/entrenamientos');
-});
+Route::get('/entrenamientos',[WebController::class, 'getEntrenamientos']);
+
+//crear entrenamiento
+Route::post('/crearEntrenamiento',[WebController::class, 'crearEntrenamiento']);
 
 //vista entrenamientos seccion info
 Route::get('/info-entrenamiento', function () {

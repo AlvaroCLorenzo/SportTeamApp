@@ -144,11 +144,7 @@ class WebController extends Controller
 
         ActualizacionController::actualizarPathImagenClub(session(self::ID_CLUB), $referencia);
         
-        return view('login/mi-club', [
-
-            'club'=>$club
-
-        ]);
+        return redirect('/mi-club');
     }
 
     public function getJugadores(Request $request){
@@ -192,11 +188,53 @@ class WebController extends Controller
 
         }
 
-        $jugadores = ConsultaController::buscarJugador(null, session(self::ID_CLUB),null,null);
+        return redirect('/jugadores');
 
-        return view('login/secciones/jugadores',[
-            'jugadores' => $jugadores
+    }
+
+    public function getEntrenamientos(Request $request){
+
+        if(session(self::ID_CLUB) == null){
+            return view('unlogin/index');
+        }
+
+        $entrenamientos = ConsultaController::buscarEntrenamiento(null, session(self::ID_CLUB));
+
+        return view('login/secciones/entrenamientos',[
+            'entrenamientos' => $entrenamientos
         ]);
+
+    }
+
+    public function crearEntrenamiento(Request $request){
+
+        if(session(self::ID_CLUB) == null){
+            return view('unlogin/index');
+        }
+
+        
+
+        if(
+            isset($request->duracion)
+            && 
+            isset($request->lugar)
+            &&
+            isset($request->fecha)
+            &&
+            isset($request->hora)
+        ){
+
+            GuardadoController::guardarEntrenamiento(
+                session(self::ID_CLUB),
+                $request->fecha.' '.$request->hora,
+                $request->duracion,
+                $request->lugar,
+                null
+            );
+
+        }
+
+        return redirect('/entrenamientos');
 
     }
 

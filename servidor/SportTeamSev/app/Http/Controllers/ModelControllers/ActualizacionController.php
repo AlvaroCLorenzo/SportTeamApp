@@ -142,10 +142,10 @@ class ActualizacionController{
     public static function actualizarConvocatoriaEntrenamiento(int $idClubModificador, int $idConvocatoriaEntrenamiento, bool $asistido = null, bool $justificado = null){
         
         //se busca el registro que se quiere modificar
-        $convocatoriaEntrenamiento = ConsultaController::buscarAsistencia_entrenamiento($idClubModificador,null)[0];
+        $convocatoriaEntrenamiento = ConsultaController::buscarAsistencia_entrenamiento($idConvocatoriaEntrenamiento, null)[0];
 
         //se busca al entrenamiento al que hace referencia el registro de la convocatoria
-        $entrenamientoReferenciado = ConsultaController::buscarEntrenamiento((int)$convocatoriaEntrenamiento->entrenamiento_id,null);
+        $entrenamientoReferenciado = ConsultaController::buscarEntrenamiento((int)$convocatoriaEntrenamiento->entrenamiento_id,null)[0];
         
         /*si el id del club modificador es distinto al id del club al que pertenece 
         el entrenamiento al que pertenece el registro de la convocatoria salta la 

@@ -61,6 +61,9 @@
                             'jugador' => $jugador,
                             'botonInformacion'=>true
                             ])
+                        
+                        {{-- Fila contenedor verde --}}
+                         <div class="my-5 bgVerde5 separador"></div>
                     
                 @endforeach
                 

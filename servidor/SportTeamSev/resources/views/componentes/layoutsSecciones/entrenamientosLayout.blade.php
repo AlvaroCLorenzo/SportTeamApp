@@ -8,18 +8,33 @@
             <div class="col-9">
                 <div class="row align-items-center">
                     <div class="col-sm">
-                        <p class="w-50 mx-auto my-0 texto textoVerde1 text-center py-3">Duración</p>
+
+                        <?php
+                            if($entrenamiento->duracion == null){
+                                $entrenamiento->duracion = "Sin duración";
+                            }
+                        ?>
+
+                        <p class="w-50 mx-auto my-0 texto textoVerde1 text-center py-3">Duración: {{$entrenamiento->duracion}}</p>
+
                     </div>
+
+                    <?php
+
+                        $trozos = explode(' ',$entrenamiento->fechaHora);
+
+                    ?>
+
                     <div class="col-sm">
-                        <p class="w-50 mx-auto my-0 texto textoVerde1 text-center py-3">Hora</p>
+                        <p class="w-50 mx-auto my-0 texto textoVerde1 text-center py-3">Hora: {{$trozos[1]}}</p>
                     </div>
                 </div>
                 <div class="row align-items-center">
                     <div class="col-sm">
-                        <p class="w-50 mx-auto my-0 texto textoVerde1 text-center py-3">Fecha</p>
+                        <p class="w-50 mx-auto my-0 texto textoVerde1 text-center py-3">{{$trozos[0]}}</p>
                     </div>
                     <div class="col-sm">
-                        <p class="w-50 mx-auto my-0 texto textoVerde1 text-center py-3">Campo</p>
+                        <p class="w-50 mx-auto my-0 texto textoVerde1 text-center py-3">Lugar: {{$entrenamiento->lugar}}</p>
                     </div>
                 </div>
             </div>
