@@ -1,0 +1,157 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/constraintLayoutIndex"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/verde_100"
+    tools:context=".Activities.IndexActivity">
+
+    <androidx.cardview.widget.CardView
+        android:id="@+id/carviewPartidos"
+        android:layout_width="350dp"
+        android:layout_height="180dp"
+        android:layout_marginStart="10dp"
+
+        android:layout_marginTop="30dp"
+        android:layout_marginEnd="10dp"
+        android:clickable="true"
+        android:contextClickable="true"
+
+        android:focusable="true"
+        android:foreground="?android:attr/selectableItemBackgroundBorderless"
+        app:cardCornerRadius="15dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent">
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:id="@+id/constraintLayoutPartidos"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:background="@drawable/partido"
+            android:clickable="false"
+            android:contextClickable="false"
+            android:textAlignment="center">
+
+            <TextView
+                android:id="@+id/textViewPartidos"
+                android:layout_width="170dp"
+                android:layout_height="60dp"
+                android:shadowColor="@color/black"
+                android:shadowDx="5"
+                android:shadowDy="10"
+                android:shadowRadius="10"
+                android:text="Partidos"
+                android:textAlignment="center"
+                android:textColor="@color/white"
+                android:textSize="38sp"
+                android:textStyle="bold"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintHorizontal_bias="0.5"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
+        </androidx.constraintlayout.widget.ConstraintLayout>
+    </androidx.cardview.widget.CardView>
+
+    <androidx.cardview.widget.CardView
+        android:id="@+id/cardViewEntrenamientos"
+        android:layout_width="350dp"
+        android:layout_height="180dp"
+        android:layout_marginStart="10dp"
+
+        android:layout_marginTop="30dp"
+        android:layout_marginEnd="10dp"
+        android:layout_marginBottom="30dp"
+        android:clickable="true"
+
+        android:contextClickable="true"
+        android:focusable="true"
+        android:foreground="?android:attr/selectableItemBackgroundBorderless"
+        app:cardCornerRadius="15dp"
+        app:layout_constraintBottom_toTopOf="@+id/cardViewJugadores"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.508"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/carviewPartidos">
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:id="@+id/constraintLayoutEntrenamientos"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:background="@drawable/entrenamiento"
+            android:clickable="false"
+            android:contextClickable="false"
+            android:textAlignment="center">
+
+            <TextView
+                android:id="@+id/textViewEntrenamientos"
+                android:layout_width="290dp"
+                android:layout_height="60dp"
+                android:shadowColor="@color/black"
+                android:shadowDx="5"
+                android:shadowDy="10"
+                android:shadowRadius="10"
+                android:text="Entrenamientos"
+                android:textAlignment="center"
+                android:textColor="@color/white"
+                android:textSize="38sp"
+                android:textStyle="bold"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintHorizontal_bias="0.5"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
+        </androidx.constraintlayout.widget.ConstraintLayout>
+    </androidx.cardview.widget.CardView>
+
+    <androidx.cardview.widget.CardView
+        android:id="@+id/cardViewJugadores"
+        android:layout_width="350dp"
+        android:layout_height="180dp"
+
+        android:layout_marginStart="10dp"
+        android:layout_marginEnd="10dp"
+        android:layout_marginBottom="30dp"
+        android:clickable="true"
+
+        android:contextClickable="true"
+        android:focusable="true"
+        android:foreground="?android:attr/selectableItemBackgroundBorderless"
+        app:cardCornerRadius="15dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent">
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:id="@+id/constraintLayoutJugadores"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:background="@drawable/jugadores"
+            android:clickable="false"
+            android:contextClickable="false"
+            android:textAlignment="center">
+
+            <TextView
+                android:id="@+id/textViewJugadores"
+                android:layout_width="200dp"
+                android:layout_height="60dp"
+                android:shadowColor="@color/black"
+                android:shadowDx="5"
+                android:shadowDy="10"
+                android:shadowRadius="10"
+                android:text="Jugadores"
+                android:textAlignment="center"
+                android:textColor="@color/white"
+                android:textSize="38sp"
+                android:textStyle="bold"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintHorizontal_bias="0.5"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
+        </androidx.constraintlayout.widget.ConstraintLayout>
+    </androidx.cardview.widget.CardView>
+</androidx.constraintlayout.widget.ConstraintLayout>
