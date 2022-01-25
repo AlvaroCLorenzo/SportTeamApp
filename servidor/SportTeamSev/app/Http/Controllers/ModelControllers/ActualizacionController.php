@@ -6,6 +6,20 @@ use App\Exceptions\ModificacionNoAutorizadaException;
 
 class ActualizacionController{
 
+
+
+    public static function actualizarPathImagenClub(int $idClub, string $nuvaImagenPath){
+
+        $clubResultado = ConsultaController::buscarClub($idClub, null);
+
+        $club = $clubResultado[0];
+
+        $club->pathImagen = $nuvaImagenPath;
+
+        $club->save();
+
+    }
+    
     /**
      * Permite actualizar el resultado y la obsercavion de un partido exclusivamente 
      * a un $idClubModificador que forma parte de dicho encuentro como local o visitante.
@@ -85,16 +99,19 @@ class ActualizacionController{
      */
     public static function actualizarConvocatoriaPartido(int $idClubModificador, int $idComvocatoriaPartido, bool $asistido = null, bool $justificado = null){
         
-        $comvocatoriaPartido = ConsultaController::buscarAsistencia_partido($idComvocatoriaPartido,null)[0];
-
+        
+        $comvocatoriaPartido = ConsultaController::buscarAsistencia_partido($idComvocatoriaPartido)[0];
+        
         /*se comprueba si el club que está realizando la modificación puede modificar ese registro
          mirando si el partido al que pertenece este registro de comvocatoria pertenece a el club 
          que lo intenta modiciar.
         */
+        
         if(!self::comprobarPermisoModificacionPartido($idClubModificador, $comvocatoriaPartido->partido_id)){
             throw new ModificacionNoAutorizadaException();
         }
 
+        
 
         if($asistido !== null){
             $comvocatoriaPartido->asistido = $asistido;
@@ -128,10 +145,10 @@ class ActualizacionController{
     public static function actualizarConvocatoriaEntrenamiento(int $idClubModificador, int $idConvocatoriaEntrenamiento, bool $asistido = null, bool $justificado = null){
         
         //se busca el registro que se quiere modificar
-        $convocatoriaEntrenamiento = ConsultaController::buscarAsistencia_entrenamiento($idClubModificador,null)[0];
+        $convocatoriaEntrenamiento = ConsultaController::buscarAsistencia_entrenamiento($idConvocatoriaEntrenamiento, null)[0];
 
         //se busca al entrenamiento al que hace referencia el registro de la convocatoria
-        $entrenamientoReferenciado = ConsultaController::buscarEntrenamiento((int)$convocatoriaEntrenamiento->entrenamiento_id,null);
+        $entrenamientoReferenciado = ConsultaController::buscarEntrenamiento((int)$convocatoriaEntrenamiento->entrenamiento_id,null)[0];
         
         /*si el id del club modificador es distinto al id del club al que pertenece 
         el entrenamiento al que pertenece el registro de la convocatoria salta la 
@@ -153,6 +170,28 @@ class ActualizacionController{
 
         $convocatoriaEntrenamiento->save();
 
+    }
+
+    public static function actualizarContra(int $idClub, string $contraAnt, string $contraNueva){
+
+        $clubes = ConsultaController::buscarClub($idClub, null);
+
+        if(count($clubes) == 0){
+            throw new ModificacionNoAutorizadaException();
+        }
+
+        $club = $clubes[0];
+
+        if(strcmp($club->password,$contraAnt) == 0){
+            
+            $club->password = $contraNueva;
+
+            $club->save();
+        }else{
+
+            throw new ModificacionNoAutorizadaException();
+
+        }
     }
 
     

@@ -62,9 +62,24 @@ class ConsultaController
     /**
      * permite buscar un club por su id o por su nombre.
      */
-    public static function buscarClub($club){
+    public static function buscarClub($club, string $contra = null){
 
-        return self::buscarIDModelo(Club::class, $club, 'nombre');
+
+        if($club != null && $contra == null){
+
+            return self::buscarIDModelo(Club::class, $club, 'nombre');
+
+        }else if($club != null && $contra != null){
+
+            
+            return Club::where('nombre','=',$club)
+                        ->where('password','=',$contra)
+                        ->get();
+
+        }else{
+            throw new UsoIncorrectoSobrecargaException();
+        }
+
         
     }
 
@@ -208,20 +223,29 @@ class ConsultaController
      * Permite buscar un registro de asistencia a partido por su id.
      * Pasando solo $idAsistencia_partido
      * o
-     * Permite buscar todos los registro de asistencia a partidos por el id del partido.
-     * Pasando solo $idPartido.
+     * Permite buscar todos los registro de asistencia a partidos por el id del partido que corresponden club.
+     * Pasando $idClub $idPartido.
      * 
      */
-    public static function buscarAsistencia_partido(int $idAsistencia_partido = null, int $idPartido = null){
+    public static function buscarAsistencia_partido(int $idAsistencia_partido = null, int $idClub = null, int $idPartido = null, int $idJugador = null){
 
         if($idAsistencia_partido != null){ 
 
             return self::buscarIDModelo(Asistencia_partido::class, $idAsistencia_partido);
 
-        }else if($idPartido != null){
+        }else if($idClub != null && $idPartido != null){
 
+            return Asistencia_partido::join('jugadores','jugadores.id','=','asistencia_partidos.jugador_id')
+                                    ->select('asistencia_partidos.*')
+                                    ->where('partido_id','=',$idPartido)
+                                    ->where('jugadores.club_id','=',$idClub)
+                                    ->get();
 
-            return Asistencia_partido::where('partido_id','=',$idPartido)->get();
+        }else if($idPartido != null && $idJugador != null){
+
+            return Asistencia_partido::where('partido_id','=',$idPartido)
+                                ->where('jugador_id','=',$idJugador)
+                                ->get();
 
         }else{
             throw new UsoIncorrectoSobrecargaException();
@@ -237,17 +261,24 @@ class ConsultaController
      * Pasando solo $idEntrenamiento.
      * 
      */
-    public static function buscarAsistencia_entrenamiento(int $idAsistencia_entrenamiento = null, int $idEntrenamiento = null){
+    public static function buscarAsistencia_entrenamiento(int $idAsistencia_entrenamiento = null, int $idEntrenamiento = null,  int $idJugador = null){
+
 
         if($idAsistencia_entrenamiento != null){ 
 
             return self::buscarIDModelo(Asistencia_entrenamiento::class, $idAsistencia_entrenamiento);
 
+        }else if($idJugador != null && $idEntrenamiento != null){
+
+            return Asistencia_entrenamiento::where('entrenamiento_id','=',$idEntrenamiento)
+                                            ->where('jugador_id','=',$idJugador)
+                                            ->get();
+
         }else if($idEntrenamiento != null){
 
             return Asistencia_entrenamiento::where('entrenamiento_id','=',$idEntrenamiento)->get();
 
-        }else{
+        }else {
             throw new UsoIncorrectoSobrecargaException();
         }
 

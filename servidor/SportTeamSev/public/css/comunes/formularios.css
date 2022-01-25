@@ -7,7 +7,11 @@ form .grupo {
     position: relative;
 }
 
-input {
+input[type="text"],
+input[type="password"],
+input[type="number"],
+input[type="time"],
+input[type="date"] {
     background: none;
     padding: 5px 5px 5px 0px;
     font-size: 1rem;
@@ -27,15 +31,68 @@ form label.textfield {
     top: 5px;
     transition: 0.5s ease-in-out all;
     pointer-events: none;
+    background: #fff;
 }
 
 input:focus~label,
 input:valid~label {
-    top: -14px;
+    top: -20px;
+    font-size: 0.9rem;
 }
 
 select {
     border: 2px solid #bfdaa0;
     padding: 2px 20px 2px 0px;
     margin-left: 20px;
+}
+
+input[type="button"],
+input[type="submit"],
+input[type="file"]::-webkit-file-upload-button {
+    color: white;
+    /* pading */
+    padding-top: 5px;
+    padding-bottom: 5px;
+    padding-left: 20px;
+    padding-right: 20px;
+    /* fondo */
+    background-color: #79be7c;
+    /* borde */
+    border-radius: 18px;
+    border: none;
+    /* transición */
+    transition-duration: 0.5s;
+}
+
+input[type="submit"]:hover,
+input[type="button"]:hover {
+    background-color: #4eb26c;
+}
+
+
+/* Prueba textArea */
+
+textarea {
+    border-radius: 18px;
+    border-color: #bfdaa0;
+    min-height: 100px;
+    border-width: 2px;
+    outline: none;
+    resize: vertical;
+}
+
+textarea::placeholder {
+    color: #bfdaa0;
+}
+
+textarea::-webkit-scrollbar {
+    width: 3px;
+}
+
+textarea::-webkit-scrollbar-track {
+    -webkit-box-shadow: none;
+}
+
+textarea::-webkit-scrollbar-thumb {
+    background-color: #496e56;
 }

@@ -15,8 +15,6 @@ class Club extends Model
 
     const DEFAULT_IMAGEN_USUARIO = 'user.png';
 
-
-
     //se declaran los atributos añadidos como es categoría para sustituir a categoria_id
     protected $appends = [
         'categoria',
@@ -63,9 +61,16 @@ class Club extends Model
 
     public function getCategoriaAttribute(){
 
-        $respuesta = ConsultaController::buscarCategoria((int)$this->attributes['categoria_id']);
 
-        return $respuesta[0]->nombreCategoria;
+        if(isset($this->attributes['categoria_id'])){
+
+            $respuesta = ConsultaController::buscarCategoria((int)$this->attributes['categoria_id']);
+
+            return $respuesta[0]->nombreCategoria;
+        }
+        
+        return null;
+
     }
 
     public function categoria(){

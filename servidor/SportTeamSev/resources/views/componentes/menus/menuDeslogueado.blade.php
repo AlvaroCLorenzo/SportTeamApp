@@ -10,16 +10,21 @@
                 @if ($btnDesplegable)
                     <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav"
                         aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
-                        <span id="iconoMenu" class="navbar-toggler-icon"></span>
+                        <span class="navbar-toggler-icon">
+                            <span class="navbar-toggler-icon redimensionarLogo">
+        
+                                <img src="{{ url('img/fotos/menuIcon.png') }}" class="w-100">
+                            </span>
+                        </span>
                     </button>
                 @endif
                 <div class="collapse navbar-collapse" id="navbarNav">
                     <ul class="navbar-nav ms-auto">
 
                         @if ($btnRegistro)
-                        <li id="contornoBlanco" class="nav-item generico">
-                            <a class="nav-link linkB p-0" href="{{ url('/registro') }}">Regístrate</a>
-                        </li>
+                            <li id="contornoBlanco" class="nav-item generico">
+                                <a class="nav-link linkB p-0" href="{{ url('/registro') }}">Regístrate</a>
+                            </li>
                         @endif
 
                         @if ($btnLogin)

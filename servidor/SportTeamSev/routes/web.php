@@ -3,6 +3,7 @@
 use Illuminate\Support\Facades\Route;
 
 use App\Http\Controllers\LoginController;
+use App\Http\Controllers\WebController;
 
 /*
 |--------------------------------------------------------------------------
@@ -15,77 +16,93 @@ use App\Http\Controllers\LoginController;
 |
 */
 
-//vista de entrada index
-Route::get('/', function () {
-    return view('index');
-});
-
-//login
-
 Route::get('/insercion',[LoginController::class,'insercion']);
 
-Route::get('/login', function () {
-    return view('login');
-});
+//vista de entrada index
+Route::get('/',[WebController::class,'getIndex']);
 
+//login
+Route::get('/login',[WebController::class,'getLogin']);
 
 
 //validacion login
-Route::post('/validacion-login',function () {
-    return view('validacion-login');
-});
+Route::post('/validacion-login',[WebController::class,'logear']);
+
+//vista jugadroes seccion info
+Route::get('/cerrar-sesion',[WebController::class,'unLogear']);
+
 
 //registro
 Route::get('/registro', function () {
-    return view('registro');
+    return view('unlogin/registro');
 });
+
+//registro
+Route::post('/registrarUsuario',[WebController::class, 'registrarClub']);
 
 //cambio de contraseña
-Route::get('/cambio-contra', function () {
-    return view('cambio-contra');
-});
+Route::post('/cambio-contra',[WebController::class,'cambiarContra']);
 
-//hub de secciones
-Route::get('/hub', function () {
-    return view('hub');
-});
+//cambio de contraseña
+Route::post('/actualizarContra',[WebController::class,'actualizarContra']);
 
-//perfil
-Route::get('/mi-club', function () {
-    return view('mi-club');
-});
+//hub
+//validacion login
+Route::get('/hub',[WebController::class,'getHub']);
+
+//perfil del usuario
+Route::get('/mi-club',[WebController::class,'getMiClub']);
+
+//cambiar imagen
+Route::post('/cambiar-imagen',[WebController::class,'cambiarImagen']);
 
 //vista partidos
-Route::get('/partidos', function () {
-    return view('partidos');
-});
+Route::get('/partidos',[WebController::class,'getPartidos']);
+
+//vista partidos
+Route::post('/crearPartido',[WebController::class,'crearPartido']);
 
 //vista partidos seccion info
-Route::get('/info-partido', function () {
-    return view('indo-partido');
-});
+Route::post('/info-partido',[WebController::class,'getInfoPartido']);
+
+
+//actualizacionses partido
+
+Route::post('/actualizarObservacionPartido',[WebController::class,'actObservacionPartido']);
+
+Route::post('/actualizarConvocar',[WebController::class,'actConvocarPartidoJugador']);
+
+
+Route::post('/actualizarAsistenciaPartido',[WebController::class,'actAsistenciaPartidoJugador']);
+
 
 //vista entrenamientos
-Route::get('/entrenamientos', function () {
-    return view('entrenamientos');
-});
+Route::get('/entrenamientos',[WebController::class, 'getEntrenamientos']);
+
+//crear entrenamiento
+Route::post('/crearEntrenamiento',[WebController::class, 'crearEntrenamiento']);
 
 //vista entrenamientos seccion info
-Route::get('/info-entrenamiento', function () {
-    return view('info-entrenamientos');
-});
+Route::post('/info-entrenamiento',[WebController::class, 'getInfoEntrenamiento']);
+
+Route::post('/actualizarObservacionEntrenamiento',[WebController::class, 'actObservacionEntrenamiento']);
+
+Route::post('/actualizarConvocarEntrenamiento',[WebController::class, 'actConvocarEntrenamiento']);
+
+Route::post('/actualizarAsistenciaEntrenamiento',[WebController::class, 'actAsistenciaEntrenamiento']);
 
 //vista jugadores
-Route::get('/jugadores', function () {
-    return view('jugadores');
-});
+Route::get('/jugadores',[WebController::class, 'getJugadores']);
+
+//crear jugador
+Route::post('/crearJugador',[WebController::class, 'crearJugador']);
 
 //vista jugadroes seccion info
-Route::get('/info-jugador', function () {
-    return view('info-jugador');
-});
+Route::post('/info-jugador', [WebController::class, 'getInfoJugador']);
 
-//vista jugadroes seccion info
-Route::get('/cerrar-sesion', function () {
-    return view('cerrar-sesion');
+Route::post('/actObservacionJugador', [WebController::class, 'actObservacionJugador']);
+
+
+Route::get('/error', function () {
+    return view('login/error');
 });

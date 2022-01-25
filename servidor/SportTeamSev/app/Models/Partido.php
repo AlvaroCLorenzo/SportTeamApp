@@ -5,6 +5,7 @@ namespace App\Models;
 use App\Http\Controllers\ModelControllers\ConsultaController;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Support\Facades\Storage;
 
 class Partido extends Model
 {
@@ -13,7 +14,11 @@ class Partido extends Model
     protected $appends = [
         'local',
         'visitante',
-        'competicion'
+        'competicion',
+        'pathImagenLocal',
+        'pathImagenVisitante',
+        'imagenLocal',
+        'imagenVisitante'
     ];
 
     protected $hidden = [
@@ -23,6 +28,57 @@ class Partido extends Model
         'local_id',
         'visitante_id'
     ];
+
+
+    public function getPathImagenLocalAttribute(){
+        return ConsultaController::buscarClub((int)$this->attributes['local_id'])[0]->pathImagen;
+    }
+
+    public function getPathImagenVisitanteAttribute(){
+        return $pathImagen = ConsultaController::buscarClub((int)$this->attributes['visitante_id'])[0]->pathImagen;
+    }
+
+
+    public function getImagenLocalAttribute(){
+
+        $pathImagen = ConsultaController::buscarClub((int)$this->attributes['local_id'])[0]->pathImagen;
+
+        //si el registro del model de la instancia tiene el atributo del path de la imagen
+        if(isset($pathImagen)){
+
+            /**
+             * Se recupera el fichero y se retorna en codificacion de base64 para insertarlo en el json.
+             */
+            return base64_encode(Storage::disk('public')->get($pathImagen));
+
+        }
+
+        /**
+         * Si no tiene una imagen asociada se retorna de la misma manera la imagen de usuario por defecto.
+         */
+        return base64_encode(Storage::disk('public')->get(Club::DEFAULT_IMAGEN_USUARIO));
+    }
+
+    public function getImagenVisitanteAttribute(){
+
+        $pathImagen = ConsultaController::buscarClub((int)$this->attributes['visitante_id'])[0]->pathImagen;
+
+        //si el registro del model de la instancia tiene el atributo del path de la imagen
+        if(isset($pathImagen)){
+
+            /**
+             * Se recupera el fichero y se retorna en codificacion de base64 para insertarlo en el json.
+             */
+            return base64_encode(Storage::disk('public')->get($pathImagen));
+
+        }
+
+        /**
+         * Si no tiene una imagen asociada se retorna de la misma manera la imagen de usuario por defecto.
+         */
+        return base64_encode(Storage::disk('public')->get(Club::DEFAULT_IMAGEN_USUARIO));
+
+    }
 
     /**
      * Busca el nombre del id del club con el ron local.

@@ -16,20 +16,24 @@ class Asistencia_partido extends Model
     ];
 
     protected $hidden = [
+ 
+        'partido_id',
         'updated_at',
         'created_at',
         'jugador_id'
     ];
 
+
+
     public function getJugadorNombreAttribute(){
 
-        return ConsultaController::buscarJugador($this->attributes['jugador_id'])[0]->nombre;
+        return ConsultaController::buscarJugador((int)$this->attributes['jugador_id'])[0]->nombre;
 
     }
 
     public function getJugadorApellidosAttribute(){
 
-        return ConsultaController::buscarJugador($this->attributes['jugador_id'])[0]->apellidos;
+        return ConsultaController::buscarJugador((int)$this->attributes['jugador_id'])[0]->apellidos;
 
     }
 

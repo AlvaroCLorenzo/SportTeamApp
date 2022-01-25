@@ -9,7 +9,19 @@
                 <button class="navbar-toggler" type="button" data-bs-toggle="collapse"
                     data-bs-target="#navbarToggleExternalContent" aria-controls="navbarNav" aria-expanded="false"
                     aria-label="Toggle navigation">
-                    <span id="iconoMenu" class="navbar-toggler-icon"></span>
+                    <span class="navbar-toggler-icon redimensionarLogo">
+                        {{-- meter imagen del equipo logueado --}}
+
+                        <?php
+
+                            if($imagen == null){
+                                $imagen = 'userBig.png';
+                            }
+
+                        ?>
+
+                        <img src="{{ url('/storage/'.$imagen) }}" class="w-100">
+                    </span>
                 </button>
             </div>
         </nav>

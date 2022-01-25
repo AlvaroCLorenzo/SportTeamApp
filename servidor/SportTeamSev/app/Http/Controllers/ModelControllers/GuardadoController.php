@@ -4,6 +4,7 @@ namespace App\Http\Controllers\ModelControllers;
 
 use App\Exceptions\ClaveForaneaNullaException;
 use App\Exceptions\InsercionDuplicadaException;
+use App\Exceptions\ModificacionNoAutorizadaException;
 use App\Models\Asistencia_entrenamiento;
 use App\Models\Asistencia_partido;
 use App\Models\Club;
@@ -72,31 +73,55 @@ class GuardadoController
      * 
      * El campo nombre debe ser único en la tabla.
      */
-    public static function guardarClub(string $nombre, string $password, string $deporte, string $temporada, $categoria){
+    public static function guardarClub(string $nombre, string $password=null, string $deporte=null, string $temporada=null, $categoria = null){
 
-        //si ya existe un club con el mismo nombre salta una excepcion del tipo InsercionDuplicadaException
-        self::comprobarDuplicado(ConsultaController::buscarClub($nombre),'$nombre');
+        //si ya existe un club con el mismo nombre y contraseña salta una excepcion del tipo InsercionDuplicadaException
+        self::comprobarDuplicado(ConsultaController::buscarClub($nombre, $password),'$nombre $contraseña');
 
-        $resultado = ConsultaController::buscarCategoria($categoria);
+        $categoriaRelacionada = null;
+
+        if($categoria != null){
+
+            $resultado = ConsultaController::buscarCategoria($categoria);
         
-        
-        //en este punto $categoria no puede ser null
+            //en este punto $categoria no puede ser null
+            //si no se encuentra la categoría en la consulta que se ha realizado se lanza una excepcion
+            if(count($resultado)==0){
+                throw new ClaveForaneaNullaException(['$categoria']);
+            }
 
-        //si no se encuentra la categoría en la consulta que se ha realizado se lanza una excepcion
-        if(count($resultado)==0){
-            throw new ClaveForaneaNullaException(['$categoria']);
+            //cogemos el primer resultado, no debería haber más
+            $categoriaRelacionada = $resultado[0];
+
+
         }
-       
-        //cogemos el primer resultado, no debería haber más
-        $categoriaRelacionada = $resultado[0];
 
-        $club = new Club();
+        //miramos si ya existe un club dado de alta con la contraseña nola, es decir, un club que no ha sido recoalamdo por nadie
+        $clubHuerfano = ConsultaController::buscarClub($nombre);
+
+        //si se ha encontrado un club huerfano  y sis ese club huerfano tiene la contraseña nula
+        if(count($clubHuerfano)>0 && $clubHuerfano[0]->password == null){
+
+            $club = $clubHuerfano[0];
+
+        }else{
+
+            $club = new Club();
+        }
+
         $club->nombre = $nombre;
         $club->password = $password;
         $club->deporte = $deporte;
         $club->temporada = $temporada;
 
-        $categoriaRelacionada->clubs()->save($club);
+        
+
+        if($categoriaRelacionada != null){
+
+            $categoriaRelacionada->clubs()->save($club);
+
+        }
+        
 
         $club->save();
 
@@ -152,7 +177,6 @@ class GuardadoController
 
         $resultadoClubVisitante = ConsultaController::buscarClub($clubVisitante);
 
-        
         $resultadoCompeticion = null;
 
         if($competicion != null){
@@ -300,7 +324,11 @@ class GuardadoController
      * En este caso no se permite buscar el entrenamiento y el jugador por el nombre de 
      * su  campo en la base de datos, solo por id, por eso se fuerzan las keys como enteros.
      */
-    public static function guardarAsistenciaEntrenamientos(int $idEntrenamiento,int $idJugador, bool $asistido = null, bool $justificado = null){
+    public static function guardarAsistenciaEntrenamientos(int $idClubModificador, int $idEntrenamiento,int $idJugador, bool $asistido = null, bool $justificado = null){
+
+        $resultado = ConsultaController::buscarAsistencia_entrenamiento(null, $idEntrenamiento, $idJugador);
+
+        self::comprobarDuplicado($resultado,'$idPartido $idJugador');
 
         $resultadoEntrenamiento = ConsultaController::buscarEntrenamiento($idEntrenamiento);
 
@@ -335,6 +363,18 @@ class GuardadoController
 
         $jugadorRelacionado = $resultadoJugador[0];
 
+        //comprobamos que el club modificador tiene permiso de modificación en dicho partido y jugador
+        if( 
+            $idClubModificador != (int)$jugadorRelacionado->club_id
+        ||  
+            $idClubModificador != (int)$entrenamientoRelacionado->club_id
+        )
+        {
+            throw new ModificacionNoAutorizadaException();
+        }
+
+
+
         $asistanciaEntrenamiento = new Asistencia_entrenamiento();
 
         if($asistido != null){
@@ -360,7 +400,11 @@ class GuardadoController
      * 
      * En este caso no se permite buscar el entrenamiento y el jugador por el nombre de un campo, solo por id, por eso se fuerzan las keys como enteros
      */
-    public static function guardarAsistenciaPartidos(int $idPartido,int $idJugador, bool $asistido = null, bool $justificado = null){
+    public static function guardarAsistenciaPartidos(int $idClubModificador, int $idPartido,int $idJugador, bool $asistido = null, bool $justificado = null){
+
+        $resultado = ConsultaController::buscarAsistencia_partido(null,null, $idPartido, $idJugador);
+
+        self::comprobarDuplicado($resultado,'$idPartido $idJugador');
 
         $resultadoPartido = ConsultaController::buscarPartido($idPartido);
 
@@ -394,6 +438,16 @@ class GuardadoController
         $partidoRelacionado = $resultadoPartido[0];
 
         $jugadorRelacionado = $resultadoJugador[0];
+
+
+        //comprobamos que el club modificador tiene permiso de modificación en dicho partido y jugador
+        if( 
+            $idClubModificador != (int)$jugadorRelacionado->club_id
+        ||  
+        ($idClubModificador != (int)$partidoRelacionado->local_id && $idClubModificador != (int)$partidoRelacionado->visitante_id))
+        {
+            throw new ModificacionNoAutorizadaException();
+        }
 
         $asistenciaPartido = new Asistencia_partido();
 

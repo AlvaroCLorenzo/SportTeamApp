@@ -4,19 +4,20 @@ namespace App\Http\Controllers;
 
 use App\Exceptions\ClaveForaneaNullaException;
 use App\Exceptions\FormatoParametroIncorrectoException;
+use App\Exceptions\InsercionDuplicadaException;
 use App\Exceptions\UsoIncorrectoSobrecargaException;
 use App\Http\Controllers\ModelControllers\ActualizacionController;
 use App\Http\Controllers\ModelControllers\ConsultaController;
 use App\Http\Controllers\ModelControllers\GuardadoController;
-use App\Models\Partido;
 use Illuminate\Http\Request;
 use App\Exceptions\ModificacionNoAutorizadaException;
+use Exception;
 
 class ApiController extends Controller
 {
     const ARGUMENTOS_INVALIDOS = 'argumentos invalidos';
 
-    const ACTUALIZACION_EXITOSA = 'actualizacion existosa';
+    const ACTUALIZACION_EXITOSA = 'actualizacion exitosa';
 
     const ERROR_GENERICO = 'error';
     
@@ -145,7 +146,7 @@ class ApiController extends Controller
 
         try{
 
-            $registrosComvocatoriaPartido = ConsultaController::buscarAsistencia_partido(null,(int)$request->idPartido);
+            $registrosComvocatoriaPartido = ConsultaController::buscarAsistencia_partido(null, $idClub, (int)$request->idPartido);
 
             return $registrosComvocatoriaPartido;
 
@@ -158,7 +159,6 @@ class ApiController extends Controller
             return self::ERROR_GENERICO;
         }
 
-        
 
     }
 
@@ -236,8 +236,17 @@ class ApiController extends Controller
     }
 
 
+    /**
+     * Permite actualizar el resultado y la obsercavion de un partido exclusivamente 
+     * a un club que forma parte de dicho encuentro.
+     * 
+     * Para eso el request debe de tener los argumentos:
+     * observacion
+     * 
+     */
     public function actEntrenamiento(Request $request){
-
+        
+        
         //se valida la petición
         $idClub = LoginController::logearApi($request);
 
@@ -259,7 +268,7 @@ class ApiController extends Controller
 
         }catch(ModificacionNoAutorizadaException | UsoIncorrectoSobrecargaException
         $ex){
-
+            
             return $ex->getMessage();
 
         }
@@ -282,7 +291,7 @@ class ApiController extends Controller
 
         try{
 
-            ActualizacionController::actualizarEntrenamiento($idClub, $request->idJugador, $observacion);
+            ActualizacionController::actualizarJugador($idClub, $request->idJugador, $observacion);
 
             return self::ACTUALIZACION_EXITOSA;
 
@@ -409,7 +418,7 @@ class ApiController extends Controller
      * Permite insertar un partido.
      */
     public function insPartido(Request $request){
-
+        
         //se valida la petición
         $idClub = LoginController::logearApi($request);
 
@@ -421,22 +430,88 @@ class ApiController extends Controller
         if(!isset($request->eqLocal) || !isset($request->eqVisitante) || !isset($request->fechaHora)){
             return self::ARGUMENTOS_INVALIDOS;
         }
+        
 
+        $busquedaLocal = ConsultaController::buscarClub($request->eqLocal,null);
+
+        $busquedaVisitante = ConsultaController::buscarClub($request->eqVisitante,null);
+
+        //si no existe en la bade de datos un club se crea vacío
+        if(count($busquedaLocal)==0){
+            //se crea
+            GuardadoController::guardarClub($request->eqLocal,null,null,null,null);
+            //se recupera la entidad
+            $busquedaLocal = ConsultaController::buscarClub($request->eqLocal);
+
+        }
+
+        if(count($busquedaVisitante)==0){
+            //se crea
+            GuardadoController::guardarClub($request->eqVisitante,null,null,null,null);
+            //se recupera la entidad
+            $busquedaLocal = ConsultaController::buscarClub($request->eqVisitante);
+
+        }
         
         //se comprueba si el club logueado es uno de los dos participantes del partido
-        if($idClub != (int)ConsultaController::buscarClub($request->eqLocal)[0]->id
+        if($idClub != (int)$busquedaLocal[0]->id
            &&
-           $idClub != (int)ConsultaController::buscarClub($request->eqVisitante)[0]->id
+           $idClub != (int)$busquedaVisitante[0]->id
         ){
             return (new ModificacionNoAutorizadaException())->getMessage();
         }
 
         
+        
+
         $competicion = isset($request->competicion) ? $request->competicion : null;
         
         try{
 
             GuardadoController::guardarPartido($request->eqLocal, $request->eqVisitante, $competicion, $request->fechaHora, null, null);
+
+            return self::ACTUALIZACION_EXITOSA;
+
+        }catch(ClaveForaneaNullaException | FormatoParametroIncorrectoException | Exception
+        $ex){
+
+            return $ex->getMessage();
+
+        }
+        
+    
+    }
+
+
+    /**
+     * Permite insertar un entrenamiento.
+     */
+    public function insEntrenamiento(Request $request){
+
+        //se valida la petición
+        $idClub = LoginController::logearApi($request);
+
+        if($idClub == null){
+            return LoginController::RESPUESTA_ERROR_LOGIN;
+        }
+
+       
+        
+        if(!isset($request->lugar) || !isset($request->duracion) || !isset($request->fechaHora)){
+            return self::ARGUMENTOS_INVALIDOS;
+        }
+
+        $trozos = explode(",",$request->duracion);
+
+        if(count($trozos)>=2){
+            $request->duracion = $trozos[0].".".$trozos[1];
+        }
+
+        
+        
+        try{
+
+            GuardadoController::guardarEntrenamiento($idClub,$request->fechaHora,$request->duracion,$request->lugar,null);
 
             return self::ACTUALIZACION_EXITOSA; 
 
@@ -448,5 +523,116 @@ class ApiController extends Controller
         }
     
     }
+
+
+    /**
+     * Permite insertar un entrenamiento.
+     */
+    public function insJugador(Request $request){
+
+        //se valida la petición
+        $idClub = LoginController::logearApi($request);
+
+        if($idClub == null){
+            return LoginController::RESPUESTA_ERROR_LOGIN;
+        }
+
+        
+        if(!isset($request->nombreJugador) || !isset($request->apellidos) || !isset($request->telefono) || !isset($request->fechaHora)){
+            return self::ARGUMENTOS_INVALIDOS;
+        }
+        
+        try{
+
+            GuardadoController::guardarJugador($idClub, $request->nombreJugador, $request->apellidos, $request->telefono,$request->fechaHora,null);
+
+            return self::ACTUALIZACION_EXITOSA; 
+
+        }catch(ClaveForaneaNullaException | FormatoParametroIncorrectoException
+        $ex){
+
+            return $ex->getMessage();
+
+        }
+    
+    }
+
+
+    /**
+     * Permite instertar una comvoactoria de partido
+     */
+    public function insConvocatoriaPartido(Request $request){
+
+        //se valida la petición
+        $idClub = LoginController::logearApi($request);
+
+        if($idClub == null){
+            return LoginController::RESPUESTA_ERROR_LOGIN;
+        }
+
+        if(!isset($request->idJugador) || !isset($request->idPartido)){
+            return self::ARGUMENTOS_INVALIDOS;
+        }
+
+
+        try{
+
+            GuardadoController::guardarAsistenciaPartidos($idClub, (int)$request->idPartido, (int)$request->idJugador, null, null);
+
+            return self::ACTUALIZACION_EXITOSA; 
+
+        }catch(ModificacionNoAutorizadaException | ClaveForaneaNullaException | FormatoParametroIncorrectoException
+        $ex){
+
+            return $ex->getMessage();
+
+        }catch(InsercionDuplicadaException $ex){
+
+            return self::ERROR_GENERICO;
+
+        }
+
+
+    }
+
+
+    /**
+     * Permite instertar una comvoactoria de entrenamiento
+     */
+    public function insConvocatoriaEntrenamiento(Request $request){
+
+        //se valida la petición
+        $idClub = LoginController::logearApi($request);
+
+        if($idClub == null){
+            return LoginController::RESPUESTA_ERROR_LOGIN;
+        }
+
+        if(!isset($request->idJugador) || !isset($request->idEntrenamiento)){
+            return self::ARGUMENTOS_INVALIDOS;
+        }
+
+
+        try{
+
+            GuardadoController::guardarAsistenciaEntrenamientos($idClub, (int)$request->idEntrenamiento, (int)$request->idJugador, null,null);
+
+            return self::ACTUALIZACION_EXITOSA;
+
+        }catch(ModificacionNoAutorizadaException | ClaveForaneaNullaException | FormatoParametroIncorrectoException
+        $ex){
+
+            return $ex->getMessage();
+
+        }catch(InsercionDuplicadaException $ex){
+
+            return self::ERROR_GENERICO;
+
+        }
+
+
+    }
+
+
 
 }

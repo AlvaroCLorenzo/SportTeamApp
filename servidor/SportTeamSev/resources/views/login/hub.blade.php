@@ -5,15 +5,17 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-    @include('componentes/head/headConstantes')
+    @include('componentes/head/headConstantes', ['logueado'=>true, 'mostrarMenuSecciones'=>false])
 
     <link rel="stylesheet" href="css/hub/botonesSecciones.css">
 
-    <title>HUB - Sport Team</title>
+    <title>Sport Team</title>
 </head>
 
 <body>
-    @include('componentes/menuLogueado')
+    @include('componentes/menus/menuLogueado',[
+        'imagen' => $imagen
+    ])
 
     {{-- le pongo padding 0 para quitar el padding el de que pongo en el css de basico --}}
     <section class="px-0 pb-0">
