@@ -1,2 +1,2 @@
 # SportTeamApp
-Aplicacion web  y movil para facilitar la organizacion a los entrenadores de quipos deportivos.
+Web and mobile application to facilitate the organization of sports team coaches.
