@@ -1,3 +1,2 @@
 # SportTeamApp
-An sport team app made by class mates.
-hola qe tal
+Web site and Android mobile application to facilitate the organization of sports team coaches.
