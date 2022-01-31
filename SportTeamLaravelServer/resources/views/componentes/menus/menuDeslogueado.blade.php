@@ -11,9 +11,9 @@
                     <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav"
                         aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
                         <span class="navbar-toggler-icon">
-                            <span class="navbar-toggler-icon redimensionarLogo">
+                            <span class="navbar-toggler-icon">
         
-                                <img src="{{ url('img/fotos/menuIcon.png') }}" class="w-100">
+                                <img src="{{ url('img/iconos/menuIcon.png') }}" class="w-100">
                             </span>
                         </span>
                     </button>
