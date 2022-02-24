@@ -1,6 +1,6 @@
 # SportTeamApp
 
-#Laravel
+$ github-standard-labels Laravel https://github.com/laravel/laravel -h
 
 SportTeamApp is a platform created to facilitate the organization of sports team coaches and to organize small leagues.
 
